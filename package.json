@@ -2,11 +2,21 @@
   "name": "sudoku",
   "version": "0.0.1",
   "description": "A simple browser based Sudoku game",
-  "main": "none.js",
-  "repository": "TBD",
+  "private": true,
+  "repository": "https://github.com/andmeek/sudoku",
   "author": "Steven Meek <andmeek@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "http-server": "^0.11.1"
+  "scripts": {
+    "build": "webpack",
+    "build-watch": "webpack -w",
+    "dev-server": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
   }
 }
