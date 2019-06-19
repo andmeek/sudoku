@@ -8,10 +8,12 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "build-watch": "webpack -w",
-    "dev-server": "webpack-dev-server"
+    "build-dist": "webpack --mode production",
+    "dev-server": "webpack-dev-server",
+    "test-dist-server": "webpack-dev-server --no-live-reload --lazy"
   },
   "devDependencies": {
+    "css-loader": "^3.0.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
