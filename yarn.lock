@@ -3661,6 +3661,11 @@ jest-serializer@^24.4.0:
   resolved "https://registry.yarnpkg.com/jest-serializer/-/jest-serializer-24.4.0.tgz#f70c5918c8ea9235ccb1276d232e459080588db3"
   integrity sha512-k//0DtglVstc1fv+GY/VHDIjrtNjdYvYjMlbLUed4kxrE92sIUewOi5Hj3vrpB8CXfkJntRPDRjCrCvUhBdL8Q==
 
+jest-simple-dot-reporter@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/jest-simple-dot-reporter/-/jest-simple-dot-reporter-1.0.3.tgz#2110998c6217b7695672de0239123a42fce29ca8"
+  integrity sha512-QsKO7EHN9XMYNKEGMQ6KofkpAg75lo520L/ly/b4WhhjZumGa2CuttZKxSRyTE+h5s3SQTMkHMPgSnkw8Uphug==
+
 jest-snapshot@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-24.8.0.tgz#3bec6a59da2ff7bc7d097a853fb67f9d415cb7c6"
