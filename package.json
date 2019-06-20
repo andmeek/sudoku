@@ -10,11 +10,19 @@
     "build": "webpack",
     "build-dist": "webpack --mode production",
     "dev-server": "webpack-dev-server",
-    "test-dist-server": "webpack-dev-server --no-live-reload --lazy"
+    "test-dist-server": "webpack-dev-server --no-live-reload --lazy",
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
     "css-loader": "^3.0.0",
-    "vue": "^2.6.10",
+    "jest": "^24.8.0",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.34.0",
