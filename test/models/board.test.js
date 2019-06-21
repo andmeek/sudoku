@@ -42,9 +42,9 @@ describe('Board', () => {
       expect(board.numberCompleted(1)).toBeFalsy()
     })
 
-		test('is false when providing a non sudoku number', () => {
-			expect(board.numberCompleted(0)).toBeFalsy()
-		})
+    test('is false when providing a non sudoku number', () => {
+      expect(board.numberCompleted(0)).toBeFalsy()
+    })
 
     test('is true when tiles for that number are completed', () => {
       board.tiles.forEach((tile) => {

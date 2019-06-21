@@ -1,16 +1,16 @@
 export default class Tile {
   constructor(x, y, actualValue, userEditable = false) {
     this.actualValue = actualValue
-		this.userDrafts = []
-		this.userEditable = userEditable
-		this.userValue = null
-		this.x = x
+    this.userDrafts = []
+    this.userEditable = userEditable
+    this.userValue = null
+    this.x = x
     this.y = y
-	}
+  }
 
-	get error() {
-		return this.userValue != null && this.userValue != this.actualValue
-	}
+  get error() {
+    return this.userValue != null && this.userValue != this.actualValue
+  }
 
   get completed() {
     if(this.userEditable) {

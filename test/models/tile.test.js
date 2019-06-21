@@ -1,70 +1,70 @@
 import Tile from '../../src/models/tile.js'
 
 describe('Tile', () => {
-	var tile
+  var tile
 
-  beforeEach(() => {
-		tile = new Tile(1, 2, 9, true)
-  })
+    beforeEach(() => {
+      tile = new Tile(1, 2, 9, true)
+    })
 
   test('initialization', () => {
     expect(tile.x).toEqual(1)
     expect(tile.y).toEqual(2)
     expect(tile.actualValue).toEqual(9)
     expect(tile.userEditable).toEqual(true)
-		expect(tile.userValue).toBeNull()
-		expect(tile.userDrafts).toEqual([])
+    expect(tile.userValue).toBeNull()
+    expect(tile.userDrafts).toEqual([])
   })
 
-	describe('.error', () => {
-		test('returns false if no user value has been set', () => {
-			tile.userValue = null
+  describe('.error', () => {
+    test('returns false if no user value has been set', () => {
+      tile.userValue = null
 
-			expect(tile.error).toBeFalsy()
-		})
+      expect(tile.error).toBeFalsy()
+    })
 
-		test('returns false if the user value is correct', () => {
-			tile.userValue = tile.actualValue
+    test('returns false if the user value is correct', () => {
+      tile.userValue = tile.actualValue
 
-			expect(tile.error).toBeFalsy()
-		})
+      expect(tile.error).toBeFalsy()
+    })
 
-		test('returns true if the user value is incorrect', () => {
-			tile.userValue = tile.actualValue + 1
+    test('returns true if the user value is incorrect', () => {
+      tile.userValue = tile.actualValue + 1
 
-			expect(tile.error).toBeTruthy()
-		})
-	})
+      expect(tile.error).toBeTruthy()
+    })
+  })
 
-	describe('.completed', () => {
-		test('returns false when its user editable and no value is set', () => {
-			tile.userValue = null
-      tile.userEditable = true
+  describe('.completed', () => {
+    test('returns false when its user editable and no value is set', () => {
+      tile.userValue = null
+        tile.userEditable = true
 
-			expect(tile.completed).toBeFalsy()
-		})
+      expect(tile.completed).toBeFalsy()
+    })
 
-		test('returns true when its not user editable', () => {
-			tile.userValue = null
+    test('returns true when its not user editable', () => {
+      tile.userValue = null
       tile.userEditable = false
 
-			expect(tile.completed).toBeTruthy()
-		})
+      expect(tile.completed).toBeTruthy()
+    })
 
     test('returns false when its user editable but has the wrong value', () => {
-			tile.userValue = tile.actualValue + 1
+      tile.userValue = tile.actualValue + 1
       tile.userEditable = true
 
-			expect(tile.completed).toBeFalsy()
+      expect(tile.completed).toBeFalsy()
     })
 
     test('returns true when the user value is correct', () => {
-			tile.userValue = tile.actualValue
+      tile.userValue = tile.actualValue
       tile.userEditable = true
 
-			expect(tile.completed).toBeTruthy()
+      expect(tile.completed).toBeTruthy()
     })
-	})
+  })
 
   describe('.isSibling', () => {
     test('returns false if its being compared against the same tile', () => {
