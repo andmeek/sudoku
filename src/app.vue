@@ -8,6 +8,8 @@
 <script>
 import HomeScreen from './screens/home.vue'
 import GameScreen from './screens/game.vue'
+import Board from './models/board.js'
+import {TEST_BOARD, TEST_BOARD_STATE} from '../test/variables.js'
 
 export default {
   data() {
@@ -18,7 +20,7 @@ export default {
   },
   methods: {
     newgame: function(event) {
-      this.board = null
+      this.board = new Board(TEST_BOARD, TEST_BOARD_STATE)
       this.screen = "game"
     },
   },

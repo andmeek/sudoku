@@ -18,12 +18,9 @@ export default class Board {
   }
 
   numberCompleted(number) {
-    return this.tiles
-      .filter((tile) => {
-        return tile.actualValue == number
-      }).reduce((tot, tile) => {
-        return tot && tile.completed
-      })
+		return this.tiles.filter((tile) => {
+			return tile.actualValue == number && tile.completed
+		}).length == 9
   }
 
   tileAt(x, y) {
