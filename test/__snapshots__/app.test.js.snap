@@ -10,6 +10,6 @@ exports[`App.vue matches snapshot 1`] = `
 exports[`App.vue shows the game newgame is called 1`] = `
 <div id="game">
   <!---->
-  <game-screen-stub></game-screen-stub>
+  <game-screen-stub board="[object Object]"></game-screen-stub>
 </div>
 `;

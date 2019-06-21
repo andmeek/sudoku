@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game.vue matches snapshot 1`] = `
+<div class="game screen">
+  <game-board-stub board="[object Object]"></game-board-stub>
+  <user-input-stub board="[object Object]"></user-input-stub>
+</div>
+`;
