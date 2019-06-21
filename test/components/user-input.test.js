@@ -1,11 +1,11 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import UserInput from '../../src/components/user-input.vue'
 
 describe('UserInput.vue', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(UserInput, {
+    wrapper = shallowMount(UserInput, {
       propsData: {
         board: genTestBoard()
       }
