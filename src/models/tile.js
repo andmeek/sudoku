@@ -1,5 +1,6 @@
 export default class Tile {
-  constructor(x, y, actualValue, userEditable = false) {
+  constructor(id, x, y, actualValue, userEditable = false) {
+    this.id = id
     this.actualValue = actualValue
     this.userDrafts = []
     this.userEditable = userEditable

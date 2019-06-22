@@ -4,10 +4,12 @@ describe('Tile', () => {
   var tile
 
     beforeEach(() => {
-      tile = new Tile(1, 2, 9, true)
+      tile = new Tile('id', 1, 2, 9, true)
     })
 
   test('initialization', () => {
+    expect(tile.id).toEqual('id')
+    expect(tile.x).toEqual(1)
     expect(tile.x).toEqual(1)
     expect(tile.y).toEqual(2)
     expect(tile.actualValue).toEqual(9)
@@ -72,19 +74,19 @@ describe('Tile', () => {
     })
 
     test('returns true if the tiles share the same "x" value', () => {
-      var tile2 = new Tile(tile.x, 1, 1)
+      var tile2 = new Tile("id", tile.x, 1, 1)
 
       expect(tile.isSibling(tile2)).toBeTruthy()
     })
 
     test('returns true if the tiles share the same "y" value', () => {
-      var tile2 = new Tile(9, tile.y, 1)
+      var tile2 = new Tile("id", 9, tile.y, 1)
 
       expect(tile.isSibling(tile2)).toBeTruthy()
     })
 
     test('returns false if the tiles are on different x or y values', () => {
-      var tile2 = new Tile(0, 0, 1)
+      var tile2 = new Tile("id", 0, 0, 1)
 
       expect(tile.isSibling(tile2)).toBeFalsy()
     })

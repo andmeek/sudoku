@@ -12,6 +12,7 @@ describe('Board', () => {
   test('initialization', () => {
     expect(board.tiles.length).toEqual(81)
     expect(board.tiles[0]).toBeInstanceOf(Tile)
+    expect(board.tiles[0].id).toEqual(1)
     expect(board.tiles[0].actualValue).toEqual(4)
     expect(board.tiles[0].userEditable).toEqual(false)
 
@@ -88,6 +89,18 @@ describe('Board', () => {
       vals = tiles.map((tile) => { return tile.actualValue })
 
       expect(vals).toEqual([8, 7, 4, 1, 3, 6, 2, 5, 9])
+    })
+  })
+
+  describe('.tileById', () => {
+    test('returns null if no tile exists by that ID', () => {
+      expect(board.tileById('badid')).toBeNull()
+    })
+
+    test('it returns the expected tile by its ID', () => {
+      var tile = board.tiles[8]
+
+      expect(board.tileById(tile.id)).toEqual(tile)
     })
   })
 })

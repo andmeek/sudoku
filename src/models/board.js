@@ -3,10 +3,13 @@ import Tile from './tile.js'
 export default class Board {
   constructor(values, state) {
     this.tiles = []
+    this._tilesById = {}
     for(var y = 0; y < values.length; y++) {
       for(var x = 0; x < values[y].length; x++) {
-        var tile = new Tile(x, y, values[y][x], state[y][x] == 1)
-          this.tiles.push(tile)
+        let id = this.tiles.length + 1
+        var tile = new Tile(id, x, y, values[y][x], state[y][x] == 1)
+        this.tiles.push(tile)
+        this._tilesById[id] = tile
       }
     }
   }
@@ -43,5 +46,9 @@ export default class Board {
       }
     }
     return ret
+  }
+
+  tileById(id) {
+    return this._tilesById[id] || null
   }
 }
