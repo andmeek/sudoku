@@ -3,19 +3,37 @@
     <div class="row" v-for="outerRow in [0, 1, 2]" :rownum="outerRow">
       <div class="tile-group" v-for="outerCol in [0, 1, 2]" :colnum="outerCol">
         <div class="row">
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(0 + outerCol * 3, 0 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(1 + outerCol * 3, 0 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(2 + outerCol * 3, 0 + outerRow * 3)" />
+          <tile v-for="tile in tilesForRow(outerCol, outerRow, 0)"
+                v-bind:tile="tile"
+                v-bind:key="tile.id"
+                v-bind:board="board"
+                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:selected="tile == selectedTile"
+                v-bind:selectedSibling="tile.isSibling(selectedTile)"
+                v-on:tileclick="tileClick"
+                />
         </div>
         <div class="row">
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(0 + outerCol * 3, 1 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(1 + outerCol * 3, 1 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(2 + outerCol * 3, 1 + outerRow * 3)" />
+          <tile v-for="tile in tilesForRow(outerCol, outerRow, 1)"
+                v-bind:tile="tile"
+                v-bind:key="tile.id"
+                v-bind:board="board"
+                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:selected="tile == selectedTile"
+                v-bind:selectedSibling="tile.isSibling(selectedTile)"
+                v-on:tileclick="tileClick"
+                />
         </div>
         <div class="row">
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(0 + outerCol * 3, 2 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(1 + outerCol * 3, 2 + outerRow * 3)" />
-          <tile v-bind:board="board" v-bind:tile="board.tileAt(2 + outerCol * 3, 2 + outerRow * 3)" />
+          <tile v-for="tile in tilesForRow(outerCol, outerRow, 2)"
+                v-bind:tile="tile"
+                v-bind:key="tile.id"
+                v-bind:board="board"
+                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:selected="tile == selectedTile"
+                v-bind:selectedSibling="tile.isSibling(selectedTile)"
+                v-on:tileclick="tileClick"
+                />
         </div>
       </div>
     </div>
@@ -27,6 +45,24 @@ import Tile from './tile.vue'
 
 export default {
   props: ['board'],
+  data() {
+    return {
+      currentInput: null,
+      selectedTile: null,
+    }
+  },
+  methods: {
+    tileClick: function(tile) {
+      this.selectedTile = tile == this.selectedTile ? null : tile
+    },
+    tilesForRow: function(col, row, innerCol) {
+      return [
+        this.board.tileAt(col * 3, innerCol + row * 3),
+        this.board.tileAt(1 + col * 3, innerCol + row * 3),
+        this.board.tileAt(2 + col * 3, innerCol + row * 3),
+      ]
+    },
+  },
   components: {
     Tile
   }

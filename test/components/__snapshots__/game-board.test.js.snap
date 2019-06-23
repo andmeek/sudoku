@@ -5,159 +5,159 @@ exports[`GameBoard.vue matches snapshot 1`] = `
   <div rownum="0" class="row">
     <div colnum="0" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>4</span></div>
+        <div class="tile"><span>3</span></div>
+        <div class="tile"><span>5</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>2</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>7</span></div>
       </div>
     </div>
     <div colnum="1" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>9</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>5</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>1</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>8</span></div>
+        <div class="tile"><span>3</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
     </div>
     <div colnum="2" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>8</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>4</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>3</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>6</span></div>
+        <div class="tile"><span>2</span></div>
       </div>
     </div>
   </div>
   <div rownum="1" class="row">
     <div colnum="0" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>6</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>3</span></div>
+        <div class="tile"><span>7</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>9</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>1</span></div>
       </div>
     </div>
     <div colnum="1" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>9</span></div>
+        <div class="tile"><span>5</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>8</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>7</span></div>
+        <div class="tile"><span>4</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
     </div>
     <div colnum="2" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>3</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>7</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>1</span></div>
+        <div class="tile"><span>5</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>6</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
     </div>
   </div>
   <div rownum="2" class="row">
     <div colnum="0" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>5</span></div>
+        <div class="tile"><span>1</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>2</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>8</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>6</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
     </div>
     <div colnum="1" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>2</span></div>
+        <div class="tile"><span>6</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>9</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span>7</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>4</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
     </div>
     <div colnum="2" class="tile-group">
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>8</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>1</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
+        <div class="tile"><span class="user-value">&nbsp;</span></div>
       </div>
       <div class="row">
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
-        <tile-stub tile="[object Object]" board="[object Object]"></tile-stub>
+        <div class="tile"><span>2</span></div>
+        <div class="tile"><span>5</span></div>
+        <div class="tile"><span>9</span></div>
       </div>
     </div>
   </div>
