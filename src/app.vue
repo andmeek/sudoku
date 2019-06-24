@@ -35,15 +35,6 @@ export default {
 </script>
 
 <style>
-html, body {
-  margin: 0px;
-  padding: 0px;
-  font-size: 14px;
-  font-family: Helvetica;
-}
-
-button:focus { outline: 0; }
-
 .screen {
   margin: 0 auto;
   max-width: 450px;

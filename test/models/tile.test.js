@@ -3,9 +3,9 @@ import Tile from '../../src/models/tile.js'
 describe('Tile', () => {
   var tile
 
-    beforeEach(() => {
-      tile = new Tile('id', 1, 2, 9, true)
-    })
+  beforeEach(() => {
+    tile = new Tile('id', 1, 2, 9, true)
+  })
 
   test('initialization', () => {
     expect(tile.id).toEqual('id')
