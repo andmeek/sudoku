@@ -10,9 +10,9 @@
        v-on:mouseout="$emit('tilefocus', null)"
        v-on:click="$emit('tileclick', tile)">
     <span v-if="tile.userEditable && tile.userValue != null" class="user-value">{{ tile.userValue }}</span>
-    <span v-else-if="tile.userDrafts.length > 0" class="draft-values">
+    <div v-else-if="tile.userDrafts.length > 0" class="draft-values">
       <span v-for="v in sortedDrafts">{{ v }}</span>
-    </span>
+    </div>
     <span v-else-if="tile.userEditable" class="user-value">&nbsp;</span>
     <span v-else>{{ tile.actualValue }}</span>
   </div>
@@ -52,8 +52,12 @@ export default {
   font-size: 0.3em;
   position: fixed;
   color: #555;
+  text-align: left;
+  width: 50px;
 }
 .tile .draft-values span {
   padding: 0px 2px;
+  font-weight: normal;
+  display: inline-block;
 }
 </style>

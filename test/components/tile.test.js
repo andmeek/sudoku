@@ -48,9 +48,9 @@ describe('Tile.vue', () => {
     wrapper.vm.$forceUpdate()
     const spans = wrapper.find('.draft-values').findAll('span')
 
-    expect(spans.at(1).text()).toEqual("1")
-    expect(spans.at(2).text()).toEqual("2")
-    expect(spans.at(3).text()).toEqual("3")
+    expect(spans.at(0).text()).toEqual("1")
+    expect(spans.at(1).text()).toEqual("2")
+    expect(spans.at(2).text()).toEqual("3")
   })
 
   test('emits a "tileclick" event when the tile is clicked', () => {
