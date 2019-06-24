@@ -1,7 +1,12 @@
 <template>
   <div class="game screen">
-     <game-board v-bind:board="board" />
-     <user-input v-bind:board="board" v-on:inputchanged="inputChanged" />
+     <game-board v-bind:board="board" v-if="!board.completed" />
+     <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
+     <div class="completed" v-if="board.completed">
+        You win!
+
+        <button v-on:click="confirmCompleted">Okay</button>
+     </div>
   </div>
 </template>
 
@@ -16,6 +21,9 @@ export default {
       this.$children[0].pencil = pencil
       this.$children[0].currentInput = to
     },
+    confirmCompleted: function() {
+      this.$emit('gamecompleted')
+    }
   },
   components: {
     GameBoard, UserInput

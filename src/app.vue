@@ -1,7 +1,7 @@
 <template>
   <div id="game">
     <home-screen v-if="screen == 'home'" v-on:new-game="newgame"></home-screen>
-    <game-screen v-bind:board="board" v-if="screen == 'game'"></game-screen>
+    <game-screen v-bind:board="board" v-if="screen == 'game'" v-on:gamecompleted="gameover"></game-screen>
   </div>
 </template>
 
@@ -21,7 +21,11 @@ export default {
   methods: {
     newgame: function(event) {
       this.board = new Board(TEST_BOARD, TEST_BOARD_STATE)
-      this.screen = "game"
+      this.screen = 'game'
+    },
+    gameover: function() {
+      this.board = null
+      this.screen = 'home'
     },
   },
   components: {

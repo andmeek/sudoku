@@ -4,27 +4,34 @@ import Home from '../src/screens/home.vue'
 import Game from '../src/screens/game.vue'
 
 describe('App.vue', () => {
-  let app 
+  let wrapper 
 
   beforeEach(() => {
-    app = shallowMount(App)
+    wrapper = shallowMount(App)
   })
 
   test('defaults to the home screen', () => {
-    expect(app.is(App)).toBeTruthy()
-    expect(app.vm.screen).toEqual('home');
-    expect(app.contains(Home)).toBeTruthy()
+    expect(wrapper.is(App)).toBeTruthy()
+    expect(wrapper.vm.screen).toEqual('home');
+    expect(wrapper.contains(Home)).toBeTruthy()
   })
 
   test('matches snapshot', () => {
-    expect(app.html()).toMatchSnapshot()
+    expect(wrapper.html()).toMatchSnapshot()
   })
 
   test('shows the game newgame is called', () => {
-    app.vm.newgame()
+    wrapper.vm.newgame()
 
-    expect(app.vm.screen).toEqual('game')
-    expect(app.contains(Game)).toBeTruthy()
-    expect(app.html()).toMatchSnapshot()
+    expect(wrapper.vm.screen).toEqual('game')
+    expect(wrapper.contains(Game)).toBeTruthy()
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  test('when the game is completed it goes back to home', () => {
+    wrapper.vm.gameover()
+
+    expect(wrapper.vm.screen).toEqual('home')
+    expect(wrapper.contains(Home)).toBeTruthy()
   })
 })
