@@ -38,6 +38,12 @@ describe('GameBoard.vue', () => {
     ])
   })
 
+  test('highlights the current input', () => {
+    wrapper.setData({currentInput: '1'})
+
+    expect(wrapper.findAll('.current-input').length).toEqual(9)
+  })
+
   describe('.tileClick', () => {
     test('updates the tile to selected when clicked', () => {
       wrapper.vm.tileClick(board.tiles[0])
@@ -62,10 +68,43 @@ describe('GameBoard.vue', () => {
       expect(wrapper.findAll('.selected-sibling').length).toEqual(16)
     })
 
-    test('highlights the current input', () => {
-      wrapper.setData({currentInput: "1"})
+    test('sets the tile value when an input is selected', () => {
+      wrapper.setData({currentInput: 1})
+      expect(board.tiles[3].userValue).toBeNull()
 
-      expect(wrapper.findAll('.current-input').length).toEqual(9)
+      wrapper.vm.tileClick(board.tiles[3])
+
+      expect(board.tiles[3].userValue).toEqual(1)
+    })
+
+    test('erases the tile if the input is "0"', () => {
+      wrapper.setData({currentInput: 0})
+      board.tiles[3].userValue = 3
+
+      wrapper.vm.tileClick(board.tiles[3])
+      expect(board.tiles[3].userValue).toBeNull()
+    })
+
+    test('unsets the tile user value if clicked again with the same input', () => {
+      wrapper.setData({currentInput: 1})
+      wrapper.vm.tileClick(board.tiles[3])
+
+      expect(board.tiles[3].userValue).toEqual(1)
+
+      wrapper.vm.tileClick(board.tiles[3])
+      expect(board.tiles[3].userValue).toBeNull()
+    })
+
+    test('toggles the user draft if pencil mode is true', () => {
+      wrapper.setData({currentInput: 1, pencil: true})
+      wrapper.vm.tileClick(board.tiles[3])
+
+      expect(board.tiles[3].userDrafts).toContain(1)
+      expect(board.tiles[3].userValue).toBeNull()
+
+      wrapper.vm.tileClick(board.tiles[3])
+      expect(board.tiles[3].userDrafts).not.toContain(1)
+      expect(board.tiles[3].userValue).toBeNull()
     })
   })
 })

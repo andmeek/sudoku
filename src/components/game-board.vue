@@ -48,11 +48,20 @@ export default {
   data() {
     return {
       currentInput: null,
+      pencil: false,
       selectedTile: null,
     }
   },
   methods: {
     tileClick: function(tile) {
+      if(this.currentInput == 0) {
+        tile.userValue = null
+      } else if(this.pencil) {
+        tile.toggleDraft(this.currentInput)
+      } else {
+        tile.userValue = tile.userValue == this.currentInput ? null : this.currentInput
+      }
+
       this.selectedTile = tile == this.selectedTile ? null : tile
     },
     tilesForRow: function(col, row, innerCol) {
