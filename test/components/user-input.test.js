@@ -28,7 +28,7 @@ describe('UserInput.vue', () => {
     expect(wrapper.find('.selected').exists()).toBeFalsy()
   })
 
-  test('disabled completed numbers', () => {
+  test('disables completed numbers', () => {
     wrapper.vm.board.tiles.forEach((tile) => {
       if(tile.actualValue == 1)
         tile.userValue = tile.actualValue
@@ -40,6 +40,19 @@ describe('UserInput.vue', () => {
     expect(wrapper.find('.disabled').attributes('disabled')).toEqual('disabled')
 
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  test('unselects completed numbers if selected', () => {
+    wrapper.find('[value="1"]').trigger('click')
+    expect(wrapper.find('.selected').exists()).toBeTruthy()
+
+    wrapper.vm.board.tiles.forEach((tile) => {
+      if(tile.actualValue == 1)
+        tile.userValue = tile.actualValue
+    })
+
+    wrapper.vm.$forceUpdate()
+    expect(wrapper.find('.selected').exists()).toBeFalsy()
   })
 
   test('highlights the current selection', () => {

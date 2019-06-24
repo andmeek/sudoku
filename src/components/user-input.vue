@@ -42,6 +42,11 @@ export default {
       this.$emit('inputchanged', this.current, this.pencil)
     },
   },
+  updated: function() {
+    if(this.current != null && this.board.numberCompleted(this.current)) {
+      this.current = null
+    }
+  },
   created: function() {
     window.addEventListener('keyup', this.keyUp)
   },
