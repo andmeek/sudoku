@@ -1,5 +1,3 @@
-export const SUDOKU_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
 export const TEST_BOARD = [
   [4, 3, 5,   2, 6, 9,   7, 8, 1],
   [6, 8, 2,   5, 7, 1,   4, 9, 3],

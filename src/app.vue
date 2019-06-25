@@ -9,6 +9,7 @@
 import HomeScreen from './screens/home.vue'
 import GameScreen from './screens/game.vue'
 import Board from './models/board.js'
+import Generate from './models/generate.js'
 import {TEST_BOARD, TEST_BOARD_STATE} from '../test/variables.js'
 
 export default {
@@ -20,7 +21,9 @@ export default {
   },
   methods: {
     newgame: function(event) {
-      this.board = new Board(TEST_BOARD, TEST_BOARD_STATE)
+      let generator = new Generate(Math.floor(Math.random() * 25000))
+      let board = generator.board()
+      this.board = new Board(board, generator.boardState(board, 30))
       this.screen = 'game'
     },
     gameover: function() {

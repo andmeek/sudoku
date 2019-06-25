@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
+import Generate from './models/generate.js'
 
 var app = new Vue({
   el: '#game',
@@ -13,3 +14,4 @@ var app = new Vue({
 })
 
 window.app = app
+window.generate = Generate
