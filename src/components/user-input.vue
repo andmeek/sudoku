@@ -57,13 +57,22 @@ export default {
 </script>
 
 <style>
+.button-group {
+  text-align: center;
+}
+
 .button-group button {
   border: 1px solid #aaa;
   box-shadow: 1px 1px 1px 1px #ddd;
   background-color: #eee;
   border-radius: 2px;
   margin: 2px;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 18px;
+  cursor: pointer;
 }
+
 .button-group button.selected {
   border-color: black;
   background-color: white;

@@ -21,6 +21,11 @@
 <script>
 export default {
   props: ['board', 'tile', 'currentInput', 'selected', 'selectedSibling'],
+  mounted: function() {
+    var width = `${this.$el.clientWidth}px`
+    this.$el.style.height = width
+    this.$el.style.lineHeight = width
+  },
   computed: {
     sortedDrafts() {
       return this.tile.userDrafts.sort()
@@ -50,10 +55,9 @@ export default {
 }
 .tile .draft-values {
   font-size: 0.3em;
-  position: fixed;
   color: #555;
   text-align: left;
-  width: 50px;
+  line-height: 20px;
 }
 .tile .draft-values span {
   padding: 0px 2px;

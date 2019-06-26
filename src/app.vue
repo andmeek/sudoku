@@ -37,6 +37,14 @@ export default {
 <style>
 .screen {
   margin: 0 auto;
-  max-width: 450px;
+  max-width: 550px;
+}
+
+@media screen and (max-width: 1020px) {
+  .screen {
+    font-size: 0.9em;
+    max-width: 100%;
+    padding: 10px;
+  }
 }
 </style>

@@ -80,21 +80,21 @@ export default {
 
 <style>
 .tile-group {
-  display: table-cell;
   border: 1px solid black;
-  vertical-align: top;
+  float: left;
+  width: 33%;
 }
-.tile-group .row, .board .row {
-  display: table-row;
+.board .row, .tile-group .row {
+  display: flex;
 }
+
 .tile-group .row .tile {
-  display: table-cell;
-  width: 50px;
-  height: 50px;
   font-size: 3.0em;
   text-align: center;
   border: 0.5px solid lightgrey;
   cursor: pointer;
   user-select: none;
+  float: left;
+  width: 33%;
 }
 </style>
