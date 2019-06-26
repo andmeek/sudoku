@@ -13,7 +13,7 @@
     <div v-else-if="tile.userDrafts.length > 0" class="draft-values">
       <span v-for="v in sortedDrafts">{{ v }}</span>
     </div>
-    <span v-else-if="tile.userEditable" class="user-value">&nbsp;</span>
+    <span v-else-if="tile.userEditable" class="user-value"></span>
     <span v-else>{{ tile.actualValue }}</span>
   </div>
 </template>

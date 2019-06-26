@@ -1,0 +1,14 @@
+#!/bin/bash
+
+BUCKET_PATH=$1
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: bin/deploy bucket-path"
+  echo ""
+  echo "  Supply a target AWS bucket with a path to upload this to."
+  echo "  NOTE: this will sync with the target destination so other files will be removed."
+  exit 0
+fi
+
+yarn build-dist
+aws s3 sync public/ s3://$BUCKET_PATH --delete

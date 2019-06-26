@@ -82,6 +82,7 @@ export default {
 .tile-group {
   display: table-cell;
   border: 1px solid black;
+  vertical-align: top;
 }
 .tile-group .row, .board .row {
   display: table-row;
