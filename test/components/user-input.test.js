@@ -2,12 +2,13 @@ import { shallowMount } from '@vue/test-utils'
 import UserInput from '../../src/components/user-input.vue'
 
 describe('UserInput.vue', () => {
-  let wrapper
+  let wrapper, board
 
   beforeEach(() => {
+    board = genTestBoard()
     wrapper = shallowMount(UserInput, {
       propsData: {
-        board: genTestBoard()
+        board: board
       }
     })
   })
@@ -29,30 +30,33 @@ describe('UserInput.vue', () => {
   })
 
   test('disables completed numbers', () => {
-    wrapper.vm.board.tiles.forEach((tile) => {
+    board.tiles.forEach((tile) => {
       if(tile.actualValue == 1)
         tile.userValue = tile.actualValue
     })
 
     wrapper.vm.$forceUpdate()
-    expect(wrapper.vm.board.numberCompleted('1')).toBeTruthy()
+    expect(board.numberCompleted('1')).toBeTruthy()
     expect(wrapper.find('.disabled').attributes('value')).toEqual('1')
     expect(wrapper.find('.disabled').attributes('disabled')).toEqual('disabled')
 
     expect(wrapper.html()).toMatchSnapshot()
+
+    expect(wrapper.vm.current).toBeNull()
   })
 
   test('unselects completed numbers if selected', () => {
     wrapper.find('[value="1"]').trigger('click')
     expect(wrapper.find('.selected').exists()).toBeTruthy()
 
-    wrapper.vm.board.tiles.forEach((tile) => {
+    board.tiles.forEach((tile) => {
       if(tile.actualValue == 1)
         tile.userValue = tile.actualValue
     })
 
     wrapper.vm.$forceUpdate()
     expect(wrapper.find('.selected').exists()).toBeFalsy()
+    expect(wrapper.emitted().inputchanged).toBeTruthy()
   })
 
   test('highlights the current selection', () => {

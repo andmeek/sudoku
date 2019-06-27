@@ -1,7 +1,7 @@
 <template>
 	<div class="button-group">
     <button v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
-            v-bind:class="{selected: current == n, disabled: board.numberCompleted(n)}"
+            v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
             v-bind:disabled="board.numberCompleted(n)"
             v-bind:value="n"
             v-on:click="buttonClick"
@@ -25,7 +25,8 @@ export default {
     },
     draftClick: function(event) {
       this.pencil = !this.pencil
-      this.$emit('inputchanged', this.current, this.pencil)
+
+      this._triggerInputChange()
     },
     keyUp: function(event) {
       if(event.keyCode > 47 && event.keyCode < 58) {
@@ -38,13 +39,19 @@ export default {
       var val = parseInt(to)
       if(!this.board.numberCompleted(val)) {
         this.current = this.current == val ? null : val
+      } else if(this.current == val) {
+        this.current = null
       }
+
+      this._triggerInputChange()
+    },
+    _triggerInputChange: function() {
       this.$emit('inputchanged', this.current, this.pencil)
     },
   },
   updated: function() {
-    if(this.current != null && this.board.numberCompleted(this.current)) {
-      this.current = null
+    if(this.board.numberCompleted(this.current)) {
+      this.changeInput(this.current)
     }
   },
   created: function() {
