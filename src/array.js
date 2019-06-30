@@ -2,6 +2,18 @@ Array.prototype.clone = function() {
   return [...this]
 }
 
+Array.prototype.distinct = function() {
+  return this.filter((value, index) => {
+    return this.indexOf(value) === index
+  })
+}
+
+Array.prototype.flat = function() {
+  return this.reduce((flat, toFlatten) => {
+    return flat.concat(toFlatten)
+  }, [])
+}
+
 Array.prototype.removeItem = function(item) {
   var index = this.findIndex((v) => v == item)
   if(index > -1) {
