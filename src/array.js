@@ -16,6 +16,11 @@ Array.prototype.flat = function() {
   }, [])
 }
 
+Array.prototype.randomItem = function() {
+  var rand = Math.floor(Math.random() * this.length)
+  return this[rand]
+}
+
 Array.prototype.removeItem = function(item) {
   var index = this.findIndex((v) => v == item)
   if(index > -1) {
