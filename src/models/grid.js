@@ -7,7 +7,7 @@ export default class Grid {
     })
 
     this.values = emptyArr
-    this.state = emptyArr.clone()
+    this.states = emptyArr.clone()
     this.seed = null
   }
 
@@ -37,7 +37,7 @@ export default class Grid {
 
     for(var y = 0; y < this.values.length; y++) {
       for(var x = 0; x < this.values[y].length; x++) {
-        let val = this.val(x, y, considerState)
+        let val = this.value(x, y, considerState)
 
         if(val == 0 || val == null) {
           let potentials = this.potentialValues(x, y, considerState)
@@ -57,7 +57,7 @@ export default class Grid {
 
     for(var y = 0; y < this.values.length; y++) {
       for(var x = 0; x < this.values[y].length; x++) {
-        let val = this.val(x, y, considerState)
+        let val = this.value(x, y, considerState)
         if(val != 0) {
           if(x == forX) {
             ret.removeItem(val)
@@ -85,7 +85,7 @@ export default class Grid {
       for(var x = 0; x < this.values[y].length; x++) {
         if((x - x % 3) / 3 == sectionX &&
             (y - y % 3) / 3 == sectionY) {
-          ret.push(this.val(x, y, considerState))
+          ret.push(this.value(x, y, considerState))
         }
       }
     }
@@ -93,13 +93,21 @@ export default class Grid {
     return ret
   }
 
-  val(x, y, considerState = false) {
+  state(x, y) {
+    if(x < 0 || x > 8 || y < 0 || y > 8) {
+      return null
+    }
+
+    return this.states[y][x]
+  }
+
+  value(x, y, considerState = false) {
     if(x < 0 || x > 8 || y < 0 || y > 8) {
       return null
     }
     let value = this.values[y][x]
 
-    if(considerState && this.state[y][x] === 1) {
+    if(considerState && this.state(x, y) == 1) {
       value = null
     }
 

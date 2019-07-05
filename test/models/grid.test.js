@@ -10,7 +10,7 @@ describe('Grid', () => {
 
   test('initialization creates a 0 filled grid', () => {
     var values = grid.values,
-        state = grid.state
+        state = grid.states
 
     expect(values.length).toEqual(9)
     expect(values[0].length).toEqual(9)
@@ -79,7 +79,7 @@ describe('Grid', () => {
 
     test('returns an x and y on a filled grid when considering state', () => {
       grid.values = TEST_BOARD
-      grid.state = TEST_BOARD_STATE
+      grid.states = TEST_BOARD_STATE
 
       expect(grid.leastPotentialValues(true)).toEqual({x: 6, y: 0, values: [7]})
     })
@@ -102,7 +102,7 @@ describe('Grid', () => {
 
     test('returns the potential values considering state for a given x, y coordinate', () => {
       grid.values = TEST_BOARD
-      grid.state = TEST_BOARD_STATE
+      grid.states = TEST_BOARD_STATE
 
       expect(grid.potentialValues(0, 1, true)).toEqual([6, 8])
       expect(grid.potentialValues(4, 1, true)).toEqual([6, 7])
@@ -120,47 +120,61 @@ describe('Grid', () => {
 
     test('returns a given section considering grid state if specified', () => {
       grid.values = TEST_BOARD
-      grid.state = TEST_BOARD_STATE
+      grid.states = TEST_BOARD_STATE
 
       expect(grid.sectionToArray(0, 0, true)).toEqual([4, 3, 5, null, null, 2, null, null, 7])
       expect(grid.sectionToArray(2, 2, true)).toEqual([8, null, null, 1, null, null, 2, 5, 9])
     })
   })
 
-  describe('.val', () => {
+  describe('.state', () => {
+    test('returns the state at the x y where 0,0 is the top left of the grid', () => {
+      grid.states[0][1] = 1
+
+      expect(grid.state(0, 0)).toEqual(0)
+      expect(grid.state(1, 0)).toEqual(1)
+    })
+
+    test('returns null if the x,y is out of range', () => {
+      expect(grid.state(10, 20)).toBeNull()
+      expect(grid.state(-1, 20)).toBeNull()
+    })
+  })
+
+  describe('.value', () => {
     test('returns the value at the x y where 0,0 is the top left of the grid', () => {
       grid.values[0][0] = 9
       grid.values[8][4] = 4
       grid.values[8][4] = 4
 
-      expect(grid.val(0, 0, false)).toEqual(9)
-      expect(grid.val(0, 0, true)).toEqual(9)
-      expect(grid.val(4, 8)).toEqual(4)
-      expect(grid.val(5, 5)).toEqual(0)
+      expect(grid.value(0, 0, false)).toEqual(9)
+      expect(grid.value(0, 0, true)).toEqual(9)
+      expect(grid.value(4, 8)).toEqual(4)
+      expect(grid.value(5, 5)).toEqual(0)
     })
 
     test('returns null for invalid x,y coordinates', () => {
-      expect(grid.val(-1, 0)).toBeNull()
-      expect(grid.val(9, 9)).toBeNull()
-      expect(grid.val(10, 20)).toBeNull()
+      expect(grid.value(-1, 0)).toBeNull()
+      expect(grid.value(9, 9)).toBeNull()
+      expect(grid.value(10, 20)).toBeNull()
     })
 
     describe('when considering the grid state', () => {
       beforeEach(() => {
         grid.values = TEST_BOARD
-        grid.state = TEST_BOARD_STATE
+        grid.states = TEST_BOARD_STATE
       })
 
       test('returns null if the state equals 1, hidden', () => {
-        expect(grid.val(0, 1, true)).toBeNull()
+        expect(grid.value(0, 1, true)).toBeNull()
       })
 
       test('returns the value if the state equals 1 while explicitly ignoring state', () => {
-        expect(grid.val(0, 1, false)).toEqual(6)
+        expect(grid.value(0, 1, false)).toEqual(6)
       })
 
       test('returns the value if the state is 0, not hidden', () => {
-        expect(grid.val(0, 0, true)).toEqual(4)
+        expect(grid.value(0, 0, true)).toEqual(4)
       })
     })
   })

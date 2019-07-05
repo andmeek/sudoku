@@ -35,11 +35,11 @@ describe('Generate', () => {
     test('updates the grids state with the number to be removed requested', () => {
       var grid = Generate.board(10)
 
-      expect(grid.state.flat().distinct()).toEqual([0])
+      expect(grid.states.flat().distinct()).toEqual([0])
 
       Generate.boardState(grid, 10)
 
-      let removed = grid.state.flat().filter((n) => n == 1)
+      let removed = grid.states.flat().filter((n) => n == 1)
       expect(removed.length).toEqual(10)
     })
   })

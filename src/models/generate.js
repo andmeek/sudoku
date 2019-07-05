@@ -32,13 +32,13 @@ export default class Generate {
       var rY = SUDOKU_NUMBERS.randomItem() - 1,
           rX = SUDOKU_NUMBERS.randomItem() - 1
 
-       if(grid.state[rY][rX] == 0) {
-         grid.state[rY][rX] = 1
+       if(grid.state(rX, rY) == 0) {
+         grid.states[rY][rX] = 1
 
          if(grid.leastPotentialValues().values.length < 3) {
            numRemoved++
          } else {
-           grid.state[rY][rX] = 0
+           grid.states[rY][rX] = 0
          }
        }
 
