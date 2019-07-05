@@ -1,6 +1,6 @@
 import Board from '../../src/models/board.js'
 import Tile from '../../src/models/tile.js'
-import {TEST_BOARD, TEST_BOARD_STATE} from '../variables.js'
+import {TEST_BOARD, TEST_BOARD_STATE} from '../../src/variables.js'
 
 describe('Board', () => {
   var board;

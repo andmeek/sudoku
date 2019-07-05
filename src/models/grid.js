@@ -1,4 +1,4 @@
-const SUDOKU_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+import {SUDOKU_NUMBERS} from '../variables.js'
 
 export default class Grid {
   constructor() {
@@ -8,6 +8,7 @@ export default class Grid {
 
     this.values = emptyArr
     this.state = emptyArr.clone()
+    this.seed = null
   }
 
   fillSection(sectionX, sectionY, vals) {
@@ -29,6 +30,26 @@ export default class Grid {
   isEmpty() {
     var uniq = this.values.flat().distinct()
     return uniq.length == 1 && uniq[0] == 0
+  }
+
+  leastPotentialValues(considerState = false) {
+    var ret = {x: null, y: null, values: []}
+
+    for(var y = 0; y < this.values.length; y++) {
+      for(var x = 0; x < this.values[y].length; x++) {
+        let val = this.val(x, y, considerState)
+
+        if(val == 0 || val == null) {
+          let potentials = this.potentialValues(x, y, considerState)
+
+          if((potentials.length < ret.values.length || ret.x == null) && potentials.length > 0) {
+            ret = {x: x, y: y, values: potentials}
+          }
+        }
+      }
+    }
+
+    return ret
   }
 
   potentialValues(forX, forY, considerState = false) {

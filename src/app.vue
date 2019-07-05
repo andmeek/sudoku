@@ -9,7 +9,7 @@
 import HomeScreen from './screens/home.vue'
 import GameScreen from './screens/game.vue'
 import Board from './models/board.js'
-import {TEST_BOARD, TEST_BOARD_STATE} from '../test/variables.js'
+import {TEST_BOARD, TEST_BOARD_STATE} from './variables.js'
 
 export default {
   data() {

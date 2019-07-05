@@ -1,4 +1,4 @@
-import { TEST_BOARD, TEST_BOARD_STATE } from '../variables.js'
+import { TEST_BOARD, TEST_BOARD_STATE } from '../../src/variables.js'
 import Grid from '../../src/models/grid.js'
 
 describe('Grid', () => {
@@ -45,7 +45,7 @@ describe('Grid', () => {
     })
 
     test('returns true if even just one value is empty', () => {
-      grid.values = TEST_BOARD
+      grid.values = TEST_BOARD.clone()
       grid.values[5][5] = 0
 
       expect(grid.hasEmptyValues()).toBeTruthy()
@@ -61,6 +61,27 @@ describe('Grid', () => {
       grid.values[0] = 9
 
       expect(grid.isEmpty()).toBeFalsy()
+    })
+  })
+
+  describe('.leastPotentialValues', () => {
+    test('returns {x:, y:, potentialValues:} hash of the position with the least values', () => {
+      grid.fillSection(0, 0, [1, 2, 8, 3, 4, 9, 5, 6, 7])
+
+      expect(grid.leastPotentialValues()).toEqual({x: 3, y: 0, values: [3, 4, 5, 6, 7, 9]})
+    })
+
+    test('returns an x and y of null if no more potential values can be found', () => {
+      grid.values = TEST_BOARD
+
+      expect(grid.leastPotentialValues()).toEqual({x: null, y: null, values: []})
+    })
+
+    test('returns an x and y on a filled grid when considering state', () => {
+      grid.values = TEST_BOARD
+      grid.state = TEST_BOARD_STATE
+
+      expect(grid.leastPotentialValues(true)).toEqual({x: 6, y: 0, values: [7]})
     })
   })
 
