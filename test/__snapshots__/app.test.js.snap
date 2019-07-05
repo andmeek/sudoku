@@ -4,11 +4,21 @@ exports[`App.vue matches snapshot 1`] = `
 <div id="game">
   <home-screen-stub></home-screen-stub>
   <!---->
+  <!---->
 </div>
 `;
 
-exports[`App.vue shows the game newgame is called 1`] = `
+exports[`App.vue shows the diffuculty select when play is called 1`] = `
 <div id="game">
+  <!---->
+  <difficulty-screen-stub></difficulty-screen-stub>
+  <!---->
+</div>
+`;
+
+exports[`App.vue shows the game screen when newgame is called 1`] = `
+<div id="game">
+  <!---->
   <!---->
   <game-screen-stub board="[object Object]"></game-screen-stub>
 </div>

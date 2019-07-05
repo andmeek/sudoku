@@ -2,6 +2,7 @@
 
 exports[`Game.vue matches snapshot 1`] = `
 <div class="game screen">
+  <div class="header"><button>Exit Game</button></div>
   <game-board-stub board="[object Object]"></game-board-stub>
   <user-input-stub board="[object Object]"></user-input-stub>
   <!---->

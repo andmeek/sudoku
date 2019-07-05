@@ -1,5 +1,8 @@
 <template>
   <div class="game screen">
+     <div class="header">
+        <button v-on:click="$emit('exit')">Exit Game</button>
+     </div>
      <game-board v-bind:board="board" v-if="!board.completed" />
      <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
      <div class="completed" v-if="board.completed">

@@ -25,7 +25,13 @@ describe('Game.vue', () => {
     wrapper.vm.$forceUpdate()
     expect(wrapper.find('.completed')).toBeTruthy()
 
-    wrapper.find('button').trigger('click')
+    wrapper.findAll('button').at(1).trigger('click')
     expect(wrapper.emitted().gamecompleted).toBeTruthy()
+  })
+
+  test('emits a exit when the user presses the back button', () => {
+    wrapper.findAll('button').at(0).trigger('click')
+
+    expect(wrapper.emitted().exit).toBeTruthy()
   })
 })
