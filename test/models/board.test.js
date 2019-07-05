@@ -1,12 +1,17 @@
+import Grid from '../../src/models/grid.js'
 import Board from '../../src/models/board.js'
 import Tile from '../../src/models/tile.js'
 import {TEST_BOARD, TEST_BOARD_STATE} from '../../src/variables.js'
 
 describe('Board', () => {
-  var board;
+  var grid = new Grid()
+  grid.values = TEST_BOARD
+  grid.states = TEST_BOARD_STATE
+
+  var board
 
   beforeEach(() => {
-    board = new Board(TEST_BOARD, TEST_BOARD_STATE)
+    board = new Board(grid)
   })
 
   test('initialization', () => {

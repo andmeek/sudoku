@@ -1,13 +1,16 @@
 import Tile from './tile.js'
 
 export default class Board {
-  constructor(values, state) {
+  constructor(grid) {
+    this.grid = grid
     this.tiles = []
     this._tilesById = {}
-    for(var y = 0; y < values.length; y++) {
-      for(var x = 0; x < values[y].length; x++) {
+
+    for(var y = 0; y < grid.values.length; y++) {
+      for(var x = 0; x < grid.values[y].length; x++) {
         let id = this.tiles.length + 1
-        var tile = new Tile(id, x, y, values[y][x], state[y][x] == 1)
+
+        var tile = new Tile(id, x, y, this.grid.value(x, y), this.grid.state(x, y) == 1)
         this.tiles.push(tile)
         this._tilesById[id] = tile
       }
