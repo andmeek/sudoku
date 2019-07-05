@@ -17,11 +17,13 @@ describe('Array helpers', () => {
 
     it('deep clones the array', () => {
       var multiDimensionalArray = [[1, 2, 3], [4, 5, 6], [123]],
-          cloned = base.clone()
+          cloned = multiDimensionalArray.clone()
 
       cloned[2] = [7, 8, 9]
+      cloned[1][0] = 1
 
       expect(multiDimensionalArray[2]).toEqual([123])
+      expect(multiDimensionalArray[1][0]).toEqual(4)
     })
   })
 

@@ -1,5 +1,7 @@
 Array.prototype.clone = function() {
-  return [...this]
+  return [...this].map((item) => {
+    return Array.isArray(item) ? item.clone() : item
+  })
 }
 
 Array.prototype.distinct = function() {
