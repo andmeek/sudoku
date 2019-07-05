@@ -24,7 +24,25 @@ export default class Generate {
     return grid
   }
 
-  static boardState(difficulty) {
+  static boardState(grid, removeCount) {
+    var numRemoved = 0,
+        loop = 0
 
+    do {
+      var rY = SUDOKU_NUMBERS.randomItem() - 1,
+          rX = SUDOKU_NUMBERS.randomItem() - 1
+
+       if(grid.state[rY][rX] == 0) {
+         grid.state[rY][rX] = 1
+
+         if(grid.leastPotentialValues().values.length < 3) {
+           numRemoved++
+         } else {
+           grid.state[rY][rX] = 0
+         }
+       }
+
+       loop++
+    } while(numRemoved < removeCount)
   }
 }
