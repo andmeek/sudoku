@@ -1,8 +1,6 @@
 <template>
   <div class="game screen">
-     <div class="header">
-        <button v-on:click="$emit('exit')">Exit Game</button>
-     </div>
+     <game-header v-bind:board="board" v-bind:difficulty="difficulty" v-on:exit="$emit('exit')" />
      <game-board v-bind:board="board" v-if="!board.completed" />
      <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
      <div class="completed" v-if="board.completed">
@@ -15,10 +13,16 @@
 
 <script>
 import GameBoard from '../components/game-board.vue'
+import GameHeader from '../components/game-header.vue'
 import UserInput from '../components/user-input.vue'
 
 export default {
-  props: ['board'],
+  props: ['difficulty', 'board'],
+  data() {
+    return {
+      tick: null,
+    }
+  },
   methods: {
     inputChanged: function(to, pencil) {
       this.$children[0].pencil = pencil
@@ -28,8 +32,14 @@ export default {
       this.$emit('gamecompleted')
     }
   },
+  created() {
+    this.tick = setInterval(this.board.incrementTimer.bind(this.board), 1000)
+  },
+  destroyed() {
+    clearInterval(this.tick)
+  },
   components: {
-    GameBoard, UserInput
+    GameBoard, GameHeader, UserInput
   }
 }
 </script>

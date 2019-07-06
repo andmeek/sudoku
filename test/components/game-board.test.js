@@ -1,7 +1,5 @@
 import { mount } from '@vue/test-utils'
 import GameBoard from '../../src/components/game-board.vue'
-import Tile from '../../src/models/tile.js'
-import { TEST_BOARD } from '../../src/variables.js'
 
 describe('GameBoard.vue', () => {
   let wrapper, board, vm

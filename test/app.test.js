@@ -5,7 +5,7 @@ import Game from '../src/screens/game.vue'
 import Difficulty from '../src/screens/difficulty-select.vue'
 
 describe('App.vue', () => {
-  let wrapper 
+  let wrapper
 
   beforeEach(() => {
     wrapper = shallowMount(App)
@@ -37,7 +37,7 @@ describe('App.vue', () => {
   })
 
   test('shows the game screen when newgame is called', () => {
-    wrapper.vm.newgame(10)
+    wrapper.vm.newgame(10, 'Easy')
 
     expect(wrapper.vm.screen).toEqual('game')
     expect(wrapper.contains(Game)).toBeTruthy()

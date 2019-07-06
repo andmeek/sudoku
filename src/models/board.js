@@ -4,6 +4,7 @@ export default class Board {
   constructor(grid) {
     this.grid = grid
     this.tiles = []
+    this.timer = 0
     this._tilesById = {}
 
     for(var y = 0; y < grid.values.length; y++) {
@@ -21,6 +22,10 @@ export default class Board {
     return this.tiles.reduce((tot, tile) => {
         return tot && tile.completed
     })
+  }
+
+  incrementTimer() {
+    this.timer += 1
   }
 
   numberCompleted(number) {

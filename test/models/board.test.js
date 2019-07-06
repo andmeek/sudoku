@@ -15,6 +15,7 @@ describe('Board', () => {
   })
 
   test('initialization', () => {
+    expect(board.timer).toEqual(0)
     expect(board.tiles.length).toEqual(81)
     expect(board.tiles[0]).toBeInstanceOf(Tile)
     expect(board.tiles[0].id).toEqual(1)
@@ -40,6 +41,16 @@ describe('Board', () => {
       })
 
       expect(board.completed).toBeTruthy()
+    })
+  })
+
+  describe('.incrementTimer', () => {
+    test('increases the timer by 1', () => {
+      board.incrementTimer()
+      expect(board.timer).toEqual(1)
+
+      board.incrementTimer()
+      expect(board.timer).toEqual(2)
     })
   })
 

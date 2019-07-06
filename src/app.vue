@@ -2,7 +2,12 @@
   <div id="game">
     <home-screen v-if="screen == 'home'" v-on:new-game="play"></home-screen>
     <difficulty-screen v-if="screen == 'difficulty'" v-on:difficultyselected="newgame" v-on:exit="home"></difficulty-screen>
-    <game-screen v-bind:board="board" v-if="screen == 'game'" v-on:exit="home" v-on:gamecompleted="gameover"></game-screen>
+    <game-screen
+      v-bind:board="board"
+      v-bind:difficulty="difficulty"
+      v-if="screen == 'game'"
+      v-on:exit="home"
+      v-on:gamecompleted="gameover"></game-screen>
   </div>
 </template>
 
@@ -15,6 +20,7 @@ export default {
   data() {
     return {
       screen: 'home',
+      difficulty: null,
       board: null
     }
   },
@@ -26,7 +32,8 @@ export default {
     play: function() {
       this.screen = 'difficulty'
     },
-    newgame: function(difficulty) {
+    newgame: function(difficulty, difficultyDisplay) {
+      this.difficulty = difficultyDisplay
       this.board = newboard(difficulty, Math.floor(Math.random() * 25000))
       this.screen = 'game'
     },

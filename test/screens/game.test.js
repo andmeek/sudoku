@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
 import Game from '../../src/screens/game.vue'
 
+jest.useFakeTimers()
+
 describe('Game.vue', () => {
   let wrapper, board
 
@@ -8,6 +10,7 @@ describe('Game.vue', () => {
     board = genTestBoard()
     wrapper = shallowMount(Game, {
       propsData: {
+        difficulty: 'Easy',
         board: board
       }
     })
@@ -25,13 +28,23 @@ describe('Game.vue', () => {
     wrapper.vm.$forceUpdate()
     expect(wrapper.find('.completed')).toBeTruthy()
 
-    wrapper.findAll('button').at(1).trigger('click')
+    wrapper.findAll('button').at(0).trigger('click')
     expect(wrapper.emitted().gamecompleted).toBeTruthy()
   })
 
-  test('emits a exit when the user presses the back button', () => {
-    wrapper.findAll('button').at(0).trigger('click')
+  test('registers and removes a timer as part of the component lifecycle', () => {
+    expect(setInterval).toHaveBeenCalledTimes(1)
+    expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 1000)
+    expect(clearInterval).toHaveBeenCalledTimes(0)
 
-    expect(wrapper.emitted().exit).toBeTruthy()
+    jest.advanceTimersByTime(3000)
+
+    expect(board.timer).toEqual(3)
+
+    wrapper.destroy()
+
+    jest.advanceTimersByTime(1000)
+    expect(clearInterval).toHaveBeenCalledTimes(1)
+    expect(board.timer).toEqual(3)
   })
 })
