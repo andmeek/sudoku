@@ -1,0 +1,17 @@
+{
+  "short_name": "OpenSudoku",
+  "name": "Open Source Sudoku",
+  "icons": [
+    {
+      "src": "assets/favicon256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "orientation": "landscape",
+  "scope": "/",
+  "theme_color": "#FFFFFF"
+}
