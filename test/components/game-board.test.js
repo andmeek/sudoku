@@ -104,5 +104,39 @@ describe('GameBoard.vue', () => {
       expect(board.tiles[3].userDrafts).not.toContain(1)
       expect(board.tiles[3].userValue).toBeNull()
     })
+
+    describe('grid updates', () => {
+      var tile
+
+      beforeEach(() => {
+        wrapper.setData({currentInput: 2})
+        tile = board.tiles[3]
+
+        expect(tile.actualValue).toEqual(2)
+      })
+
+      test('when completed, it sets the grid state to userCompleted', () => {
+        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
+        wrapper.vm.tileClick(tile)
+
+        expect(board.grid.state(tile.x, tile.y)).toEqual(2)
+      })
+
+      test('when in error, it does nothing to the grid state', () => {
+        wrapper.setData({currentInput: 1})
+
+        wrapper.vm.tileClick(tile)
+        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
+      })
+
+      test('when no longer completed it changes the grid state back', () => {
+        wrapper.vm.tileClick(tile)
+        expect(board.grid.state(tile.x, tile.y)).toEqual(2)
+        wrapper.vm.tileClick(tile)
+
+        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
+      })
+
+    })
   })
 })

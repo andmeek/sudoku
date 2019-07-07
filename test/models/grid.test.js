@@ -127,6 +127,29 @@ describe('Grid', () => {
     })
   })
 
+  describe('.setUserState', () => {
+    test('sets a state for x,y coordinates to the user state which is 2', () => {
+      grid.states[0][0] = 1
+      expect(grid.state(0, 0)).toEqual(1)
+
+      grid.setUserState(0, 0, true)
+      expect(grid.state(0, 0)).toEqual(2)
+
+      grid.setUserState(0, 0, false)
+      expect(grid.state(0, 0)).toEqual(1)
+    })
+
+    test('does not alter the state if it is computed, or equal to 0', () => {
+      grid.states[0][0] = 0
+
+      grid.setUserState(0, 0, true)
+      expect(grid.state(0, 0)).toEqual(0)
+
+      grid.setUserState(0, 0, false)
+      expect(grid.state(0, 0)).toEqual(0)
+    })
+  })
+
   describe('.state', () => {
     test('returns the state at the x y where 0,0 is the top left of the grid', () => {
       grid.states[0][1] = 1
@@ -165,8 +188,11 @@ describe('Grid', () => {
         grid.states = TEST_BOARD_STATE
       })
 
-      test('returns null if the state equals 1, hidden', () => {
+      test('returns null if the state is 1, not completed', () => {
         expect(grid.value(0, 1, true)).toBeNull()
+
+        grid.states[1][0] = 2
+        expect(grid.value(0, 1, true)).toEqual(6)
       })
 
       test('returns the value if the state equals 1 while explicitly ignoring state', () => {

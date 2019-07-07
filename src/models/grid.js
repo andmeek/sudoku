@@ -93,6 +93,12 @@ export default class Grid {
     return ret
   }
 
+  setUserState(x, y, enabled) {
+    if(this.states[y][x] != 0) {
+      this.states[y][x] = enabled ? 2 : 1
+    }
+  }
+
   state(x, y) {
     if(x < 0 || x > 8 || y < 0 || y > 8) {
       return null

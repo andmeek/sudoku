@@ -63,6 +63,8 @@ export default {
       }
 
       this.selectedTile = tile == this.selectedTile ? null : tile
+
+      this.board.grid.setUserState(tile.x, tile.y, tile.completed)
     },
     tilesForRow: function(col, row, innerCol) {
       return [
