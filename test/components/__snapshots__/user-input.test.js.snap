@@ -1,9 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserInput.vue disables completed numbers 1`] = `<div class="button-group"><button value="1" class="disabled" disabled="disabled">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>`;
+exports[`UserInput.vue disables completed numbers 1`] = `
+<div class="user-input">
+  <div class="numbers"><button value="1" class="disabled" disabled="disabled">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button></div>
+  <div class="actions"><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>
+</div>
+`;
 
-exports[`UserInput.vue highlights the current selection 1`] = `<div class="button-group"><button value="1" class="selected">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>`;
+exports[`UserInput.vue highlights the current selection 1`] = `
+<div class="user-input">
+  <div class="numbers"><button value="1" class="selected">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button></div>
+  <div class="actions"><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>
+</div>
+`;
 
-exports[`UserInput.vue highlights the pencil when in draft mode and another selection 1`] = `<div class="button-group"><button value="1" class="selected">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button><button value="0" class="">Erase</button> <button value="pencil" class="selected">Pencil</button></div>`;
+exports[`UserInput.vue highlights the pencil when in draft mode and another selection 1`] = `
+<div class="user-input">
+  <div class="numbers"><button value="1" class="selected">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button></div>
+  <div class="actions"><button value="0" class="">Erase</button> <button value="pencil" class="selected">Pencil</button></div>
+</div>
+`;
 
-exports[`UserInput.vue matches snapshot 1`] = `<div class="button-group"><button value="1" class="">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>`;
+exports[`UserInput.vue matches snapshot 1`] = `
+<div class="user-input">
+  <div class="numbers"><button value="1" class="">1</button><button value="2" class="">2</button><button value="3" class="">3</button><button value="4" class="">4</button><button value="5" class="">5</button><button value="6" class="">6</button><button value="7" class="">7</button><button value="8" class="">8</button><button value="9" class="">9</button></div>
+  <div class="actions"><button value="0" class="">Erase</button> <button value="pencil" class="">Pencil</button></div>
+</div>
+`;

@@ -1,8 +1,8 @@
 <template>
   <div class="game-header">
-    <span class="difficulty">{{ difficulty }}</span>
     <span class="timer">{{ time }}</span>
-    <button v-on:click="$emit('exit')">Exit Game</button>
+    <span class="difficulty">{{ difficulty }}</span>
+    <span><button v-on:click="$emit('exit')">Exit Game</button></span>
   </div>
 </template>
 
@@ -24,3 +24,24 @@ export default {
   },
 }
 </script>
+
+<style>
+.game-header {
+  display: flex;
+  padding: 5px 0px;
+}
+
+.game-header span  {
+  width: 33%;
+  display: block;
+  padding: 1px;
+}
+
+.game-header .difficulty {
+  text-align: center;
+}
+
+.game-header span:last-child {
+  text-align: right;
+}
+</style>

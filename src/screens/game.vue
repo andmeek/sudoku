@@ -25,8 +25,8 @@ export default {
   },
   methods: {
     inputChanged: function(to, pencil) {
-      this.$children[0].pencil = pencil
-      this.$children[0].currentInput = to
+      this.$children[1].pencil = pencil
+      this.$children[1].currentInput = to
     },
     confirmCompleted: function() {
       this.$emit('gamecompleted')

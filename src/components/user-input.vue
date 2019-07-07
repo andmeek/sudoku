@@ -1,12 +1,16 @@
 <template>
-	<div class="button-group">
-    <button v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
-            v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
-            v-bind:disabled="board.numberCompleted(n)"
-            v-bind:value="n"
-            v-on:click="buttonClick"
-            >{{ n == 0 ? 'Erase' : n }}</button>
-    <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil">Pencil</button>
+	<div class="user-input">
+	  <div class="numbers">
+      <button v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+              v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
+              v-bind:disabled="board.numberCompleted(n)"
+              v-bind:value="n"
+              v-on:click="buttonClick">{{ n }}</button>
+    </div>
+    <div class="actions">
+      <button v-bind:class="{selected: current == 0}" v-bind:value="0" v-on:click="buttonClick">Erase</button>
+      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil">Pencil</button>
+    </div>
   </div>
 </template>
 
@@ -64,11 +68,10 @@ export default {
 </script>
 
 <style>
-.button-group {
-  text-align: center;
+.user-input {
+  display: flex;
 }
-
-.button-group button {
+.user-input button {
   border: 1px solid #aaa;
   box-shadow: 1px 1px 1px 1px #ddd;
   background-color: #eee;
@@ -76,11 +79,14 @@ export default {
   margin: 2px;
   font-size: 2em;
   font-weight: bold;
-  padding: 18px;
   cursor: pointer;
 }
 
-.button-group button.selected {
+.user-input .numbers button {
+  width: 30%;
+}
+
+.user-input button.selected {
   border-color: black;
   background-color: white;
 }

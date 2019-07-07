@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import Game from '../../src/screens/game.vue'
+import GameBoard from '../../src/components/game-board.vue'
 
 jest.useFakeTimers()
 
@@ -18,6 +19,17 @@ describe('Game.vue', () => {
 
   test('matches snapshot', () => {
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  test('propagates the input change to the gameboard', () => {
+    wrapper.vm.inputChanged(2, false)
+
+    expect(wrapper.find(GameBoard).vm.currentInput).toEqual(2)
+    expect(wrapper.find(GameBoard).vm.pencil).toBeFalsy()
+
+    wrapper.vm.inputChanged(8, true)
+    expect(wrapper.find(GameBoard).vm.currentInput).toEqual(8)
+    expect(wrapper.find(GameBoard).vm.pencil).toBeTruthy()
   })
 
   test('emits a gamecompleted when the game is completed and the user clicks the okay button', () => {
