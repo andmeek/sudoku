@@ -74,6 +74,17 @@ export default {
       ]
     },
   },
+  watch: {
+    currentInput: function(val) {
+      if(this.selectedTile != null) {
+        var selected = this.selectedTile
+
+        this.tileClick(this.selectedTile)
+
+        this.selectedTile = selected
+      }
+    },
+  },
   components: {
     Tile
   }

@@ -42,6 +42,38 @@ describe('GameBoard.vue', () => {
     expect(wrapper.findAll('.current-input').length).toEqual(9)
   })
 
+  describe('.currentInput change', () => {
+    let tileClick = jest.fn(), nonMockedTileClick = null
+
+    beforeEach(() => {
+      nonMockedTileClick = wrapper.vm.tileClick
+      wrapper.vm.tileClick = tileClick
+    })
+
+    test('calls .tileClick for the selected tile', () => {
+      var tile = board.tiles[4]
+
+      wrapper.setData({selectedTile: tile})
+      wrapper.setData({currentInput: 2})
+
+      expect(tileClick).toBeCalledWith(board.tiles[4])
+    })
+
+    test('does not call .tileClick if there is no selected tile', () => {
+      wrapper.setData({currentInput: 2})
+
+      expect(tileClick).not.toBeCalled()
+    })
+
+    test('keeps the same tile selected', () => {
+      wrapper.vm.tileClick = nonMockedTileClick
+      wrapper.setData({selectedTile: board.tiles[4]})
+      wrapper.setData({currentInput: 2})
+
+      expect(wrapper.vm.selectedTile).toEqual(board.tiles[4])
+    })
+  })
+
   describe('.tileClick', () => {
     test('updates the tile to selected when clicked', () => {
       wrapper.vm.tileClick(board.tiles[0])
@@ -136,7 +168,6 @@ describe('GameBoard.vue', () => {
 
         expect(board.grid.state(tile.x, tile.y)).toEqual(1)
       })
-
     })
   })
 })
