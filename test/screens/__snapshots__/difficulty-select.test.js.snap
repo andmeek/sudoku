@@ -3,6 +3,6 @@
 exports[`DifficultySelect.vue matches snapshot 1`] = `
 <div class="difficulty screen">
   <h1>Select Difficulty</h1>
-  <div class="actions"><button>Easy</button> <button>Medium</button> <button>Hard</button></div> <button>Back</button>
+  <div class="actions"><button>Easy</button> <button>Medium</button> <button>Hard</button> <button>Very Hard</button></div> <button>Back</button>
 </div>
 `;
