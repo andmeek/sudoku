@@ -137,6 +137,13 @@ describe('Tile', () => {
 
       expect(tile.userValue).toEqual(3)
     })
+
+    test('does not update the user value if it is not editable', () => {
+      tile.userEditable = false
+      tile.toggleValue(2)
+
+      expect(tile.userValue).toBeNull()
+    })
   })
 
   describe('.value', () => {

@@ -47,6 +47,8 @@ export default class Tile {
   }
 
   toggleValue(to) {
-    this.userValue = to == this.userValue ? null : to
+    if(this.userEditable) {
+      this.userValue = to == this.userValue ? null : to
+    }
   }
 }

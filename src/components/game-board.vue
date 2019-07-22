@@ -59,7 +59,7 @@ export default {
       } else if(this.pencil) {
         tile.toggleDraft(this.currentInput)
       } else {
-        tile.userValue = tile.userValue == this.currentInput ? null : this.currentInput
+        tile.toggleValue(this.currentInput)
       }
 
       this.selectedTile = tile == this.selectedTile ? null : tile
