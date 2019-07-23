@@ -30,10 +30,15 @@ export default {
     },
     confirmCompleted: function() {
       this.$emit('gamecompleted')
+    },
+    gameTick: function() {
+      if(!this.board.completed) {
+        this.board.incrementTimer()
+      }
     }
   },
   created() {
-    this.tick = setInterval(this.board.incrementTimer.bind(this.board), 1000)
+    this.tick = setInterval(this.gameTick.bind(this), 1000)
   },
   destroyed() {
     clearInterval(this.tick)

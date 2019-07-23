@@ -32,16 +32,30 @@ describe('Game.vue', () => {
     expect(wrapper.find(GameBoard).vm.pencil).toBeTruthy()
   })
 
-  test('emits a gamecompleted when the game is completed and the user clicks the okay button', () => {
-    board.tiles.forEach((tile) => {
-      tile.userValue = tile.actualValue
+  describe('when the board is completed', () => {
+    beforeEach(() => {
+      board.tiles.forEach((tile) => {
+        tile.userValue = tile.actualValue
+      })
+
+      wrapper.vm.$forceUpdate()
+
+      expect(board.completed).toBeTruthy()
     })
 
-    wrapper.vm.$forceUpdate()
-    expect(wrapper.find('.completed')).toBeTruthy()
+    test('emits a gamecompleted when the game is completed and the user clicks the okay button', () => {
+      expect(wrapper.find('.completed')).toBeTruthy()
 
-    wrapper.findAll('button').at(0).trigger('click')
-    expect(wrapper.emitted().gamecompleted).toBeTruthy()
+      wrapper.findAll('button').at(0).trigger('click')
+      expect(wrapper.emitted().gamecompleted).toBeTruthy()
+    })
+
+    test('stops running the game tick', () => {
+      expect(board.timer).toEqual(0)
+      jest.advanceTimersByTime(3000)
+
+      expect(board.timer).toEqual(0)
+    })
   })
 
   test('registers and removes a timer as part of the component lifecycle', () => {
