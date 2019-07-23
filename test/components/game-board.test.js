@@ -137,6 +137,21 @@ describe('GameBoard.vue', () => {
       expect(board.tiles[3].userValue).toBeNull()
     })
 
+    test('unselects the tile and currentInput if the number was completed', () => {
+      var lastTile = board.tileAt(0, 2)
+      wrapper.setData({currentInput: 1})
+
+      board.tiles.forEach((tile) => {
+        if(tile.actualValue == 1 && lastTile.id != tile.id)
+          tile.userValue = tile.actualValue
+      })
+
+      wrapper.vm.tileClick(lastTile)
+
+      expect(wrapper.vm.selectedTile).toBeNull()
+      expect(wrapper.vm.currentInput).toBeNull()
+    })
+
     describe('grid updates', () => {
       var tile
 

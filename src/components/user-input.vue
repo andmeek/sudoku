@@ -53,11 +53,6 @@ export default {
       this.$emit('inputchanged', this.current, this.pencil)
     },
   },
-  updated: function() {
-    if(this.board.numberCompleted(this.current)) {
-      this.changeInput(this.current)
-    }
-  },
   created: function() {
     window.addEventListener('keyup', this.keyUp)
   },
