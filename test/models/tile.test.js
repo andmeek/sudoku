@@ -144,6 +144,19 @@ describe('Tile', () => {
 
       expect(tile.userValue).toBeNull()
     })
+
+    test('does not remove the value if its completed', () => {
+      tile.userValue = null
+      tile.toggleValue(9)
+      expect(tile.userValue).toEqual(9)
+      expect(tile.completed).toBeTruthy()
+
+      tile.toggleValue(9)
+      expect(tile.userValue).toEqual(9)
+
+      tile.toggleValue(2)
+      expect(tile.userValue).toEqual(9)
+    })
   })
 
   describe('.value', () => {

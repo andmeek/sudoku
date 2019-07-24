@@ -175,14 +175,6 @@ describe('GameBoard.vue', () => {
         wrapper.vm.tileClick(tile)
         expect(board.grid.state(tile.x, tile.y)).toEqual(1)
       })
-
-      test('when no longer completed it changes the grid state back', () => {
-        wrapper.vm.tileClick(tile)
-        expect(board.grid.state(tile.x, tile.y)).toEqual(2)
-        wrapper.vm.tileClick(tile)
-
-        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
-      })
     })
   })
 })
