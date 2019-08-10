@@ -33,3 +33,13 @@ window.newboard = function(removeCount, seed = 1, test = false) {
 
   return new Board(grid)
 }
+
+window.wingame = function() {
+  if(app.board() != null) {
+    app.board().tiles.forEach((tile) => {
+      if(!tile.completed) {
+        tile.userValue = tile.actualValue
+      }
+    })
+  }
+}
