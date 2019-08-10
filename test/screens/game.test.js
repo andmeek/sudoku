@@ -43,6 +43,10 @@ describe('Game.vue', () => {
       expect(board.completed).toBeTruthy()
     })
 
+    test('matches snapshot', () => {
+      expect(wrapper.html()).toMatchSnapshot()
+    })
+
     test('emits a gamecompleted when the game is completed and the user clicks the okay button', () => {
       expect(wrapper.find('.completed')).toBeTruthy()
 

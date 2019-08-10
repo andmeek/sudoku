@@ -1,6 +1,11 @@
 <template>
   <div class="game screen">
-     <game-header v-bind:board="board" v-bind:difficulty="difficulty" v-on:exit="$emit('exit')" />
+     <game-header
+       v-if="!board.completed"
+       v-bind:board="board"
+       v-bind:difficulty="difficulty"
+       v-on:exit="$emit('exit')"
+     />
      <game-board v-bind:board="board" v-if="!board.completed" />
      <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
      <div class="completed" v-if="board.completed">

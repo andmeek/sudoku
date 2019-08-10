@@ -8,3 +8,15 @@ exports[`Game.vue matches snapshot 1`] = `
   <!---->
 </div>
 `;
+
+exports[`Game.vue when the board is completed matches snapshot 1`] = `
+<div class="game screen">
+  <!---->
+  <!---->
+  <!---->
+  <div class="completed">
+    You win!
+
+    <button>Okay</button></div>
+</div>
+`;
