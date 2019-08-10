@@ -3,7 +3,7 @@
     <h1>Play Sudoku</h1>
 
     <div class="actions">
-      <button v-on:click="newgame">New Game</button>
+      <button class="menu" v-on:click="newgame">New Game</button>
     </div>
   </div>
 </template>

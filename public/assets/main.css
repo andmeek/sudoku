@@ -186,3 +186,26 @@ html, body {
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
 }
+
+button.menu {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 4px;
+  font-size: 1.2em;
+  padding: 6px;
+  font-weight: bold;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  background-color: #dcdcdc;
+}
+
+button.menu:hover {
+  background-color: #cbcbcb;
+}
+
+button.menu.inline {
+  margin: 2px;
+  padding: 2px;
+  display: inline-block;
+}

@@ -9,9 +9,11 @@
      <game-board v-bind:board="board" v-if="!board.completed" />
      <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
      <div class="completed" v-if="board.completed">
-        You win!
+       <h1>
+          You win!
+       </h1>
 
-        <button v-on:click="confirmCompleted">Okay</button>
+        <button class="menu" v-on:click="confirmCompleted">Okay</button>
      </div>
   </div>
 </template>

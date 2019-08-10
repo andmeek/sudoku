@@ -2,7 +2,7 @@
   <div class="game-header">
     <span class="timer">{{ time }}</span>
     <span class="difficulty">{{ difficulty }}</span>
-    <span><button v-on:click="$emit('exit')">Exit Game</button></span>
+    <span><button class="menu inline" v-on:click="$emit('exit')">Exit Game</button></span>
   </div>
 </template>
 
@@ -28,6 +28,8 @@ export default {
 <style>
 .game-header {
   display: flex;
+  font-size: 1.2em;
+  line-height: 32px;
   padding: 5px 0px;
 }
 
