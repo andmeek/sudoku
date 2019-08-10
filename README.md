@@ -2,7 +2,7 @@
 
 A simple open source browser based sudoku game
 
-An ad-free customize-able option to play sudoku.
+An ad-free customize-able option to play sudoku. Check it out at http://opensourcesudoku.com
 
 ## Development
 
@@ -11,7 +11,7 @@ Setup yarn and node version manager first. Once completed simply run:
 ```bash
 yarn
 ```
- 
+
 ### Testing
 
 Run
@@ -19,13 +19,13 @@ Run
 ```bash
 bin/test
 ```
-  
+
 This will run all jest tests in watch mode. You can also just run:
 
 ```bash
 yarn test
 ```
-  
+
 ### Local Server
 
 To run locally use:
@@ -38,7 +38,7 @@ Then navigate to [localhost:8080](http://localhost:8080). This runs with live re
 
 ## Deployment
 
-This can be run from any web host/server once compiled and packaged but it is recommended you use Aws S3 bucket site hosting. 
+This can be run from any web host/server once compiled and packaged but it is recommended you use Aws S3 bucket site hosting.
 
 To deploy a compiled version to a S3 location run the following command. *This requires you have the `awscli` package installed*
 

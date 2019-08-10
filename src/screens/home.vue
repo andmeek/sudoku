@@ -4,6 +4,8 @@
 
     <div class="actions">
       <button class="menu" v-on:click="newgame">New Game</button>
+
+      <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a>
     </div>
   </div>
 </template>
@@ -17,3 +19,13 @@ export default {
   },
 }
 </script>
+
+<style>
+.home .actions {
+  text-align: center;
+}
+
+.home .menu {
+  margin-bottom: 32px;
+}
+</style>
