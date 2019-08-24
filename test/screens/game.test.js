@@ -62,6 +62,17 @@ describe('Game.vue', () => {
     })
   })
 
+  test('does not increment the timer when paused', () => {
+    wrapper.vm.gameTick()
+
+    expect(board.timer).toEqual(1)
+
+    wrapper.vm.paused = true
+    wrapper.vm.gameTick()
+
+    expect(board.timer).toEqual(1)
+  })
+
   test('registers and removes a timer as part of the component lifecycle', () => {
     expect(setInterval).toHaveBeenCalledTimes(1)
     expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 1000)
@@ -76,5 +87,26 @@ describe('Game.vue', () => {
     jest.advanceTimersByTime(1000)
     expect(clearInterval).toHaveBeenCalledTimes(1)
     expect(board.timer).toEqual(3)
+  })
+
+  describe('.onVisbilityChange', () => {
+    Object.defineProperty(document, 'visibilityState', {value: 'visible', writable: true})
+
+    test('sets the game to paused', () => {
+      document.visibilityState = 'hidden'
+
+      wrapper.vm.onVisibilityChange()
+
+      expect(wrapper.vm.paused).toBeTruthy()
+    })
+
+    test('sets paused to false when visibile again', () => {
+      document.visibilityState = 'visible'
+      wrapper.vm.paused = true
+
+      wrapper.vm.onVisibilityChange()
+
+      expect(wrapper.vm.paused).toBeFalsy()
+    })
   })
 })

@@ -34,6 +34,7 @@ export default {
   props: ['difficulty', 'board'],
   data() {
     return {
+      paused: false,
       tick: null,
     }
   },
@@ -46,16 +47,25 @@ export default {
       this.$emit('gamecompleted')
     },
     gameTick: function() {
-      if(!this.board.completed) {
+      if(!this.board.completed && !this.paused) {
         this.board.incrementTimer()
       }
-    }
+    },
+    onVisibilityChange: function() {
+      if(document.visibilityState == 'hidden') {
+        this.paused = true
+      } else {
+        this.paused = false
+      }
+    },
   },
   created() {
     this.tick = setInterval(this.gameTick.bind(this), 1000)
+    window.addEventListener('visibilitychange', this.onVisibilityChange)
   },
   destroyed() {
     clearInterval(this.tick)
+    window.removeEventListener('visibilitychange', this.onVisibilityChange)
   },
   components: {
     GameBoard, GameHeader, UserInput
