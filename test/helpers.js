@@ -4,6 +4,7 @@ import Grid from '../src/models/grid.js'
 import Board from '../src/models/board.js'
 import {TEST_BOARD, TEST_BOARD_STATE} from '../src/variables.js'
 import '../src/array.js'
+import '../src/number.js'
 
 global.genTestBoard = function() {
   var grid = new Grid()

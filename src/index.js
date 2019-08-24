@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
 import './array.js'
+import './number.js'
 
 import Grid from './models/grid.js'
 import Generate from './models/generate.js'
