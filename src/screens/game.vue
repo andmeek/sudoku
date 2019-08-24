@@ -10,8 +10,15 @@
      <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
      <div class="completed" v-if="board.completed">
        <h1>
-          You win!
+          You won!
        </h1>
+
+       <dl>
+        <dt>Difficulty</dt>
+        <dd>{{ difficulty }}</dd>
+        <dt>Time</dt>
+        <dd>{{ board.timer.toTimerDisplay() }}</dd>
+       </dl>
 
         <button class="menu" v-on:click="confirmCompleted">Okay</button>
      </div>
@@ -55,3 +62,18 @@ export default {
   }
 }
 </script>
+
+<style>
+dl {
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.4em;
+}
+
+dt, dd {
+  width: 49%;
+  display: inline-block;
+  margin: 0;
+  padding-bottom: 6px;
+}
+</style>

@@ -16,8 +16,14 @@ exports[`Game.vue when the board is completed matches snapshot 1`] = `
   <!---->
   <div class="completed">
     <h1>
-      You win!
-    </h1> <button class="menu">Okay</button>
+      You won!
+    </h1>
+    <dl>
+      <dt>Difficulty</dt>
+      <dd>Easy</dd>
+      <dt>Time</dt>
+      <dd>00:00:00</dd>
+    </dl> <button class="menu">Okay</button>
   </div>
 </div>
 `;
