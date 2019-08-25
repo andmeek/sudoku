@@ -87,7 +87,7 @@ describe('UserInput.vue', () => {
     wrapper.find('[value="pencil"]').trigger('click')
 
     expect(wrapper.find('.selected:first-of-type').attributes('value')).toEqual('1')
-    expect(wrapper.find('.selected:last-of-type').text()).toEqual('Pencil')
+    expect(wrapper.find('.selected:last-of-type').attributes('value')).toEqual('pencil')
     expect(wrapper.html()).toMatchSnapshot()
   })
 })

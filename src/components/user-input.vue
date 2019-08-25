@@ -83,6 +83,11 @@ export default {
 
 .user-input button.selected {
   border-color: black;
+  background-color: slategray;
+  color: white;
+}
+
+.user-input button.disabled {
   background-color: white;
 }
 </style>

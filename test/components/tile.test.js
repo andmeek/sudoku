@@ -82,7 +82,7 @@ describe('Tile.vue', () => {
 
     expect(div.classes()).toContain('selected')
     expect(div.classes()).toContain('selected-sibling')
-    expect(div.classes()).toContain('current-input')
+    expect(div.classes()).not.toContain('current-input')
     expect(div.classes()).toContain('error')
   })
 })

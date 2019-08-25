@@ -36,10 +36,10 @@ describe('GameBoard.vue', () => {
     ])
   })
 
-  test('highlights the current input', () => {
+  test('highlights the current input for completed tiles', () => {
     wrapper.setData({currentInput: '1'})
 
-    expect(wrapper.findAll('.current-input').length).toEqual(9)
+    expect(wrapper.findAll('.current-input').length).toEqual(5)
   })
 
   describe('.currentInput change', () => {

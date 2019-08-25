@@ -4,7 +4,7 @@
   "description": "A simple browser based Sudoku game",
   "private": true,
   "repository": "https://github.com/andmeek/sudoku",
-  "author": "Steven Meek <andmeek@gmail.com>",
+  "author": "Steven Meek",
   "license": "MIT",
   "scripts": {
     "build": "webpack",

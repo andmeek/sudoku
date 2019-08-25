@@ -3,7 +3,7 @@
        v-bind:class="{
        selected: selected,
        'selected-sibling': selectedSibling,
-       'current-input': currentInput,
+       'current-input': (currentInput && tile.completed),
        error: tile.error,
        }"
        v-on:mouseover="$emit('tilefocus', tile)"
@@ -49,6 +49,7 @@ export default {
 }
 .tile.current-input {
   font-weight: bold;
+  background-color: #d4dadf;
 }
 .tile .user-val {
   color: #888;
