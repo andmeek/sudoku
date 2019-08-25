@@ -13,7 +13,7 @@ describe('Game.vue', () => {
       propsData: {
         difficulty: 'Easy',
         board: board
-      }
+      },
     })
   })
 

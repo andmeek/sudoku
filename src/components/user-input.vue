@@ -1,15 +1,28 @@
 <template>
 	<div class="user-input">
 	  <div class="numbers">
-      <button v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-              v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
-              v-bind:disabled="board.numberCompleted(n)"
-              v-bind:value="n"
-              v-on:click="buttonClick">{{ n }}</button>
+	    <div>
+        <button v-for="n in [1, 2, 3, 4, 5]"
+                v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
+                v-bind:disabled="board.numberCompleted(n)"
+                v-bind:value="n"
+                v-on:click="buttonClick(n)">{{ n }}</button>
+      </div>
+      <div>
+        <button v-for="n in [6, 7, 8, 9]"
+                v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
+                v-bind:disabled="board.numberCompleted(n)"
+                v-bind:value="n"
+                v-on:click="buttonClick(n)">{{ n }}</button>
+        <button v-bind:class="{selected: current == 0}" v-bind:value="0" v-on:click="buttonClick(0)">
+          <font-awesome-icon icon="eraser" size="sm" />
+        </button>
+      </div>
     </div>
     <div class="actions">
-      <button v-bind:class="{selected: current == 0}" v-bind:value="0" v-on:click="buttonClick">Erase</button>
-      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil">Pencil</button>
+      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil">
+        <font-awesome-icon icon="pencil-alt" size="sm" />
+      </button>
     </div>
   </div>
 </template>
@@ -24,8 +37,8 @@ export default {
     }
   },
   methods: {
-    buttonClick: function(event) {
-      this.changeInput(event.target.value)
+    buttonClick: function(val) {
+      this.changeInput(val)
     },
     draftClick: function(event) {
       this.pencil = !this.pencil
@@ -64,21 +77,29 @@ export default {
 
 <style>
 .user-input {
-  display: flex;
-}
-.user-input button {
-  border: 1px solid #aaa;
-  box-shadow: 1px 1px 1px 1px #ddd;
-  background-color: #eee;
-  border-radius: 2px;
-  margin: 2px;
-  font-size: 2em;
-  font-weight: bold;
-  cursor: pointer;
+  text-align: center;
 }
 
-.user-input .numbers button {
-  width: 30%;
+.user-input  button {
+  background-color: #f5f0ea;
+  border-radius: 100%;
+  border: 1px solid #aaa;
+  box-shadow: 1px 1px 1px 1px #ddd;
+  cursor: pointer;
+  font-size: 2.5em;
+  font-weight: bold;
+  height: 65px;
+  margin: 2px;
+  outline: none;
+  width: 65px;
+}
+
+.user-input .actions button {
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  width: 45px;
+  height: 45px;
 }
 
 .user-input button.selected {
@@ -89,5 +110,8 @@ export default {
 
 .user-input button.disabled {
   background-color: white;
+  border-color: #ddd;
+  box-shadow: none;
+  color: #ddd;
 }
 </style>

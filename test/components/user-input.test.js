@@ -1,5 +1,9 @@
-import { shallowMount } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import UserInput from '../../src/components/user-input.vue'
+
+const localVue = createLocalVue()
+localVue.component('font-awesome-icon', FontAwesomeIcon)
 
 describe('UserInput.vue', () => {
   let wrapper, board
@@ -7,6 +11,7 @@ describe('UserInput.vue', () => {
   beforeEach(() => {
     board = genTestBoard()
     wrapper = shallowMount(UserInput, {
+      localVue,
       propsData: {
         board: board
       }
@@ -14,8 +19,6 @@ describe('UserInput.vue', () => {
   })
 
   test('matches snapshot', () => {
-    expect(wrapper.find("[value='0']").text()).toEqual('Erase')
-
     expect(wrapper.html()).toMatchSnapshot()
   })
 

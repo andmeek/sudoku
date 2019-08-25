@@ -8,6 +8,16 @@ import Generate from './models/generate.js'
 import Board from './models/board.js'
 import {TEST_BOARD, TEST_BOARD_STATE} from './variables.js'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBraille, faEraser, faLightbulb, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faBraille, faEraser, faLightbulb, faPencilAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.config.productionTip = false
+
 var app = new Vue({
   el: '#game',
   template: '<App />',
