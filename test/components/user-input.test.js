@@ -76,21 +76,44 @@ describe('UserInput.vue', () => {
     expect(wrapper.emitted().inputchanged[0]).toEqual([1, false])
   })
 
-  test('emits an `inputchanged` event with pencil mode if set', () => {
-    wrapper.find('[value="1"]').trigger('click')
-    wrapper.find('[value="pencil"]').trigger('click')
+  describe('pencil mode', () => {
+    test('emits an `inputchanged` event with pencil mode if set', () => {
+      wrapper.find('[value="1"]').trigger('click')
+      wrapper.find('[value="pencil"]').trigger('click')
 
-    expect(wrapper.emitted().inputchanged.length).toEqual(2)
-    expect(wrapper.emitted().inputchanged[0]).toEqual([1, false])
-    expect(wrapper.emitted().inputchanged[1]).toEqual([1, true])
+      expect(wrapper.emitted().inputchanged.length).toEqual(2)
+      expect(wrapper.emitted().inputchanged[0]).toEqual([1, false])
+      expect(wrapper.emitted().inputchanged[1]).toEqual([1, true])
+    })
+
+    test('highlights the pencil when in draft mode and another selection', () => {
+      wrapper.find('[value="1"]').trigger('click')
+      wrapper.find('[value="pencil"]').trigger('click')
+
+      expect(wrapper.find('[value="1"]').classes()).toContain('selected')
+      expect(wrapper.find('[value="pencil"]').classes()).toContain('selected')
+      expect(wrapper.html()).toMatchSnapshot()
+    })
   })
 
-  test('highlights the pencil when in draft mode and another selection', () => {
-    wrapper.find('[value="1"]').trigger('click')
-    wrapper.find('[value="pencil"]').trigger('click')
+  describe('show all notes', () => {
+    test('toggles the selected class on and off', () => {
+      wrapper.find('[value="all-notes"]').trigger('click')
 
-    expect(wrapper.find('.selected:first-of-type').attributes('value')).toEqual('1')
-    expect(wrapper.find('.selected:last-of-type').attributes('value')).toEqual('pencil')
-    expect(wrapper.html()).toMatchSnapshot()
+      expect(wrapper.find('[value="all-notes"]').classes()).toContain('selected')
+
+      wrapper.find('[value="all-notes"]').trigger('click')
+
+      expect(wrapper.find('[value="all-notes"]').classes()).not.toContain('selected')
+    })
+
+    test('emites an `showallnotes` event with true then false when clicked twice', () => {
+      wrapper.find('[value="all-notes"]').trigger('click')
+      wrapper.find('[value="all-notes"]').trigger('click')
+
+      expect(wrapper.emitted().showallnotes.length).toEqual(2)
+      expect(wrapper.emitted().showallnotes[0]).toEqual([true])
+      expect(wrapper.emitted().showallnotes[1]).toEqual([false])
+    })
   })
 })

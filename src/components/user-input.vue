@@ -20,8 +20,11 @@
       </div>
     </div>
     <div class="actions">
-      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil">
+      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil" title="Add notes">
         <font-awesome-icon icon="pencil-alt" size="sm" />
+      </button>
+      <button v-bind:class="{selected: allNotes}" v-on:click="toggleAllNotes" value="all-notes" title="Show all notes">
+        <font-awesome-icon icon="sticky-note" size="sm" />
       </button>
     </div>
   </div>
@@ -32,6 +35,7 @@ export default {
   props: ['board'],
   data() {
     return {
+      allNotes: false,
       current: null,
       pencil: false,
     }
@@ -61,6 +65,11 @@ export default {
       }
 
       this._triggerInputChange()
+    },
+    toggleAllNotes: function() {
+      this.allNotes = !this.allNotes
+
+      this.$emit('showallnotes', this.allNotes)
     },
     _triggerInputChange: function() {
       this.$emit('inputchanged', this.current, this.pencil)
