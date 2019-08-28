@@ -1,14 +1,14 @@
 <template>
   <div class="game-header">
-    <span class="timer">{{ board.timer.toTimerDisplay() }}</span>
-    <span class="difficulty">{{ difficulty }}</span>
+    <span class="timer">{{ game.timer.toTimerDisplay() }}</span>
+    <span class="difficulty">{{ game.difficulty }}</span>
     <span><button class="menu inline" v-on:click="$emit('exit')">Exit Game</button></span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['board', 'difficulty'],
+  props: ['game'],
 }
 </script>
 

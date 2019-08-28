@@ -2,9 +2,9 @@
 
 exports[`Game.vue matches snapshot 1`] = `
 <div class="game screen">
-  <game-header-stub difficulty="Easy" board="[object Object]"></game-header-stub>
-  <game-board-stub board="[object Object]"></game-board-stub>
-  <user-input-stub board="[object Object]"></user-input-stub>
+  <game-header-stub game="[object Object]"></game-header-stub>
+  <game-board-stub game="[object Object]"></game-board-stub>
+  <user-input-stub game="[object Object]"></user-input-stub>
   <!---->
 </div>
 `;

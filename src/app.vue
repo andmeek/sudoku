@@ -3,8 +3,7 @@
     <home-screen v-if="screen == 'home'" v-on:new-game="play"></home-screen>
     <difficulty-screen v-if="screen == 'difficulty'" v-on:difficultyselected="newgame" v-on:exit="home"></difficulty-screen>
     <game-screen
-      v-bind:board="board"
-      v-bind:difficulty="difficulty"
+      v-bind:game="game"
       v-if="screen == 'game'"
       v-on:exit="home"
       v-on:gamecompleted="gameover"></game-screen>
@@ -13,15 +12,15 @@
 
 <script>
 import DifficultyScreen from './screens/difficulty-select.vue'
-import HomeScreen from './screens/home.vue'
+import Game from './models/game.js'
 import GameScreen from './screens/game.vue'
+import HomeScreen from './screens/home.vue'
 
 export default {
   data() {
     return {
+      game: null,
       screen: 'home',
-      difficulty: null,
-      board: null
     }
   },
   methods: {
@@ -33,12 +32,13 @@ export default {
       this.screen = 'difficulty'
     },
     newgame: function(difficulty, difficultyDisplay) {
-      this.difficulty = difficultyDisplay
-      this.board = newboard(difficulty, Math.floor(Math.random() * 25000))
+      this.game = new Game()
+      this.game.difficulty = difficultyDisplay
+      this.game.board = newboard(difficulty, Math.floor(Math.random() * 25000))
       this.screen = 'game'
     },
     gameover: function() {
-      this.board = null
+      this.game = null
       this.screen = 'home'
     },
   },

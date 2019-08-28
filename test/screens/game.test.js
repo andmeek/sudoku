@@ -5,14 +5,14 @@ import GameBoard from '../../src/components/game-board.vue'
 jest.useFakeTimers()
 
 describe('Game.vue', () => {
-  let wrapper, board
+  let wrapper, game
 
   beforeEach(() => {
-    board = genTestBoard()
+    game = genTestGame()
+
     wrapper = shallowMount(Game, {
       propsData: {
-        difficulty: 'Easy',
-        board: board
+        game: game
       },
     })
   })
@@ -34,13 +34,13 @@ describe('Game.vue', () => {
 
   describe('when the board is completed', () => {
     beforeEach(() => {
-      board.tiles.forEach((tile) => {
+      game.board.tiles.forEach((tile) => {
         tile.userValue = tile.actualValue
       })
 
       wrapper.vm.$forceUpdate()
 
-      expect(board.completed).toBeTruthy()
+      expect(game.completed).toBeTruthy()
     })
 
     test('matches snapshot', () => {
@@ -55,22 +55,22 @@ describe('Game.vue', () => {
     })
 
     test('stops running the game tick', () => {
-      expect(board.timer).toEqual(0)
+      expect(game.timer).toEqual(0)
       jest.advanceTimersByTime(3000)
 
-      expect(board.timer).toEqual(0)
+      expect(game.timer).toEqual(0)
     })
   })
 
   test('does not increment the timer when paused', () => {
     wrapper.vm.gameTick()
 
-    expect(board.timer).toEqual(1)
+    expect(game.timer).toEqual(1)
 
     wrapper.vm.paused = true
     wrapper.vm.gameTick()
 
-    expect(board.timer).toEqual(1)
+    expect(game.timer).toEqual(1)
   })
 
   test('registers and removes a timer as part of the component lifecycle', () => {
@@ -80,13 +80,13 @@ describe('Game.vue', () => {
 
     jest.advanceTimersByTime(3000)
 
-    expect(board.timer).toEqual(3)
+    expect(game.timer).toEqual(3)
 
     wrapper.destroy()
 
     jest.advanceTimersByTime(1000)
     expect(clearInterval).toHaveBeenCalledTimes(1)
-    expect(board.timer).toEqual(3)
+    expect(game.timer).toEqual(3)
   })
 
   describe('.onVisbilityChange', () => {

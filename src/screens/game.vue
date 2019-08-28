@@ -1,23 +1,23 @@
 <template>
   <div class="game screen">
      <game-header
-       v-if="!board.completed"
-       v-bind:board="board"
+       v-if="!game.completed"
+       v-bind:game="game"
        v-bind:difficulty="difficulty"
        v-on:exit="$emit('exit')"
      />
-     <game-board v-bind:board="board" v-if="!board.completed" />
-     <user-input v-bind:board="board" v-if="!board.completed" v-on:inputchanged="inputChanged" />
-     <div class="completed" v-if="board.completed">
+     <game-board v-bind:game="game" v-if="!game.completed" />
+     <user-input v-bind:game="game" v-if="!game.completed" v-on:inputchanged="inputChanged" />
+     <div class="completed" v-if="game.completed">
        <h1>
           You won!
        </h1>
 
        <dl>
         <dt>Difficulty</dt>
-        <dd>{{ difficulty }}</dd>
+        <dd>{{ game.difficulty }}</dd>
         <dt>Time</dt>
-        <dd>{{ board.timer.toTimerDisplay() }}</dd>
+        <dd>{{ game.timer.toTimerDisplay() }}</dd>
        </dl>
 
         <button class="menu" v-on:click="confirmCompleted">Okay</button>
@@ -31,7 +31,7 @@ import GameHeader from '../components/game-header.vue'
 import UserInput from '../components/user-input.vue'
 
 export default {
-  props: ['difficulty', 'board'],
+  props: ['game'],
   data() {
     return {
       paused: false,
@@ -47,8 +47,8 @@ export default {
       this.$emit('gamecompleted')
     },
     gameTick: function() {
-      if(!this.board.completed && !this.paused) {
-        this.board.incrementTimer()
+      if(!this.game.completed && !this.paused) {
+        this.game.incrementTimer()
       }
     },
     onVisibilityChange: function() {

@@ -2,13 +2,12 @@ import { shallowMount } from '@vue/test-utils'
 import GameHeader from '../../src/components/game-header.vue'
 
 describe('GameHeader.vue', () => {
-  let wrapper, board = genTestBoard()
+  let wrapper, game = genTestGame()
 
   beforeEach(() => {
     wrapper = shallowMount(GameHeader, {
       propsData: {
-        board: board,
-        difficulty: 'Easy',
+        game: game
       }
     })
   })

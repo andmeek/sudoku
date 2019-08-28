@@ -6,7 +6,8 @@ describe('Tile.vue', () => {
   var board, tile
 
   beforeEach(() => {
-    board = genTestBoard()
+    var game = genTestGame()
+    board = game.board
     tile = board.tiles[0]
     tile.userEditable = true
     wrapper = shallowMount(Tile, {

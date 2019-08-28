@@ -44,9 +44,10 @@
 import Tile from './tile.vue'
 
 export default {
-  props: ['board'],
+  props: ['game'],
   data() {
     return {
+      board: null,
       currentInput: null,
       pencil: false,
       selectedTile: null,
@@ -78,6 +79,9 @@ export default {
         this.board.tileAt(2 + col * 3, innerCol + row * 3),
       ]
     },
+  },
+  created() {
+    this.board = this.game.board
   },
   watch: {
     currentInput: function(val) {

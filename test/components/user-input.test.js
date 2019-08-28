@@ -6,14 +6,14 @@ const localVue = createLocalVue()
 localVue.component('font-awesome-icon', FontAwesomeIcon)
 
 describe('UserInput.vue', () => {
-  let wrapper, board
+  let wrapper, game
 
   beforeEach(() => {
-    board = genTestBoard()
+    game = genTestGame()
     wrapper = shallowMount(UserInput, {
       localVue,
       propsData: {
-        board: board
+        game: game
       }
     })
   })
@@ -33,13 +33,13 @@ describe('UserInput.vue', () => {
   })
 
   test('disables completed numbers', () => {
-    board.tiles.forEach((tile) => {
+    game.board.tiles.forEach((tile) => {
       if(tile.actualValue == 1)
         tile.userValue = tile.actualValue
     })
 
     wrapper.vm.$forceUpdate()
-    expect(board.numberCompleted('1')).toBeTruthy()
+    expect(game.board.numberCompleted('1')).toBeTruthy()
     expect(wrapper.find('.disabled').attributes('value')).toEqual('1')
     expect(wrapper.find('.disabled').attributes('disabled')).toEqual('disabled')
 
@@ -52,7 +52,7 @@ describe('UserInput.vue', () => {
     wrapper.find('[value="1"]').trigger('click')
     expect(wrapper.find('.selected').exists()).toBeTruthy()
 
-    board.tiles.forEach((tile) => {
+    game.board.tiles.forEach((tile) => {
       if(tile.actualValue == 1)
         tile.userValue = tile.actualValue
     })

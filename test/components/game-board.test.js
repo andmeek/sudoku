@@ -2,14 +2,14 @@ import { mount } from '@vue/test-utils'
 import GameBoard from '../../src/components/game-board.vue'
 
 describe('GameBoard.vue', () => {
-  let wrapper, board, vm
+  let wrapper, game, vm
 
   beforeEach(() => {
-    board = genTestBoard()
+    game = genTestGame()
 
     wrapper = mount(GameBoard, {
       propsData: {
-        board: board
+        game: game
       }
     })
 
@@ -51,12 +51,12 @@ describe('GameBoard.vue', () => {
     })
 
     test('calls .tileClick for the selected tile', () => {
-      var tile = board.tiles[4]
+      var tile =  game.board.tiles[4]
 
       wrapper.setData({selectedTile: tile})
       wrapper.setData({currentInput: 2})
 
-      expect(tileClick).toBeCalledWith(board.tiles[4])
+      expect(tileClick).toBeCalledWith(game.board.tiles[4])
     })
 
     test('does not call .tileClick if there is no selected tile', () => {
@@ -67,81 +67,81 @@ describe('GameBoard.vue', () => {
 
     test('keeps the same tile selected', () => {
       wrapper.vm.tileClick = nonMockedTileClick
-      wrapper.setData({selectedTile: board.tiles[4]})
+      wrapper.setData({selectedTile: game.board.tiles[4]})
       wrapper.setData({currentInput: 2})
 
-      expect(wrapper.vm.selectedTile).toEqual(board.tiles[4])
+      expect(wrapper.vm.selectedTile).toEqual(game.board.tiles[4])
     })
   })
 
   describe('.tileClick', () => {
     test('updates the tile to selected when clicked', () => {
-      wrapper.vm.tileClick(board.tiles[0])
+      wrapper.vm.tileClick(game.board.tiles[0])
 
-      expect(wrapper.vm.selectedTile).toEqual(board.tiles[0])
+      expect(wrapper.vm.selectedTile).toEqual(game.board.tiles[0])
       expect(wrapper.find('.selected').is('div')).toBeTruthy()
     })
 
     test('unsets the selected tile if its clicked again', () => {
-      wrapper.vm.tileClick(board.tiles[0])
+      wrapper.vm.tileClick(game.board.tiles[0])
 
-      expect(wrapper.vm.selectedTile).toEqual(board.tiles[0])
+      expect(wrapper.vm.selectedTile).toEqual(game.board.tiles[0])
 
-      wrapper.vm.tileClick(board.tiles[0])
+      wrapper.vm.tileClick(game.board.tiles[0])
 
       expect(wrapper.vm.selectedTile).toBeNull()
     })
 
     test('highlights the siblings of the selected', () => {
-      wrapper.vm.tileClick(board.tiles[0])
+      wrapper.vm.tileClick(game.board.tiles[0])
 
       expect(wrapper.findAll('.selected-sibling').length).toEqual(16)
     })
 
     test('sets the tile value when an input is selected', () => {
       wrapper.setData({currentInput: 1})
-      expect(board.tiles[3].userValue).toBeNull()
+      expect(game.board.tiles[3].userValue).toBeNull()
 
-      wrapper.vm.tileClick(board.tiles[3])
+      wrapper.vm.tileClick(game.board.tiles[3])
 
-      expect(board.tiles[3].userValue).toEqual(1)
+      expect(game.board.tiles[3].userValue).toEqual(1)
     })
 
     test('erases the tile if the input is "0"', () => {
       wrapper.setData({currentInput: 0})
-      board.tiles[3].userValue = 3
+      game.board.tiles[3].userValue = 3
 
-      wrapper.vm.tileClick(board.tiles[3])
-      expect(board.tiles[3].userValue).toBeNull()
+      wrapper.vm.tileClick(game.board.tiles[3])
+      expect(game.board.tiles[3].userValue).toBeNull()
     })
 
     test('unsets the tile user value if clicked again with the same input', () => {
       wrapper.setData({currentInput: 1})
-      wrapper.vm.tileClick(board.tiles[3])
+      wrapper.vm.tileClick(game.board.tiles[3])
 
-      expect(board.tiles[3].userValue).toEqual(1)
+      expect(game.board.tiles[3].userValue).toEqual(1)
 
-      wrapper.vm.tileClick(board.tiles[3])
-      expect(board.tiles[3].userValue).toBeNull()
+      wrapper.vm.tileClick(game.board.tiles[3])
+      expect(game.board.tiles[3].userValue).toBeNull()
     })
 
     test('toggles the user draft if pencil mode is true', () => {
       wrapper.setData({currentInput: 1, pencil: true})
-      wrapper.vm.tileClick(board.tiles[3])
+      wrapper.vm.tileClick(game.board.tiles[3])
 
-      expect(board.tiles[3].userDrafts).toContain(1)
-      expect(board.tiles[3].userValue).toBeNull()
+      expect(game.board.tiles[3].userDrafts).toContain(1)
+      expect(game.board.tiles[3].userValue).toBeNull()
 
-      wrapper.vm.tileClick(board.tiles[3])
-      expect(board.tiles[3].userDrafts).not.toContain(1)
-      expect(board.tiles[3].userValue).toBeNull()
+      wrapper.vm.tileClick(game.board.tiles[3])
+      expect(game.board.tiles[3].userDrafts).not.toContain(1)
+      expect(game.board.tiles[3].userValue).toBeNull()
     })
 
     test('unselects the tile and currentInput if the number was completed', () => {
-      var lastTile = board.tileAt(0, 2)
+      var lastTile = game.board.tileAt(0, 2)
       wrapper.setData({currentInput: 1})
 
-      board.tiles.forEach((tile) => {
+      game.board.tiles.forEach((tile) => {
         if(tile.actualValue == 1 && lastTile.id != tile.id)
           tile.userValue = tile.actualValue
       })
@@ -157,23 +157,23 @@ describe('GameBoard.vue', () => {
 
       beforeEach(() => {
         wrapper.setData({currentInput: 2})
-        tile = board.tiles[3]
+        tile = game.board.tiles[3]
 
         expect(tile.actualValue).toEqual(2)
       })
 
       test('when completed, it sets the grid state to userCompleted', () => {
-        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
+        expect(game.board.grid.state(tile.x, tile.y)).toEqual(1)
         wrapper.vm.tileClick(tile)
 
-        expect(board.grid.state(tile.x, tile.y)).toEqual(2)
+        expect(game.board.grid.state(tile.x, tile.y)).toEqual(2)
       })
 
       test('when in error, it does nothing to the grid state', () => {
         wrapper.setData({currentInput: 1})
 
         wrapper.vm.tileClick(tile)
-        expect(board.grid.state(tile.x, tile.y)).toEqual(1)
+        expect(game.board.grid.state(tile.x, tile.y)).toEqual(1)
       })
     })
   })

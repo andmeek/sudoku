@@ -32,10 +32,11 @@
 
 <script>
 export default {
-  props: ['board'],
+  props: ['game'],
   data() {
     return {
       allNotes: false,
+      board: null,
       current: null,
       pencil: false,
     }
@@ -76,6 +77,7 @@ export default {
     },
   },
   created: function() {
+    this.board = this.game.board
     window.addEventListener('keyup', this.keyUp)
   },
   destroyed: function() {
