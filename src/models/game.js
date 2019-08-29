@@ -22,6 +22,15 @@ export default class Game {
     if(!this.board.numberCompleted(to)) {
       this._currentInput = to == this._currentInput ? null : to
     }
+
+    if(this.eraserMode && this._currentInput > 0) {
+      this.eraserMode = false
+    }
+
+    if(to == 0) {
+      this._currentInput = null
+      this.eraserMode = !this.eraserMode
+    }
   }
 
   incrementTimer() {

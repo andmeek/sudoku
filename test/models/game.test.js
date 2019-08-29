@@ -65,5 +65,27 @@ describe('Game', () => {
       game.currentInput = 1
       expect(game.currentInput).toBeNull()
     })
+
+    test('sets to null and toggles eraser mode on when set to 0', () => {
+      game.currentInput = 0
+
+      expect(game.currentInput).toBeNull()
+      expect(game.eraserMode).toBeTruthy()
+    })
+
+    test('sets to null and sets eraser mode to false when set to 0 and already in eraser mode', () => {
+      game.currentInput = 0
+      game.currentInput = 0
+
+      expect(game.currentInput).toBeNull()
+      expect(game.eraserMode).toBeFalsy()
+    })
+
+    test('unsets eraser mode when set to anything > 0', () => {
+      game.eraserMode = true
+      game.currentInput = 1
+
+      expect(game.eraserMode).toBeFalsy()
+    })
   })
 })
