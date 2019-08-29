@@ -4,11 +4,12 @@ describe('Game', () => {
   var game
 
   beforeEach(() => {
-    game = new Game()
+    game = genTestGame()
   })
 
 
   test('initialization', () => {
+    game = new Game()
     expect(game.board).toBeNull()
     expect(game.completed).toBeFalsy()
     expect(game.currentInput).toBeNull()
@@ -31,10 +32,6 @@ describe('Game', () => {
   })
 
   describe('.completed', () => {
-    beforeEach(() => {
-      game = genTestGame()
-    })
-
     test('is false', () => {
       expect(game.completed).toBeFalsy()
     })
@@ -45,6 +42,28 @@ describe('Game', () => {
       })
 
       expect(game.completed).toBeTruthy()
+    })
+  })
+
+  describe('.currentInput', () => {
+    test('sets the currentInput value', () => {
+      game.currentInput = 1
+
+      expect(game.currentInput).toEqual(1)
+    })
+
+    test('sets the currentInput to null if provided the same value', () => {
+      game.currentInput = 1
+      game.currentInput = 1
+
+      expect(game.currentInput).toBeNull()
+    })
+
+    test('it does not set the current value if that number is completed on the board', () => {
+      completeNumber(game, 1)
+
+      game.currentInput = 1
+      expect(game.currentInput).toBeNull()
     })
   })
 })

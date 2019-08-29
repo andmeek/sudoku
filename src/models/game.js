@@ -1,7 +1,7 @@
 export default class Game {
   constructor() {
     this.board = null
-    this.currentInput = null
+    this._currentInput = null
     this.difficulty = null
     this.draftMode = false
     this.eraserMode = false
@@ -12,6 +12,16 @@ export default class Game {
 
   get completed() {
     return this.board && this.board.completed
+  }
+
+  get currentInput() {
+    return this._currentInput
+  }
+
+  set currentInput(to) {
+    if(!this.board.numberCompleted(to)) {
+      this._currentInput = to == this._currentInput ? null : to
+    }
   }
 
   incrementTimer() {

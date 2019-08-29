@@ -18,4 +18,11 @@ global.genTestGame = function() {
   return game
 }
 
+global.completeNumber = function(game, number) {
+  game.board.tiles.forEach((tile) => {
+    if(tile.actualValue == number)
+      tile.userValue = tile.actualValue
+  })
+}
+
 global.newboard = global.genTestGame

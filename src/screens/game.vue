@@ -3,7 +3,6 @@
      <game-header
        v-if="!game.completed"
        v-bind:game="game"
-       v-bind:difficulty="difficulty"
        v-on:exit="$emit('exit')"
      />
      <game-board v-bind:game="game" v-if="!game.completed" />
