@@ -3,27 +3,27 @@
 	  <div class="numbers">
 	    <div>
         <button v-for="n in [1, 2, 3, 4, 5]"
-                v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
-                v-bind:disabled="board.numberCompleted(n)"
+                v-bind:class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
+                v-bind:disabled="game.board.numberCompleted(n)"
                 v-bind:value="n"
                 v-on:click="buttonClick(n)">{{ n }}</button>
       </div>
       <div>
         <button v-for="n in [6, 7, 8, 9]"
-                v-bind:class="{selected: current == n && !board.numberCompleted(n), disabled: board.numberCompleted(n)}"
-                v-bind:disabled="board.numberCompleted(n)"
+                v-bind:class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
+                v-bind:disabled="game.board.numberCompleted(n)"
                 v-bind:value="n"
                 v-on:click="buttonClick(n)">{{ n }}</button>
-        <button v-bind:class="{selected: current == 0}" v-bind:value="0" v-on:click="buttonClick(0)">
+        <button v-bind:class="{selected: eraserMode}" v-bind:value="0" v-on:click="buttonClick(0)">
           <font-awesome-icon icon="eraser" size="sm" />
         </button>
       </div>
     </div>
     <div class="actions">
-      <button v-bind:class="{selected: pencil}" v-on:click="draftClick" value="pencil" title="Add notes">
+      <button v-bind:class="{selected: draftMode}" v-on:click="draftClick" value="pencil" title="Add notes">
         <font-awesome-icon icon="pencil-alt" size="sm" />
       </button>
-      <button v-bind:class="{selected: allNotes}" v-on:click="toggleAllNotes" value="all-notes" title="Show all notes">
+      <button v-bind:class="{selected: showAllNotes}" v-on:click="toggleAllNotes" value="all-notes" title="Show all notes">
         <font-awesome-icon icon="sticky-note" size="sm" />
       </button>
     </div>
@@ -35,10 +35,10 @@ export default {
   props: ['game'],
   data() {
     return {
-      allNotes: false,
-      board: null,
       current: null,
-      pencil: false,
+      eraserMode: false,
+      draftMode: false,
+      showAllNotes: false,
     }
   },
   methods: {
@@ -46,9 +46,8 @@ export default {
       this.changeInput(val)
     },
     draftClick: function(event) {
-      this.pencil = !this.pencil
-
-      this._triggerInputChange()
+      this.game.draftMode = !this.game.draftMode
+      this.draftMode = this.game.draftMode
     },
     keyUp: function(event) {
       if(event.keyCode > 47 && event.keyCode < 58) {
@@ -59,25 +58,16 @@ export default {
     },
     changeInput: function(to) {
       var val = parseInt(to)
-      if(!this.board.numberCompleted(val)) {
-        this.current = this.current == val ? null : val
-      } else if(this.current == val) {
-        this.current = null
-      }
-
-      this._triggerInputChange()
+      this.game.currentInput = parseInt(to)
+      this.current = this.game.currentInput
+      this.eraserMode = this.game.eraserMode
     },
     toggleAllNotes: function() {
-      this.allNotes = !this.allNotes
-
-      this.$emit('showallnotes', this.allNotes)
-    },
-    _triggerInputChange: function() {
-      this.$emit('inputchanged', this.current, this.pencil)
+      this.game.showAllNotes = !this.game.showAllNotes
+      this.showAllNotes = this.game.showAllNotes
     },
   },
   created: function() {
-    this.board = this.game.board
     window.addEventListener('keyup', this.keyUp)
   },
   destroyed: function() {

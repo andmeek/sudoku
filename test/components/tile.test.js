@@ -3,16 +3,15 @@ import Tile from '../../src/components/tile.vue'
 
 describe('Tile.vue', () => {
   let wrapper
-  var board, tile
+  var game, tile
 
   beforeEach(() => {
-    var game = genTestGame()
-    board = game.board
-    tile = board.tiles[0]
+    game = genTestGame()
+    tile = game.board.tiles[0]
     tile.userEditable = true
     wrapper = shallowMount(Tile, {
       propsData: {
-        board: board,
+        game: game,
         tile: tile,
       }
     })
@@ -78,12 +77,34 @@ describe('Tile.vue', () => {
   test('adds css classes based upon the data state', () => {
     tile.userValue = tile.actualValue + 1
 
-    wrapper.setProps({selected: true, selectedSibling: true, currentInput: true})
+    wrapper.setProps({selected: true, selectedSibling: true})
     let div = wrapper.find('div')
 
     expect(div.classes()).toContain('selected')
     expect(div.classes()).toContain('selected-sibling')
     expect(div.classes()).not.toContain('current-input')
     expect(div.classes()).toContain('error')
+  })
+
+  describe('.currentInput', () => {
+    test('is false by default', () => {
+      expect(Tile.computed.currentInput.call(wrapper.vm)).toBeFalsy()
+    })
+
+    test('is true when completed and matching the games current user input', () => {
+      tile.userEditable = false
+      game.currentInput = tile.actualValue
+
+      expect(tile.completed).toBeTruthy()
+      expect(Tile.computed.currentInput.call(wrapper.vm)).toBeTruthy()
+    })
+
+    test('is true when user completed and matching the games current user input', () => {
+      tile.userEditable = true
+      tile.userValue = tile.actualValue
+      game.currentInput = tile.actualValue
+
+      expect(Tile.computed.currentInput.call(wrapper.vm)).toBeTruthy()
+    })
   })
 })

@@ -21,17 +21,6 @@ describe('Game.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('propagates the input change to the gameboard', () => {
-    wrapper.vm.inputChanged(2, false)
-
-    expect(wrapper.find(GameBoard).vm.currentInput).toEqual(2)
-    expect(wrapper.find(GameBoard).vm.pencil).toBeFalsy()
-
-    wrapper.vm.inputChanged(8, true)
-    expect(wrapper.find(GameBoard).vm.currentInput).toEqual(8)
-    expect(wrapper.find(GameBoard).vm.pencil).toBeTruthy()
-  })
-
   describe('when the board is completed', () => {
     beforeEach(() => {
       game.board.tiles.forEach((tile) => {

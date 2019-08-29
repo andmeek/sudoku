@@ -25,18 +25,17 @@ describe('UserInput.vue', () => {
   test('toggles the selection if hit again', () => {
     expect(wrapper.find('.selected').exists()).toBeFalsy()
 
-    wrapper.find('[value="1"]').trigger('click')
-    expect(wrapper.find('.selected').attributes('value')).toEqual('1')
+    Array.from(Array(10).keys()).forEach(function(val) {
+      wrapper.find(`[value="${val}"]`).trigger('click')
+      expect(wrapper.find('.selected').attributes('value')).toEqual(val.toString())
 
-    wrapper.find('[value="1"]').trigger('click')
-    expect(wrapper.find('.selected').exists()).toBeFalsy()
+      wrapper.find(`[value="${val}"]`).trigger('click')
+      expect(wrapper.find('.selected').exists()).toBeFalsy()
+    })
   })
 
   test('disables completed numbers', () => {
-    game.board.tiles.forEach((tile) => {
-      if(tile.actualValue == 1)
-        tile.userValue = tile.actualValue
-    })
+    completeNumber(game, 1)
 
     wrapper.vm.$forceUpdate()
     expect(game.board.numberCompleted('1')).toBeTruthy()
@@ -52,14 +51,10 @@ describe('UserInput.vue', () => {
     wrapper.find('[value="1"]').trigger('click')
     expect(wrapper.find('.selected').exists()).toBeTruthy()
 
-    game.board.tiles.forEach((tile) => {
-      if(tile.actualValue == 1)
-        tile.userValue = tile.actualValue
-    })
+    completeNumber(game, 1)
 
     wrapper.vm.$forceUpdate()
     expect(wrapper.find('.selected').exists()).toBeFalsy()
-    expect(wrapper.emitted().inputchanged).toBeTruthy()
   })
 
   test('highlights the current selection', () => {
@@ -69,23 +64,15 @@ describe('UserInput.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('emits an `inputchanged` event when the selection changed', () => {
+  test('changes the game current input to the selected', () => {
+    expect(game.currentInput).toBeNull()
+
     wrapper.find('[value="1"]').trigger('click')
 
-    expect(wrapper.emitted().inputchanged).toBeTruthy()
-    expect(wrapper.emitted().inputchanged[0]).toEqual([1, false])
+    expect(game.currentInput).toEqual(1)
   })
 
   describe('pencil mode', () => {
-    test('emits an `inputchanged` event with pencil mode if set', () => {
-      wrapper.find('[value="1"]').trigger('click')
-      wrapper.find('[value="pencil"]').trigger('click')
-
-      expect(wrapper.emitted().inputchanged.length).toEqual(2)
-      expect(wrapper.emitted().inputchanged[0]).toEqual([1, false])
-      expect(wrapper.emitted().inputchanged[1]).toEqual([1, true])
-    })
-
     test('highlights the pencil when in draft mode and another selection', () => {
       wrapper.find('[value="1"]').trigger('click')
       wrapper.find('[value="pencil"]').trigger('click')
@@ -93,6 +80,16 @@ describe('UserInput.vue', () => {
       expect(wrapper.find('[value="1"]').classes()).toContain('selected')
       expect(wrapper.find('[value="pencil"]').classes()).toContain('selected')
       expect(wrapper.html()).toMatchSnapshot()
+    })
+
+    test('toggles the game state draftMode', () => {
+      expect(game.draftMode).toBeFalsy()
+
+      wrapper.find('[value="pencil"]').trigger('click')
+      expect(game.draftMode).toBeTruthy()
+
+      wrapper.find('[value="pencil"]').trigger('click')
+      expect(game.draftMode).toBeFalsy()
     })
   })
 
@@ -107,13 +104,15 @@ describe('UserInput.vue', () => {
       expect(wrapper.find('[value="all-notes"]').classes()).not.toContain('selected')
     })
 
-    test('emites an `showallnotes` event with true then false when clicked twice', () => {
-      wrapper.find('[value="all-notes"]').trigger('click')
+    test('toggles the game state', () => {
+      expect(game.showAllNotes).toBeFalsy()
+
       wrapper.find('[value="all-notes"]').trigger('click')
 
-      expect(wrapper.emitted().showallnotes.length).toEqual(2)
-      expect(wrapper.emitted().showallnotes[0]).toEqual([true])
-      expect(wrapper.emitted().showallnotes[1]).toEqual([false])
+      expect(game.showAllNotes).toBeTruthy()
+      wrapper.find('[value="all-notes"]').trigger('click')
+
+      expect(game.showAllNotes).toBeFalsy()
     })
   })
 })

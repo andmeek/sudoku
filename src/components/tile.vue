@@ -3,7 +3,7 @@
        v-bind:class="{
        selected: selected,
        'selected-sibling': selectedSibling,
-       'current-input': (currentInput && tile.completed),
+       'current-input': currentInput,
        error: tile.error,
        }"
        v-on:mouseover="$emit('tilefocus', tile)"
@@ -20,17 +20,20 @@
 
 <script>
 export default {
-  props: ['board', 'tile', 'currentInput', 'selected', 'selectedSibling'],
+  props: ['game', 'tile', 'selected', 'selectedSibling'],
   mounted: function() {
     var width = `${this.$el.clientWidth}px`
     this.$el.style.height = width
     this.$el.style.lineHeight = width
   },
   computed: {
+    currentInput() {
+       return this.game.currentInput == this.tile.actualValue && this.tile.completed
+    },
     sortedDrafts() {
       return this.tile.userDrafts.sort()
-    }
-  }
+    },
+  },
 }
 </script>
 

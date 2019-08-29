@@ -23,8 +23,8 @@ var app = new Vue({
   template: '<App />',
   components: { App },
   methods: {
-    board: function() {
-      return this.$children[0].board
+    game: function() {
+      return this.$children[0].game
     }
   }
 })
@@ -46,8 +46,8 @@ window.newboard = function(removeCount, seed = 1, test = false) {
 }
 
 window.wingame = function() {
-  if(app.board() != null) {
-    app.board().tiles.forEach((tile) => {
+  if(app.game() != null) {
+    app.game().board.tiles.forEach((tile) => {
       if(!tile.completed) {
         tile.userValue = tile.actualValue
       }

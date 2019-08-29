@@ -6,8 +6,7 @@
           <tile v-for="tile in tilesForRow(outerCol, outerRow, 0)"
                 v-bind:tile="tile"
                 v-bind:key="tile.id"
-                v-bind:board="board"
-                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:game="game"
                 v-bind:selected="tile == selectedTile"
                 v-bind:selectedSibling="tile.isSibling(selectedTile)"
                 v-on:tileclick="tileClick"
@@ -17,8 +16,7 @@
           <tile v-for="tile in tilesForRow(outerCol, outerRow, 1)"
                 v-bind:tile="tile"
                 v-bind:key="tile.id"
-                v-bind:board="board"
-                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:game="game"
                 v-bind:selected="tile == selectedTile"
                 v-bind:selectedSibling="tile.isSibling(selectedTile)"
                 v-on:tileclick="tileClick"
@@ -28,8 +26,7 @@
           <tile v-for="tile in tilesForRow(outerCol, outerRow, 2)"
                 v-bind:tile="tile"
                 v-bind:key="tile.id"
-                v-bind:board="board"
-                v-bind:currentInput="currentInput == tile.actualValue"
+                v-bind:game="game"
                 v-bind:selected="tile == selectedTile"
                 v-bind:selectedSibling="tile.isSibling(selectedTile)"
                 v-on:tileclick="tileClick"
@@ -47,44 +44,11 @@ export default {
   props: ['game'],
   data() {
     return {
-      board: null,
-      currentInput: null,
-      pencil: false,
       selectedTile: null,
     }
   },
   methods: {
-    tileClick: function(tile) {
-      if(this.currentInput == 0) {
-        tile.userValue = null
-      } else if(this.pencil) {
-        tile.toggleDraft(this.currentInput)
-      } else {
-        tile.toggleValue(this.currentInput)
-      }
-
-      this.selectedTile = tile == this.selectedTile ? null : tile
-
-      if(this.board.numberCompleted(this.currentInput)) {
-        this.selectedTile = null
-        this.currentInput = null
-      }
-
-      this.board.grid.setUserState(tile.x, tile.y, tile.completed)
-    },
-    tilesForRow: function(col, row, innerCol) {
-      return [
-        this.board.tileAt(col * 3, innerCol + row * 3),
-        this.board.tileAt(1 + col * 3, innerCol + row * 3),
-        this.board.tileAt(2 + col * 3, innerCol + row * 3),
-      ]
-    },
-  },
-  created() {
-    this.board = this.game.board
-  },
-  watch: {
-    currentInput: function(val) {
+    inputChanged: function() {
       if(this.selectedTile != null) {
         var selected = this.selectedTile
 
@@ -92,6 +56,36 @@ export default {
 
         this.selectedTile = selected
       }
+    },
+    tileClick: function(tile) {
+      if(this.game.eraseMode) {
+        tile.userValue = null
+      } else if(this.game.draftMode) {
+        tile.toggleDraft(this.game.currentInput)
+      } else {
+        tile.toggleValue(this.game.currentInput)
+      }
+
+      this.selectedTile = tile == this.selectedTile ? null : tile
+
+      if(this.game.board.numberCompleted(this.game.currentInput)) {
+        this.selectedTile = null
+        this.game.currentInput = null
+      }
+
+      this.game.board.grid.setUserState(tile.x, tile.y, tile.completed)
+    },
+    tilesForRow: function(col, row, innerCol) {
+      return [
+        this.game.board.tileAt(col * 3, innerCol + row * 3),
+        this.game.board.tileAt(1 + col * 3, innerCol + row * 3),
+        this.game.board.tileAt(2 + col * 3, innerCol + row * 3),
+      ]
+    },
+  },
+  watch: {
+    'game.currentInput': function() {
+      this.inputChanged()
     },
   },
   components: {

@@ -6,7 +6,7 @@
        v-on:exit="$emit('exit')"
      />
      <game-board v-bind:game="game" v-if="!game.completed" />
-     <user-input v-bind:game="game" v-if="!game.completed" v-on:inputchanged="inputChanged" />
+     <user-input v-bind:game="game" v-if="!game.completed" />
      <div class="completed" v-if="game.completed">
        <h1>
           You won!
@@ -38,10 +38,6 @@ export default {
     }
   },
   methods: {
-    inputChanged: function(to, pencil) {
-      this.$children[1].pencil = pencil
-      this.$children[1].currentInput = to
-    },
     confirmCompleted: function() {
       this.$emit('gamecompleted')
     },
