@@ -10,6 +10,9 @@
        v-on:mouseout="$emit('tilefocus', null)"
        v-on:click="$emit('tileclick', tile)">
     <span v-if="tile.userEditable && tile.userValue != null" class="user-value">{{ tile.userValue }}</span>
+    <span v-else-if="game.showAllNotes && tile.userEditable" class="potential-values">
+      <span v-for="v in potentialValues">{{ v }}</span>
+    </span>
     <div v-else-if="tile.userDrafts.length > 0" class="draft-values">
       <span v-for="v in sortedDrafts">{{ v }}</span>
     </div>
@@ -21,17 +24,34 @@
 <script>
 export default {
   props: ['game', 'tile', 'selected', 'selectedSibling'],
-  mounted: function() {
-    var width = `${this.$el.clientWidth}px`
-    this.$el.style.height = width
-    this.$el.style.lineHeight = width
+  data() {
+    return {
+      potentialValues: [],
+    }
+  },
+  methods: {
+    updatePotentialValues: function() {
+      this.potentialValues = this.game.board.grid.potentialValues(this.tile.x, this.tile.y, true)
+    }
   },
   computed: {
     currentInput() {
-       return this.game.currentInput == this.tile.actualValue && this.tile.completed
+      return this.game.currentInput == this.tile.actualValue && this.tile.completed
     },
     sortedDrafts() {
       return this.tile.userDrafts.sort()
+    },
+  },
+  mounted() {
+    var width = `${this.$el.clientWidth}px`
+    this.$el.style.height = width
+    this.$el.style.lineHeight = width
+
+    this.updatePotentialValues()
+  },
+  watch: {
+    'game.timer': function(val) {
+      this.updatePotentialValues()
     },
   },
 }
@@ -57,13 +77,13 @@ export default {
 .tile .user-val {
   color: #888;
 }
-.tile .draft-values {
+.tile .draft-values, .tile .potential-values {
   font-size: 0.3em;
   color: #555;
   text-align: left;
   line-height: 20px;
 }
-.tile .draft-values span {
+.tile .draft-values span, .tile .potential-values span {
   padding: 0px 2px;
   font-weight: normal;
   display: inline-block;

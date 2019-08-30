@@ -53,6 +53,20 @@ describe('Tile.vue', () => {
     expect(spans.at(2).text()).toEqual("3")
   })
 
+  test('renders the potential values if showing all notes, user editable, and not completed', () => {
+    tile.userEditable = true
+    tile.userValue = null
+    game.showAllNotes = true
+
+    wrapper.setData({potentialValues: [1, 6]})
+    wrapper.vm.$forceUpdate()
+
+    const spans = wrapper.find('.potential-values').findAll('span')
+
+    expect(spans.at(1).text()).toEqual("1")
+    expect(spans.at(2).text()).toEqual("6")
+  })
+
   test('emits a "tileclick" event when the tile is clicked', () => {
     wrapper.find('div').trigger('click')
 
@@ -105,6 +119,16 @@ describe('Tile.vue', () => {
       game.currentInput = tile.actualValue
 
       expect(Tile.computed.currentInput.call(wrapper.vm)).toBeTruthy()
+    })
+  })
+
+  describe('.updatePotentialValues', () => {
+    test('sets the potentialValues data', () => {
+      expect(wrapper.vm.potentialValues).toEqual([])
+
+      wrapper.vm.updatePotentialValues()
+
+      expect(wrapper.vm.potentialValues).toEqual([1, 6])
     })
   })
 })
