@@ -26,6 +26,9 @@
       <button v-bind:class="{selected: showAllNotes}" v-on:click="toggleAllNotes" value="all-notes" title="Show all notes">
         <font-awesome-icon icon="sticky-note" size="sm" />
       </button>
+      <button v-on:click="showHint" value="hint" title="Show hint">
+        <font-awesome-icon icon="lightbulb" size="sm" />
+      </button>
     </div>
   </div>
 </template>
@@ -61,6 +64,9 @@ export default {
       this.game.currentInput = parseInt(to)
       this.current = this.game.currentInput
       this.eraserMode = this.game.eraserMode
+    },
+    showHint: function() {
+      this.game.showHint()
     },
     toggleAllNotes: function() {
       this.game.showAllNotes = !this.game.showAllNotes
@@ -101,6 +107,10 @@ export default {
   background-color: white;
   width: 45px;
   height: 45px;
+}
+
+.user-input .actions button:active{
+  color: slategray;
 }
 
 .user-input button.selected {

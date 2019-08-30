@@ -9,7 +9,8 @@
        v-on:mouseover="$emit('tilefocus', tile)"
        v-on:mouseout="$emit('tilefocus', null)"
        v-on:click="$emit('tileclick', tile)">
-    <span v-if="tile.userEditable && tile.userValue != null" class="user-value">{{ tile.userValue }}</span>
+    <span v-if="game.hintTile == tile" class="hint">{{ tile.actualValue }}</span>
+    <span v-else-if="tile.userEditable && tile.userValue != null" class="user-value">{{ tile.userValue }}</span>
     <span v-else-if="game.showAllNotes && tile.userEditable" class="potential-values">
       <span v-for="v in potentialValues">{{ v }}</span>
     </span>
@@ -87,5 +88,22 @@ export default {
   padding: 0px 2px;
   font-weight: normal;
   display: inline-block;
+}
+
+.tile .hint {
+  animation-duration: 0.5s;
+  animation-name: tilehint;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tilehint {
+  from {
+    color: black;
+  }
+
+  to {
+    color: #9acd32;
+    font-weight: bold;
+  }
 }
 </style>

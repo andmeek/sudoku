@@ -67,6 +67,13 @@ describe('Tile.vue', () => {
     expect(spans.at(2).text()).toEqual("6")
   })
 
+  test('renders the value when it is being shown as a hint', () => {
+    game.hintTile = tile
+    wrapper.vm.$forceUpdate()
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
   test('emits a "tileclick" event when the tile is clicked', () => {
     wrapper.find('div').trigger('click')
 

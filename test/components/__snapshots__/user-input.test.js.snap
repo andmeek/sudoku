@@ -12,6 +12,8 @@ exports[`UserInput.vue disables completed numbers 1`] = `
       <font-awesome-icon-stub icon="pencil-alt" size="sm"></font-awesome-icon-stub>
     </button> <button value="all-notes" title="Show all notes" class="">
       <font-awesome-icon-stub icon="sticky-note" size="sm"></font-awesome-icon-stub>
+    </button> <button value="hint" title="Show hint">
+      <font-awesome-icon-stub icon="lightbulb" size="sm"></font-awesome-icon-stub>
     </button></div>
 </div>
 `;
@@ -28,6 +30,8 @@ exports[`UserInput.vue highlights the current selection 1`] = `
       <font-awesome-icon-stub icon="pencil-alt" size="sm"></font-awesome-icon-stub>
     </button> <button value="all-notes" title="Show all notes" class="">
       <font-awesome-icon-stub icon="sticky-note" size="sm"></font-awesome-icon-stub>
+    </button> <button value="hint" title="Show hint">
+      <font-awesome-icon-stub icon="lightbulb" size="sm"></font-awesome-icon-stub>
     </button></div>
 </div>
 `;
@@ -44,6 +48,8 @@ exports[`UserInput.vue matches snapshot 1`] = `
       <font-awesome-icon-stub icon="pencil-alt" size="sm"></font-awesome-icon-stub>
     </button> <button value="all-notes" title="Show all notes" class="">
       <font-awesome-icon-stub icon="sticky-note" size="sm"></font-awesome-icon-stub>
+    </button> <button value="hint" title="Show hint">
+      <font-awesome-icon-stub icon="lightbulb" size="sm"></font-awesome-icon-stub>
     </button></div>
 </div>
 `;
@@ -60,6 +66,8 @@ exports[`UserInput.vue pencil mode highlights the pencil when in draft mode and 
       <font-awesome-icon-stub icon="pencil-alt" size="sm"></font-awesome-icon-stub>
     </button> <button value="all-notes" title="Show all notes" class="">
       <font-awesome-icon-stub icon="sticky-note" size="sm"></font-awesome-icon-stub>
+    </button> <button value="hint" title="Show hint">
+      <font-awesome-icon-stub icon="lightbulb" size="sm"></font-awesome-icon-stub>
     </button></div>
 </div>
 `;

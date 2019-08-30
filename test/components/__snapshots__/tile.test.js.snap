@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tile.vue matches snapshot 1`] = `<div class="tile" style="height: 0px; line-height: 0px;"><span class="user-value"></span></div>`;
+
+exports[`Tile.vue renders the value when it is being shown as a hint 1`] = `<div class="tile" style="height: 0px; line-height: 0px;"><span class="hint">4</span></div>`;
