@@ -17,6 +17,8 @@
         <dd>{{ game.difficulty }}</dd>
         <dt>Time</dt>
         <dd>{{ game.timer.toTimerDisplay() }}</dd>
+        <dt>Mistakes</dt>
+        <dd>{{ game.mistakes }}</dd>
        </dl>
 
         <button class="menu" v-on:click="confirmCompleted">Okay</button>

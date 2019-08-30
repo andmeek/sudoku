@@ -54,6 +54,11 @@ export default {
     'game.timer': function(val) {
       this.updatePotentialValues()
     },
+    'tile.error': function(val) {
+      if(val) {
+        this.game.recordMistake()
+      }
+    },
   },
 }
 </script>

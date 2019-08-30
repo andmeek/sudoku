@@ -6,6 +6,7 @@ export default class Game {
     this.draftMode = false
     this.eraserMode = false
     this.hintTile = null
+    this.mistakes = 0
     this.seed = null
     this.showAllNotes = false
     this.timer = 0
@@ -36,6 +37,10 @@ export default class Game {
 
   incrementTimer() {
     this.timer += 1
+  }
+
+  recordMistake() {
+    this.mistakes += 1
   }
 
   showHint() {

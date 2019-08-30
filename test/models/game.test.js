@@ -19,6 +19,7 @@ describe('Game', () => {
     expect(game.draftMode).toBeFalsy()
     expect(game.eraserMode).toBeFalsy()
     expect(game.hintTile).toBeNull()
+    expect(game.mistakes).toEqual(0)
     expect(game.seed).toBeNull()
     expect(game.showAllNotes).toBeFalsy()
     expect(game.timer).toEqual(0)
@@ -89,6 +90,16 @@ describe('Game', () => {
       game.currentInput = 1
 
       expect(game.eraserMode).toBeFalsy()
+    })
+  })
+
+  describe('.recordMistake', () => {
+    test('increments the mistakes counter by 1', () => {
+      expect(game.mistakes).toEqual(0)
+
+      game.recordMistake()
+
+      expect(game.mistakes).toEqual(1)
     })
   })
 
