@@ -35,11 +35,27 @@ describe('Board', () => {
     })
 
     test('is true when all the tiles are completed', () => {
-      board.tiles.forEach((tile) => {
-        tile.userValue = tile.actualValue
-      })
+      completeBoard(board)
 
       expect(board.completed).toBeTruthy()
+    })
+  })
+
+  describe('.incompleteTiles', () => {
+    test('returns 36 tiles for the test board state', () => {
+      expect(board.incompleteTiles.length).toEqual(36)
+    })
+
+    test('returns an array of tiles that are not completed', () => {
+      board.incompleteTiles.forEach((tile) => {
+        expect(tile.completed).toBeFalsy()
+      })
+    })
+
+    test('returns an empty array when the board is completed', () => {
+      completeBoard(board)
+
+      expect(board.incompleteTiles).toEqual([])
     })
   })
 

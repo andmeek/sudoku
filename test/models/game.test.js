@@ -1,5 +1,7 @@
 import Game from '../../src/models/game.js'
 
+jest.useFakeTimers()
+
 describe('Game', () => {
   var game
 
@@ -16,6 +18,7 @@ describe('Game', () => {
     expect(game.difficulty).toBeNull()
     expect(game.draftMode).toBeFalsy()
     expect(game.eraserMode).toBeFalsy()
+    expect(game.hintTile).toBeNull()
     expect(game.seed).toBeNull()
     expect(game.showAllNotes).toBeFalsy()
     expect(game.timer).toEqual(0)
@@ -86,6 +89,49 @@ describe('Game', () => {
       game.currentInput = 1
 
       expect(game.eraserMode).toBeFalsy()
+    })
+  })
+
+  describe('.showHint', () => {
+    test('sets a hint tile that is user editable and incomplete', () => {
+      game.showHint()
+
+      expect(game.hintTile.userEditable).toBeTruthy()
+      expect(game.hintTile.completed).toBeFalsy()
+    })
+
+    test('does nothing if theres no board', () => {
+      game.board = null
+      game.showHint()
+
+      expect(game.hintTile).toBeNull()
+    })
+
+    test('does nothing if the board is completed', () => {
+      completeBoard(game.board)
+
+      game.showHint()
+
+      expect(game.hintTile).toBeNull()
+    })
+
+    test('does nothing if a hint tile is already set', () => {
+      game.showHint()
+
+      var tile = game.hintTile
+
+      game.showHint()
+
+      expect(tile).toEqual(game.hintTile)
+    })
+
+    test('unsets the hint tile after 3 seconds', () => {
+      game.showHint()
+      expect(game.hintTile).not.toBeNull()
+
+      jest.advanceTimersByTime(3000)
+
+      expect(game.hintTile).toBeNull()
     })
   })
 })

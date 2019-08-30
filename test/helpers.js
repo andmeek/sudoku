@@ -25,4 +25,10 @@ global.completeNumber = function(game, number) {
   })
 }
 
+global.completeBoard = function(board) {
+  board.tiles.forEach((tile) => {
+    tile.userValue = tile.actualValue
+  })
+}
+
 global.newboard = global.genTestGame

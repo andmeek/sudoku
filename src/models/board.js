@@ -23,6 +23,12 @@ export default class Board {
     })
   }
 
+  get incompleteTiles() {
+    return this.tiles.filter((tile) => {
+      return !tile.completed
+    })
+  }
+
   numberCompleted(number) {
     return this.tiles.filter((tile) => {
       return tile.actualValue == number && tile.completed

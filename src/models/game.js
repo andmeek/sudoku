@@ -5,6 +5,7 @@ export default class Game {
     this.difficulty = null
     this.draftMode = false
     this.eraserMode = false
+    this.hintTile = null
     this.seed = null
     this.showAllNotes = false
     this.timer = 0
@@ -35,5 +36,17 @@ export default class Game {
 
   incrementTimer() {
     this.timer += 1
+  }
+
+  showHint() {
+    if(this.board != null && !this.board.completed && this.hintTile == null) {
+      this.hintTile = this.board.incompleteTiles.randomItem()
+
+      setTimeout(this._clearHint.bind(this), 3000)
+    }
+  }
+
+  _clearHint() {
+    this.hintTile = null
   }
 }
