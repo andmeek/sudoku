@@ -124,7 +124,7 @@ describe('Tile.vue', () => {
 
   describe('.updatePotentialValues', () => {
     test('sets the potentialValues data', () => {
-      expect(wrapper.vm.potentialValues).toEqual([])
+      wrapper.setData({potentialValues: []})
 
       wrapper.vm.updatePotentialValues()
 

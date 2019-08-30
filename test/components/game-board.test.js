@@ -173,15 +173,5 @@ describe('GameBoard.vue', () => {
         expect(game.board.grid.state(tile.x, tile.y)).toEqual(1)
       })
     })
-
-    describe('.updatePotentialValues', () => {
-      test('updates all the childrens potential values', () => {
-        wrapper.vm.updatePotentialValues()
-
-        wrapper.vm.$children.forEach((tile) => {
-          expect(tile.potentialValues.length).toBeGreaterThan(0)
-        })
-      })
-    })
   })
 })
