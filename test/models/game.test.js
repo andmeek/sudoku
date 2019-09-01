@@ -9,7 +9,6 @@ describe('Game', () => {
     game = genTestGame()
   })
 
-
   test('initialization', () => {
     game = new Game()
     expect(game.board).toBeNull()
@@ -64,7 +63,7 @@ describe('Game', () => {
     })
 
     test('it does not set the current value if that number is completed on the board', () => {
-      completeNumber(game, 1)
+      completeNumber(game.board, 1)
 
       game.currentInput = 1
       expect(game.currentInput).toBeNull()

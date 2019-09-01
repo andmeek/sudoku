@@ -1,5 +1,5 @@
 export default class Tile {
-  constructor(id, x, y, actualValue, userEditable = false) {
+  constructor (id, x, y, actualValue, userEditable = false) {
     this.id = id
     this.actualValue = actualValue
     this.userDrafts = []
@@ -9,46 +9,46 @@ export default class Tile {
     this.y = y
   }
 
-  get error() {
-    return this.userValue != null && this.userValue != this.actualValue
+  get error () {
+    return this.userValue !== null && this.userValue !== this.actualValue
   }
 
-  get completed() {
-    if(this.userEditable) {
-      return this.userValue == this.actualValue
+  get completed () {
+    if (this.userEditable) {
+      return this.userValue === this.actualValue
     }
 
     return true
   }
 
-  get value() {
-    if(this.userEditable) {
+  get value () {
+    if (this.userEditable) {
       return this.userValue
     } else {
       return this.actualValue
     }
   }
 
-  isSibling(withTile) {
-    if(withTile == undefined || withTile == null || withTile == this) {
+  isSibling (withTile) {
+    if (withTile === undefined || withTile === null || withTile === this) {
       return false
     }
 
-    return this.x == withTile.x || this.y == withTile.y
+    return this.x === withTile.x || this.y === withTile.y
   }
 
-  toggleDraft(value) {
-    if(this.userDrafts.includes(value)) {
-      var index = this.userDrafts.findIndex((n) => n == value)
+  toggleDraft (value) {
+    if (this.userDrafts.includes(value)) {
+      var index = this.userDrafts.findIndex((n) => n === value)
       this.userDrafts.splice(index, 1)
     } else {
       this.userDrafts.push(value)
     }
   }
 
-  toggleValue(to) {
-    if(this.userEditable && !this.completed) {
-      this.userValue = to == this.userValue ? null : to
+  toggleValue (to) {
+    if (this.userEditable && !this.completed) {
+      this.userValue = to === this.userValue ? null : to
     }
   }
 }

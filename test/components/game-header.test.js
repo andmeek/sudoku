@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import GameHeader from '../../src/components/game-header.vue'
 
 describe('GameHeader.vue', () => {
-  let wrapper, game = genTestGame()
+  let wrapper; const game = genTestGame()
 
   beforeEach(() => {
     wrapper = shallowMount(GameHeader, {

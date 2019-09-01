@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
 import Game from '../../src/screens/game.vue'
-import GameBoard from '../../src/components/game-board.vue'
 
 jest.useFakeTimers()
 
@@ -13,7 +12,7 @@ describe('Game.vue', () => {
     wrapper = shallowMount(Game, {
       propsData: {
         game: game
-      },
+      }
     })
   })
 
@@ -79,7 +78,7 @@ describe('Game.vue', () => {
   })
 
   describe('.onVisbilityChange', () => {
-    Object.defineProperty(document, 'visibilityState', {value: 'visible', writable: true})
+    Object.defineProperty(document, 'visibilityState', { value: 'visible', writable: true })
 
     test('sets the game to paused', () => {
       document.visibilityState = 'hidden'

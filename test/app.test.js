@@ -13,7 +13,7 @@ describe('App.vue', () => {
 
   test('defaults to the home screen', () => {
     expect(wrapper.is(App)).toBeTruthy()
-    expect(wrapper.vm.screen).toEqual('home');
+    expect(wrapper.vm.screen).toEqual('home')
     expect(wrapper.contains(Home)).toBeTruthy()
   })
 
@@ -32,7 +32,7 @@ describe('App.vue', () => {
   test('returns to the home screen when receving an exit', () => {
     wrapper.vm.home()
 
-    expect(wrapper.vm.screen).toEqual('home');
+    expect(wrapper.vm.screen).toEqual('home')
     expect(wrapper.contains(Home)).toBeTruthy()
   })
 

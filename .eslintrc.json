@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:jest/recommended",
+        "plugin:vue/essential",
+        "standard"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "completeBoard": true,
+        "completeNumber": true,
+        "genTestGame": true,
+        "newboard": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "jest",
+        "vue"
+    ],
+    "rules": {
+      "no-extend-native": ["error", {"exceptions": ["Array", "Number"]}]
+    }
+}

@@ -41,7 +41,7 @@ describe('Tile', () => {
   describe('.completed', () => {
     test('returns false when its user editable and no value is set', () => {
       tile.userValue = null
-        tile.userEditable = true
+      tile.userEditable = true
 
       expect(tile.completed).toBeFalsy()
     })
@@ -74,19 +74,19 @@ describe('Tile', () => {
     })
 
     test('returns true if the tiles share the same "x" value', () => {
-      var tile2 = new Tile("id", tile.x, 1, 1)
+      var tile2 = new Tile('id', tile.x, 1, 1)
 
       expect(tile.isSibling(tile2)).toBeTruthy()
     })
 
     test('returns true if the tiles share the same "y" value', () => {
-      var tile2 = new Tile("id", 9, tile.y, 1)
+      var tile2 = new Tile('id', 9, tile.y, 1)
 
       expect(tile.isSibling(tile2)).toBeTruthy()
     })
 
     test('returns false if the tiles are on different x or y values', () => {
-      var tile2 = new Tile("id", 0, 0, 1)
+      var tile2 = new Tile('id', 0, 0, 1)
 
       expect(tile.isSibling(tile2)).toBeFalsy()
     })

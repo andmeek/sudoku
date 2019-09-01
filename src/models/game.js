@@ -1,5 +1,5 @@
 export default class Game {
-  constructor() {
+  constructor () {
     this.board = null
     this._currentInput = null
     this.difficulty = null
@@ -12,46 +12,46 @@ export default class Game {
     this.timer = 0
   }
 
-  get completed() {
+  get completed () {
     return this.board && this.board.completed
   }
 
-  get currentInput() {
+  get currentInput () {
     return this._currentInput
   }
 
-  set currentInput(to) {
-    if(!this.board.numberCompleted(to)) {
-      this._currentInput = to == this._currentInput ? null : to
+  set currentInput (to) {
+    if (!this.board.numberCompleted(to)) {
+      this._currentInput = to === this._currentInput ? null : to
     }
 
-    if(this.eraserMode && this._currentInput > 0) {
+    if (this.eraserMode && this._currentInput > 0) {
       this.eraserMode = false
     }
 
-    if(to == 0) {
+    if (to === 0) {
       this._currentInput = null
       this.eraserMode = !this.eraserMode
     }
   }
 
-  incrementTimer() {
+  incrementTimer () {
     this.timer += 1
   }
 
-  recordMistake() {
+  recordMistake () {
     this.mistakes += 1
   }
 
-  showHint() {
-    if(this.board != null && !this.board.completed && this.hintTile == null) {
+  showHint () {
+    if (this.board != null && !this.board.completed && this.hintTile === null) {
       this.hintTile = this.board.incompleteTiles.randomItem()
 
       setTimeout(this._clearHint.bind(this), 3000)
     }
   }
 
-  _clearHint() {
+  _clearHint () {
     this.hintTile = null
   }
 }

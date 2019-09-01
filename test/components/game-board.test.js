@@ -21,23 +21,23 @@ describe('GameBoard.vue', () => {
   })
 
   test('tiles are in the correct order', () => {
-    let vals = vm.$children.map((c) => c.tile.actualValue)
+    const vals = vm.$children.map((c) => c.tile.actualValue)
 
     expect(vals).toEqual([
-        4, 3, 5, 6, 8, 2, 1, 9, 7,
-        2, 6, 9, 5, 7, 1, 8, 3, 4,
-        7, 8, 1, 4, 9, 3, 5, 6, 2,
-        8, 2, 6, 3, 7, 4, 9, 5, 1,
-        1, 9, 5, 6, 8, 2, 7, 4, 3,
-        3, 4, 7, 9, 1, 5, 6, 2, 8,
-        5, 1, 9, 2, 4, 8, 7, 6, 3,
-        3, 2, 6, 9, 5, 7, 4, 1, 8,
-        8, 7, 4, 1, 3, 6, 2, 5, 9
+      4, 3, 5, 6, 8, 2, 1, 9, 7,
+      2, 6, 9, 5, 7, 1, 8, 3, 4,
+      7, 8, 1, 4, 9, 3, 5, 6, 2,
+      8, 2, 6, 3, 7, 4, 9, 5, 1,
+      1, 9, 5, 6, 8, 2, 7, 4, 3,
+      3, 4, 7, 9, 1, 5, 6, 2, 8,
+      5, 1, 9, 2, 4, 8, 7, 6, 3,
+      3, 2, 6, 9, 5, 7, 4, 1, 8,
+      8, 7, 4, 1, 3, 6, 2, 5, 9
     ])
   })
 
   describe('.inputChanged', () => {
-    let tileClick = jest.fn(), nonMockedTileClick = null
+    const tileClick = jest.fn(); let nonMockedTileClick = null
 
     beforeEach(() => {
       nonMockedTileClick = wrapper.vm.tileClick
@@ -45,14 +45,14 @@ describe('GameBoard.vue', () => {
     })
 
     test('calls .tileClick for the selected tile', () => {
-      var tile =  game.board.tiles[4]
+      var tile = game.board.tiles[4]
 
       game.currentInput = 2
-      wrapper.setData({selectedTile: tile})
+      wrapper.setData({ selectedTile: tile })
 
       wrapper.vm.inputChanged()
 
-      expect(tileClick).toBeCalledWith(game.board.tiles[4])
+      expect(tileClick).toHaveBeenCalledWith(game.board.tiles[4])
     })
 
     test('does not call .tileClick if there is no selected tile', () => {
@@ -60,12 +60,12 @@ describe('GameBoard.vue', () => {
 
       wrapper.vm.inputChanged()
 
-      expect(tileClick).not.toBeCalled()
+      expect(tileClick).not.toHaveBeenCalled()
     })
 
     test('keeps the same tile selected', () => {
       wrapper.vm.tileClick = nonMockedTileClick
-      wrapper.setData({selectedTile: game.board.tiles[4]})
+      wrapper.setData({ selectedTile: game.board.tiles[4] })
       game.currentInput = 2
 
       wrapper.vm.inputChanged()
@@ -142,7 +142,7 @@ describe('GameBoard.vue', () => {
       var lastTile = game.board.tileAt(0, 2)
       game.currentInput = 1
 
-      completeNumber(game, 1)
+      completeNumber(game.board, 1)
 
       wrapper.vm.tileClick(lastTile)
 

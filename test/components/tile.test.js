@@ -12,7 +12,7 @@ describe('Tile.vue', () => {
     wrapper = shallowMount(Tile, {
       propsData: {
         game: game,
-        tile: tile,
+        tile: tile
       }
     })
   })
@@ -48,9 +48,9 @@ describe('Tile.vue', () => {
     wrapper.vm.$forceUpdate()
     const spans = wrapper.find('.draft-values').findAll('span')
 
-    expect(spans.at(0).text()).toEqual("1")
-    expect(spans.at(1).text()).toEqual("2")
-    expect(spans.at(2).text()).toEqual("3")
+    expect(spans.at(0).text()).toEqual('1')
+    expect(spans.at(1).text()).toEqual('2')
+    expect(spans.at(2).text()).toEqual('3')
   })
 
   test('renders the potential values if showing all notes, user editable, and not completed', () => {
@@ -58,13 +58,13 @@ describe('Tile.vue', () => {
     tile.userValue = null
     game.showAllNotes = true
 
-    wrapper.setData({potentialValues: [1, 6]})
+    wrapper.setData({ potentialValues: [1, 6] })
     wrapper.vm.$forceUpdate()
 
     const spans = wrapper.find('.potential-values').findAll('span')
 
-    expect(spans.at(1).text()).toEqual("1")
-    expect(spans.at(2).text()).toEqual("6")
+    expect(spans.at(1).text()).toEqual('1')
+    expect(spans.at(2).text()).toEqual('6')
   })
 
   test('renders the value when it is being shown as a hint', () => {
@@ -98,8 +98,8 @@ describe('Tile.vue', () => {
   test('adds css classes based upon the data state', () => {
     tile.userValue = tile.actualValue + 1
 
-    wrapper.setProps({selected: true, selectedSibling: true})
-    let div = wrapper.find('div')
+    wrapper.setProps({ selected: true, selectedSibling: true })
+    const div = wrapper.find('div')
 
     expect(div.classes()).toContain('selected')
     expect(div.classes()).toContain('selected-sibling')
@@ -131,7 +131,7 @@ describe('Tile.vue', () => {
 
   describe('.updatePotentialValues', () => {
     test('sets the potentialValues data', () => {
-      wrapper.setData({potentialValues: []})
+      wrapper.setData({ potentialValues: [] })
 
       wrapper.vm.updatePotentialValues()
 

@@ -9,8 +9,8 @@ describe('Grid', () => {
   })
 
   test('initialization creates a 0 filled grid', () => {
-    var values = grid.values,
-        state = grid.states
+    var values = grid.values
+    var state = grid.states
 
     expect(values.length).toEqual(9)
     expect(values[0].length).toEqual(9)
@@ -23,7 +23,7 @@ describe('Grid', () => {
 
   describe('.fillSection', () => {
     test('translates a flat array into a given section of the board', () => {
-      let sudokuNums = [9, 5, 4, 3, 1, 7, 2, 6, 8]
+      const sudokuNums = [9, 5, 4, 3, 1, 7, 2, 6, 8]
 
       grid.fillSection(0, 0, sudokuNums)
       grid.fillSection(2, 2, sudokuNums)
@@ -68,20 +68,20 @@ describe('Grid', () => {
     test('returns {x:, y:, potentialValues:} hash of the position with the least values', () => {
       grid.fillSection(0, 0, [1, 2, 8, 3, 4, 9, 5, 6, 7])
 
-      expect(grid.leastPotentialValues()).toEqual({x: 3, y: 0, values: [3, 4, 5, 6, 7, 9]})
+      expect(grid.leastPotentialValues()).toEqual({ x: 3, y: 0, values: [3, 4, 5, 6, 7, 9] })
     })
 
     test('returns an x and y of null if no more potential values can be found', () => {
       grid.values = TEST_BOARD
 
-      expect(grid.leastPotentialValues()).toEqual({x: null, y: null, values: []})
+      expect(grid.leastPotentialValues()).toEqual({ x: null, y: null, values: [] })
     })
 
     test('returns an x and y on a filled grid when considering state', () => {
       grid.values = TEST_BOARD
       grid.states = TEST_BOARD_STATE
 
-      expect(grid.leastPotentialValues(true)).toEqual({x: 6, y: 0, values: [7]})
+      expect(grid.leastPotentialValues(true)).toEqual({ x: 6, y: 0, values: [7] })
     })
   })
 

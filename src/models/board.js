@@ -1,43 +1,44 @@
 import Tile from './tile.js'
 
 export default class Board {
-  constructor(grid) {
+  constructor (grid) {
     this.grid = grid
     this.tiles = []
     this._tilesById = {}
 
-    for(var y = 0; y < grid.values.length; y++) {
-      for(var x = 0; x < grid.values[y].length; x++) {
-        let id = this.tiles.length + 1
+    for (var y = 0; y < grid.values.length; y++) {
+      for (var x = 0; x < grid.values[y].length; x++) {
+        const id = this.tiles.length + 1
 
-        var tile = new Tile(id, x, y, this.grid.value(x, y), this.grid.state(x, y) == 1)
+        var tile = new Tile(id, x, y, this.grid.value(x, y), this.grid.state(x, y) === 1)
         this.tiles.push(tile)
         this._tilesById[id] = tile
       }
     }
   }
 
-  get completed() {
+  get completed () {
     return this.tiles.reduce((tot, tile) => {
-        return tot && tile.completed
+      return tot && tile.completed
     })
   }
 
-  get incompleteTiles() {
+  get incompleteTiles () {
     return this.tiles.filter((tile) => {
       return !tile.completed
     })
   }
 
-  numberCompleted(number) {
+  numberCompleted (number) {
+    number = parseInt(number)
     return this.tiles.filter((tile) => {
-      return tile.actualValue == number && tile.completed
-    }).length == 9
+      return tile.actualValue === number && tile.completed
+    }).length === 9
   }
 
-  tileAt(x, y) {
-    for(var i in this.tiles) {
-      if(this.tiles[i].x == x && this.tiles[i].y == y) {
+  tileAt (x, y) {
+    for (var i in this.tiles) {
+      if (this.tiles[i].x === x && this.tiles[i].y === y) {
         return this.tiles[i]
       }
     }
@@ -45,19 +46,19 @@ export default class Board {
     return null
   }
 
-  tilesAtSection(x, y) {
-    let baseX = x * 3, baseY = y * 3, maxX = baseX + 2, maxY = baseY + 2
+  tilesAtSection (x, y) {
+    const baseX = x * 3; const baseY = y * 3; const maxX = baseX + 2; const maxY = baseY + 2
     var ret = []
-    for(var i in this.tiles) {
+    for (var i in this.tiles) {
       var tile = this.tiles[i]
-      if(tile.x >= baseX && tile.x <= maxX && tile.y >= baseY && tile.y <= maxY) {
+      if (tile.x >= baseX && tile.x <= maxX && tile.y >= baseY && tile.y <= maxY) {
         ret.push(tile)
       }
     }
     return ret
   }
 
-  tileById(id) {
+  tileById (id) {
     return this._tilesById[id] || null
   }
 }

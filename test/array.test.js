@@ -16,8 +16,8 @@ describe('Array helpers', () => {
     })
 
     test('deep clones the array', () => {
-      var multiDimensionalArray = [[1, 2, 3], [4, 5, 6], [123]],
-          cloned = multiDimensionalArray.clone()
+      var multiDimensionalArray = [[1, 2, 3], [4, 5, 6], [123]]
+      var cloned = multiDimensionalArray.clone()
 
       cloned[2] = [7, 8, 9]
       cloned[1][0] = 1
@@ -41,8 +41,8 @@ describe('Array helpers', () => {
     })
 
     test('returns a copy that does not reference the original', () => {
-      var arr = [1, 2, 1, 2, 3],
-        distinct = arr.distinct()
+      var arr = [1, 2, 1, 2, 3]
+      var distinct = arr.distinct()
 
       arr[0] = 22
       distinct[0] = 23

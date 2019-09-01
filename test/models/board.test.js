@@ -1,7 +1,7 @@
 import Grid from '../../src/models/grid.js'
 import Board from '../../src/models/board.js'
 import Tile from '../../src/models/tile.js'
-import {TEST_BOARD, TEST_BOARD_STATE} from '../../src/variables.js'
+import { TEST_BOARD, TEST_BOARD_STATE } from '../../src/variables.js'
 
 describe('Board', () => {
   var grid = new Grid()
@@ -69,14 +69,16 @@ describe('Board', () => {
     })
 
     test('is true when tiles for that number are completed', () => {
-      board.tiles.forEach((tile) => {
-        if(tile.actualValue == 1) {
-          tile.userValue = tile.actualValue
-        }
-      })
+      completeNumber(board, 1)
 
       expect(board.numberCompleted(1)).toBeTruthy()
       expect(board.numberCompleted(2)).toBeFalsy()
+    })
+
+    test('is true when providing a string number', () => {
+      completeNumber(board, 1)
+
+      expect(board.numberCompleted('1')).toBeTruthy()
     })
   })
 

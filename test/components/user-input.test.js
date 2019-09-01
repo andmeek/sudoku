@@ -25,7 +25,7 @@ describe('UserInput.vue', () => {
   test('toggles the selection if hit again', () => {
     expect(wrapper.find('.selected').exists()).toBeFalsy()
 
-    Array.from(Array(10).keys()).forEach(function(val) {
+    Array.from(Array(10).keys()).forEach(function (val) {
       wrapper.find(`[value="${val}"]`).trigger('click')
       expect(wrapper.find('.selected').attributes('value')).toEqual(val.toString())
 
@@ -35,7 +35,7 @@ describe('UserInput.vue', () => {
   })
 
   test('disables completed numbers', () => {
-    completeNumber(game, 1)
+    completeNumber(game.board, 1)
 
     wrapper.vm.$forceUpdate()
     expect(game.board.numberCompleted('1')).toBeTruthy()
@@ -51,7 +51,7 @@ describe('UserInput.vue', () => {
     wrapper.find('[value="1"]').trigger('click')
     expect(wrapper.find('.selected').exists()).toBeTruthy()
 
-    completeNumber(game, 1)
+    completeNumber(game.board, 1)
 
     wrapper.vm.$forceUpdate()
     expect(wrapper.find('.selected').exists()).toBeFalsy()

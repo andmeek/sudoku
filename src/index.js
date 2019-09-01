@@ -6,7 +6,7 @@ import './number.js'
 import Grid from './models/grid.js'
 import Generate from './models/generate.js'
 import Board from './models/board.js'
-import {TEST_BOARD, TEST_BOARD_STATE} from './variables.js'
+import { TEST_BOARD, TEST_BOARD_STATE } from './variables.js'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEraser, faLightbulb, faPencilAlt, faStickyNote } from '@fortawesome/free-solid-svg-icons'
@@ -23,17 +23,17 @@ var app = new Vue({
   template: '<App />',
   components: { App },
   methods: {
-    game: function() {
+    game: function () {
       return this.$children[0].game
     }
   }
 })
 
 window.app = app
-window.newboard = function(removeCount, seed = 1, test = false) {
+window.newboard = function (removeCount, seed = 1, test = false) {
   var grid
 
-  if(test) {
+  if (test) {
     grid = new Grid()
     grid.values = TEST_BOARD
     grid.states = TEST_BOARD_STATE
@@ -45,10 +45,10 @@ window.newboard = function(removeCount, seed = 1, test = false) {
   return new Board(grid)
 }
 
-window.wingame = function() {
-  if(app.game() != null) {
+window.wingame = function () {
+  if (app.game() != null) {
     app.game().board.tiles.forEach((tile) => {
-      if(!tile.completed) {
+      if (!tile.completed) {
         tile.userValue = tile.actualValue
       }
     })
