@@ -1,8 +1,12 @@
-# open sudoku
+# sudoku
+
+![Travis CI build status](https://travis-ci.org/andmeek/sudoku.svg?branch=master)
 
 A simple open source browser based sudoku game
 
 An ad-free customize-able option to play sudoku. Check it out at http://opensourcesudoku.com
+
+![In game screenshot](screenshot.png)
 
 ## Development
 
