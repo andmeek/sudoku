@@ -16,15 +16,15 @@ describe('DifficultySelect.vue', () => {
     wrapper.findAll('button').at(0).trigger('click')
 
     expect(wrapper.emitted().difficultyselected).toBeTruthy()
-    expect(wrapper.emitted().difficultyselected[0]).toEqual([40, 'Easy'])
+    expect(wrapper.emitted().difficultyselected[0]).toContain('Easy')
 
     wrapper.findAll('button').at(2).trigger('click')
 
-    expect(wrapper.emitted().difficultyselected[1]).toEqual([60, 'Hard'])
+    expect(wrapper.emitted().difficultyselected[1]).toContain('Hard')
   })
 
   test('emits an exit event when the user clicks back', () => {
-    wrapper.findAll('button').at(4).trigger('click')
+    wrapper.find({ ref: 'exit' }).trigger('click')
 
     expect(wrapper.emitted().exit).toBeTruthy()
   })

@@ -34,7 +34,7 @@ export default class Generate {
       if (grid.state(rX, rY) === 0) {
         grid.states[rY][rX] = 1
 
-        if (grid.leastPotentialValues().values.length < 3) {
+        if (grid.leastPotentialValues().values.length < 2) {
           numRemoved++
         } else {
           grid.states[rY][rX] = 0

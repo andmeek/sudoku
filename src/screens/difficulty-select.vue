@@ -3,13 +3,15 @@
      <h1>Select Difficulty</h1>
 
      <div class="actions">
-       <button class="menu" v-on:click="$emit('difficultyselected', 40, 'Easy')">Easy</button>
-       <button class="menu" v-on:click="$emit('difficultyselected', 55, 'Medium')">Medium</button>
-       <button class="menu" v-on:click="$emit('difficultyselected', 60, 'Hard')">Hard</button>
-       <button class="menu" v-on:click="$emit('difficultyselected', 65, 'Very Hard')">Very Hard</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 20, 'Easy')">Easy</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 30, 'Medium')">Medium</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 38, 'Hard')">Hard</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 47, 'Very Hard')">Very Hard</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 56, 'Insane')">Insane</button>
+       <button class="menu" v-on:click="$emit('difficultyselected', 64, 'Unthinkable')">Unthinkable</button>
      </div>
 
-     <button class="menu" v-on:click="$emit('exit')">Back</button>
+     <button ref="exit" class="menu" v-on:click="$emit('exit')">Back</button>
   </div>
 </template>
 
