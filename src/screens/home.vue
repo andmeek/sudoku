@@ -4,6 +4,7 @@
 
     <div class="actions">
       <button class="menu" v-on:click="newgame">New Game</button>
+      <a class="menu" href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank">How To Play</a>
 
       <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a>
     </div>
@@ -26,6 +27,6 @@ export default {
 }
 
 .home .menu {
-  margin-bottom: 32px;
+  margin-bottom: 12px;
 }
 </style>
