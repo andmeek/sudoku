@@ -27,6 +27,8 @@ export default class Database {
           const request = db.transaction(['games'], 'readonly').objectStore('games').getAll()
 
           request.onsuccess = function () {
+            db.close()
+
             resolve(request.result)
           }
         })
@@ -40,6 +42,7 @@ export default class Database {
           const transaction = db.transaction(['games'], 'readwrite')
 
           transaction.oncomplete = function () {
+            db.close()
             resolve()
           }
 

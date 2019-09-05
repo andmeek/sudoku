@@ -11,6 +11,8 @@ describe('Database', () => {
       const db = await Database.setup()
 
       expect(db.objectStoreNames).toContain('games')
+
+      db.close()
     })
 
     test('returns an error when indexedDB is not available', (done) => {
@@ -28,6 +30,16 @@ describe('Database', () => {
   describe('with a setup database', () => {
     beforeEach(async () => {
       db = await Database.setup()
+    })
+
+    afterEach( (done) => {
+      db.close()
+
+      let deleteReq = indexedDB.deleteDatabase('sudoku')
+
+      deleteReq.onsuccess = function () {
+        done()
+      }
     })
 
     test('.recordGame adds a game to the object store', async (done) => {
@@ -53,7 +65,6 @@ describe('Database', () => {
       const results = await Database.games()
 
       expect(results.length).toEqual(2)
-      console.log(results)
     })
   })
 })
