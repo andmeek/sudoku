@@ -51,6 +51,17 @@ export default class Game {
     }
   }
 
+  toHash () {
+    return {
+      completed: this.completed,
+      date: Date.now(),
+      difficulty: this.difficulty,
+      mistakes: this.mistakes,
+      seed: this.seed,
+      timer: this.timer
+    }
+  }
+
   _clearHint () {
     this.hintTile = null
   }

@@ -144,4 +144,21 @@ describe('Game', () => {
       expect(game.hintTile).toBeNull()
     })
   })
+
+  describe('.toHash', () => {
+    test('returns a hash of the game statistical information', () => {
+      jest
+        .spyOn(global.Date, 'now')
+        .mockImplementationOnce(() => 1567549368733)
+
+      expect(game.toHash()).toEqual({
+        completed: false,
+        date: 1567549368733,
+        difficulty: 'Easy',
+        mistakes: 0,
+        seed: null,
+        timer: 0
+      })
+    })
+  })
 })
