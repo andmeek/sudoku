@@ -12,9 +12,22 @@ describe('Home.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('emits an "newgame" event when the user clicks back', () => {
-    wrapper.find('button').trigger('click')
+  test('emits an "newgame" event when the user clicks new game', () => {
+    wrapper.find({ ref: 'newgame' }).trigger('click')
 
     expect(wrapper.emitted()['new-game']).toBeTruthy()
+  })
+
+  test('emits an "stats" event when the user clicks stats', () => {
+    wrapper.setData({ showStats: true })
+    wrapper.find({ ref: 'stats' }).trigger('click')
+
+    expect(wrapper.emitted().stats).toBeTruthy()
+  })
+
+  test('enables the stats button when showStats is enabled', async () => {
+    wrapper.setData({ showStats: true })
+
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })

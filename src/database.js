@@ -43,6 +43,7 @@ export default class Database {
 
           transaction.oncomplete = function () {
             db.close()
+
             resolve()
           }
 

@@ -3,7 +3,8 @@
     <h1>Play Sudoku</h1>
 
     <div class="actions">
-      <button class="menu" v-on:click="newgame">New Game</button>
+      <button ref="newgame" class="menu" v-on:click="newgame">New Game</button>
+      <button ref="stats" v-bind:disabled="!showStats" class="menu" v-on:click="stats">Stats</button>
       <a class="menu" href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank">How To Play</a>
 
       <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a>
@@ -12,11 +13,26 @@
 </template>
 
 <script>
+import Database from '../database.js'
+
 export default {
+  data() {
+    return {
+      showStats: false,
+    }
+  },
   methods: {
-    newgame: function(event) {
-      this.$emit("new-game")
+    newgame: function() {
+      this.$emit('new-game')
     },
+    stats: function() {
+      this.$emit('stats')
+    }
+  },
+  mounted() {
+    Database.setup().then((() => {
+      this.showStats = true
+    })).catch(() => {})
   },
 }
 </script>

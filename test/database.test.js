@@ -32,10 +32,10 @@ describe('Database', () => {
       db = await Database.setup()
     })
 
-    afterEach( (done) => {
+    afterEach((done) => {
       db.close()
 
-      let deleteReq = indexedDB.deleteDatabase('sudoku')
+      const deleteReq = indexedDB.deleteDatabase('sudoku')
 
       deleteReq.onsuccess = function () {
         done()
