@@ -1,8 +1,23 @@
 <template>
   <div class="stats screen">
-    <h1>Gameplay Stats</h1>
+    <header>
+      <h1>Gameplay Stats</h1>
 
-    <button ref="exit" class="menu" v-on:click="$emit('exit')">Back</button>
+      <button ref="exit" class="menu" v-on:click="$emit('exit')">Back</button>
+    </header>
+
+    <table>
+      <tr>
+        <th>Difficulty</th>
+        <th>Plays</th>
+        <th>Best Time</th>
+      </tr>
+      <tr v-for="(details, difficulty) in stats">
+        <td>{{ difficulty }}</td>
+        <td>{{ details === null ? '' : details.plays }}</td>
+        <td>{{ bestTime(difficulty) }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -10,10 +25,86 @@
 import Database from '../database.js'
 
 export default {
+  data: function() {
+    return {
+      plays: null,
+      stats: {
+        'Easy': null,
+        'Medium': null,
+        'Hard': null,
+        'Very Hard': null,
+        'Insane': null,
+        'Unthinkable': null,
+      },
+    }
+  },
+  methods: {
+    bestTime: function(difficulty) {
+      if (this.stats[difficulty] !== null && this.stats[difficulty].besttime !== null) {
+        return this.stats[difficulty].besttime.toTimerDisplay()
+      }
+      return null
+    },
+    loadPlays: function() {
+      this.plays = []
 
+      return new Promise( (resolve) => {
+        Database.games().then((games) => {
+          this.plays = games.reverse()
+
+          resolve()
+        })
+      })
+    },
+    loadStats: function() {
+      return this.loadPlays().then(() => {
+        Object.keys(this.stats).forEach((key) => {
+          this.stats[key] = null
+        })
+
+        this.plays.forEach((play) => {
+          const difficulty = play.difficulty
+
+          if (this.stats[difficulty] === null) {
+            this.stats[difficulty] = {plays: 0, besttime: null}
+          }
+
+          this.stats[difficulty].plays++
+
+          if (play.completed === true) {
+            if (this.stats[difficulty].besttime === null) {
+              this.stats[difficulty].besttime = play.timer
+            } else if (this.stats[difficulty].besttime > play.timer) {
+              this.stats[difficulty].besttime = play.timer
+            }
+          }
+        })
+      })
+    },
+  },
+  mounted() {
+    this.loadStats()
+  }
 }
 </script>
 
 <style>
+.stats h1 {
+  display: inline-block
+}
 
+.stats header button {
+  display: inline-block;
+  float: right;
+  margin-top: 1.2em;
+  width: 20%;
+}
+
+.stats table {
+  margin: 12px;
+  width: 100%;
+}
+.stats th {
+  text-align: left;
+}
 </style>
