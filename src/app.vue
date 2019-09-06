@@ -1,6 +1,11 @@
 <template>
   <div id="game">
-    <home-screen v-if="screen == 'home'" v-on:new-game="play"></home-screen>
+    <home-screen
+      v-if="screen == 'home'"
+      v-on:new-game="play"
+      v-on:stats="stats"
+    ></home-screen>
+    <stats-screen v-if="screen == 'stats'" v-on:exit="home"></stats-screen>
     <difficulty-screen v-if="screen == 'difficulty'" v-on:difficultyselected="newgame" v-on:exit="home"></difficulty-screen>
     <game-screen
       v-bind:game="game"
@@ -15,6 +20,7 @@ import DifficultyScreen from './screens/difficulty-select.vue'
 import Game from './models/game.js'
 import GameScreen from './screens/game.vue'
 import HomeScreen from './screens/home.vue'
+import StatsScreen from './screens/stats.vue'
 
 export default {
   data() {
@@ -41,9 +47,12 @@ export default {
       this.game = null
       this.screen = 'home'
     },
+    stats: function() {
+      this.screen = 'stats'
+    },
   },
   components: {
-    DifficultyScreen, HomeScreen, GameScreen
+    DifficultyScreen, HomeScreen, GameScreen, StatsScreen
   }
 }
 </script>

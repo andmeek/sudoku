@@ -5,11 +5,22 @@ exports[`App.vue matches snapshot 1`] = `
   <home-screen-stub></home-screen-stub>
   <!---->
   <!---->
+  <!---->
+</div>
+`;
+
+exports[`App.vue returns to the home screen when receving an exit 1`] = `
+<div id="game">
+  <home-screen-stub></home-screen-stub>
+  <!---->
+  <!---->
+  <!---->
 </div>
 `;
 
 exports[`App.vue shows the diffuculty select when play is called 1`] = `
 <div id="game">
+  <!---->
   <!---->
   <difficulty-screen-stub></difficulty-screen-stub>
   <!---->
@@ -20,6 +31,16 @@ exports[`App.vue shows the game screen when newgame is called 1`] = `
 <div id="game">
   <!---->
   <!---->
+  <!---->
   <game-screen-stub game="[object Object]"></game-screen-stub>
+</div>
+`;
+
+exports[`App.vue shows the stats screen when stats is called 1`] = `
+<div id="game">
+  <!---->
+  <stats-screen-stub></stats-screen-stub>
+  <!---->
+  <!---->
 </div>
 `;
