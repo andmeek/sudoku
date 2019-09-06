@@ -3,7 +3,7 @@
      <game-header
        v-if="!game.completed"
        v-bind:game="game"
-       v-on:exit="$emit('exit')"
+       v-on:exit="exit"
      />
      <game-board v-bind:game="game" v-if="!game.completed" />
      <user-input v-bind:game="game" v-if="!game.completed" />
@@ -21,12 +21,13 @@
         <dd>{{ game.mistakes }}</dd>
        </dl>
 
-        <button class="menu" v-on:click="confirmCompleted">Okay</button>
+        <button ref="gamecompleted" class="menu" v-on:click="confirmCompleted">Okay</button>
      </div>
   </div>
 </template>
 
 <script>
+import Database from '../database.js'
 import GameBoard from '../components/game-board.vue'
 import GameHeader from '../components/game-header.vue'
 import UserInput from '../components/user-input.vue'
@@ -42,6 +43,13 @@ export default {
   methods: {
     confirmCompleted: function() {
       this.$emit('gamecompleted')
+
+      return Database.recordGame(this.game)
+    },
+    exit: function() {
+      this.$emit('exit')
+
+      return Database.recordGame(this.game)
     },
     gameTick: function() {
       if(!this.game.completed && !this.paused) {

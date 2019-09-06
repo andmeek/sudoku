@@ -1,7 +1,11 @@
 import { shallowMount } from '@vue/test-utils'
 import Game from '../../src/screens/game.vue'
+import Database from '../../src/database.js'
+import indexedDB from 'fake-indexeddb'
 
 jest.useFakeTimers()
+
+global.indexedDB = indexedDB
 
 describe('Game.vue', () => {
   let wrapper, game
@@ -14,6 +18,14 @@ describe('Game.vue', () => {
         game: game
       }
     })
+  })
+
+  afterEach((done) => {
+    const deleteReq = indexedDB.deleteDatabase('sudoku')
+
+    deleteReq.onsuccess = function () {
+      done()
+    }
   })
 
   test('matches snapshot', () => {
@@ -38,8 +50,18 @@ describe('Game.vue', () => {
     test('emits a gamecompleted when the game is completed and the user clicks the okay button', () => {
       expect(wrapper.find('.completed')).toBeTruthy()
 
-      wrapper.findAll('button').at(0).trigger('click')
+      wrapper.find({ ref: 'gamecompleted' }).trigger('click')
       expect(wrapper.emitted().gamecompleted).toBeTruthy()
+    })
+
+    test('.confirmCompleted records the game in the databse', (done) => {
+      wrapper.vm.confirmCompleted().then(() => {
+        Database.games().then((games) => {
+          expect(games.length).toEqual(1)
+
+          done()
+        })
+      })
     })
 
     test('stops running the game tick', () => {
@@ -75,6 +97,25 @@ describe('Game.vue', () => {
     jest.advanceTimersByTime(1000)
     expect(clearInterval).toHaveBeenCalledTimes(1)
     expect(game.timer).toEqual(3)
+  })
+
+  describe('.exit', () => {
+    test('emits an exit event', () => {
+      wrapper.vm.exit()
+
+      expect(wrapper.emitted().exit).toBeTruthy()
+    })
+
+    test('records the game in the current state', (done) => {
+      wrapper.vm.exit().then(() => {
+        Database.games().then((games) => {
+          expect(games.length).toEqual(1)
+          expect(games[0].completed).toBeFalsy()
+
+          done()
+        })
+      })
+    })
   })
 
   describe('.onVisbilityChange', () => {
