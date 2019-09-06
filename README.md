@@ -1,6 +1,6 @@
 # sudoku
 
-![Travis CI build status](https://travis-ci.org/andmeek/sudoku.svg?branch=master)
+[![Travis CI build status](https://travis-ci.org/andmeek/sudoku.svg?branch=master)](https://travis-ci.org/andmeek/sudoku)
 
 A simple open source browser based sudoku game
 
