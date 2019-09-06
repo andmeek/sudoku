@@ -1,7 +1,4 @@
 import Database from '../src/database.js'
-import indexedDB from 'fake-indexeddb'
-
-global.indexedDB = indexedDB
 
 describe('Database', () => {
   let db
@@ -16,6 +13,7 @@ describe('Database', () => {
     })
 
     test('returns an error when indexedDB is not available', (done) => {
+      const indexedDB = global.indexedDB
       global.indexedDB = null
 
       Database.setup().catch((err) => {
@@ -32,14 +30,10 @@ describe('Database', () => {
       db = await Database.setup()
     })
 
-    afterEach((done) => {
+    afterEach(async () => {
       db.close()
 
-      const deleteReq = indexedDB.deleteDatabase('sudoku')
-
-      deleteReq.onsuccess = function () {
-        done()
-      }
+      await clearDatabase()
     })
 
     test('.recordGame adds a game to the object store', async (done) => {

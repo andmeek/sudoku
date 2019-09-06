@@ -1,3 +1,4 @@
+import indexedDB from 'fake-indexeddb'
 import Game from '../src/models/game.js'
 import Grid from '../src/models/grid.js'
 import Board from '../src/models/board.js'
@@ -31,3 +32,15 @@ global.completeBoard = function (board) {
 }
 
 global.newboard = global.genTestGame
+
+global.indexedDB = indexedDB
+
+global.clearDatabase = function () {
+  return new Promise( (resolve) => {
+    const deleteReq = indexedDB.deleteDatabase('sudoku')
+
+    deleteReq.onsuccess = function () {
+      resolve()
+    }
+  })
+}

@@ -1,11 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
 import Game from '../../src/screens/game.vue'
 import Database from '../../src/database.js'
-import indexedDB from 'fake-indexeddb'
 
 jest.useFakeTimers()
-
-global.indexedDB = indexedDB
 
 describe('Game.vue', () => {
   let wrapper, game
@@ -20,12 +17,8 @@ describe('Game.vue', () => {
     })
   })
 
-  afterEach((done) => {
-    const deleteReq = indexedDB.deleteDatabase('sudoku')
-
-    deleteReq.onsuccess = function () {
-      done()
-    }
+  afterEach(async () => {
+    await clearDatabase()
   })
 
   test('matches snapshot', () => {
