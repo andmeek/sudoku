@@ -36,7 +36,7 @@ global.newboard = global.genTestGame
 global.indexedDB = indexedDB
 
 global.clearDatabase = function () {
-  return new Promise( (resolve) => {
+  return new Promise((resolve) => {
     const deleteReq = indexedDB.deleteDatabase('sudoku')
 
     deleteReq.onsuccess = function () {

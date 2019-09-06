@@ -12,6 +12,7 @@
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
+        "clearDatabase": true,
         "completeBoard": true,
         "completeNumber": true,
         "genTestGame": true,
