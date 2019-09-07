@@ -9,10 +9,12 @@ exports[`Stats.vue matches snapshot 1`] = `
     <tr>
       <th>Difficulty</th>
       <th>Plays</th>
+      <th>Completed</th>
       <th>Best Time</th>
     </tr>
     <tr>
       <td>Easy</td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -20,9 +22,11 @@ exports[`Stats.vue matches snapshot 1`] = `
       <td>Medium</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Hard</td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -30,9 +34,11 @@ exports[`Stats.vue matches snapshot 1`] = `
       <td>Very Hard</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Insane</td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -40,12 +46,15 @@ exports[`Stats.vue matches snapshot 1`] = `
       <td>Unthinkable</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </table>
+  <h2>Plays</h2>
+  <ul></ul>
 </div>
 `;
 
-exports[`Stats.vue matches snapshot with game plays 1`] = `
+exports[`Stats.vue matches snapshot with game play history 1`] = `
 <div class="stats screen">
   <header>
     <h1>Gameplay Stats</h1> <button class="menu">Back</button>
@@ -54,30 +63,36 @@ exports[`Stats.vue matches snapshot with game plays 1`] = `
     <tr>
       <th>Difficulty</th>
       <th>Plays</th>
+      <th>Completed</th>
       <th>Best Time</th>
     </tr>
     <tr>
       <td>Easy</td>
-      <td>20</td>
-      <td>00:02:03</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Medium</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Hard</td>
-      <td>2</td>
-      <td>34:12:02</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Very Hard</td>
-      <td>1</td>
+      <td></td>
+      <td></td>
       <td></td>
     </tr>
     <tr>
       <td>Insane</td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -85,7 +100,71 @@ exports[`Stats.vue matches snapshot with game plays 1`] = `
       <td>Unthinkable</td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </table>
+  <h2>Plays</h2>
+  <ul>
+    <li>
+      2019-9-5 - Hard, completed in 34193:54:58, with 0 mistakes.
+    </li>
+    <li>
+      1969-12-31 - Easy, incompleted in 00:00:20, with 2 mistakes.
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Stats.vue matches snapshot with game plays stats 1`] = `
+<div class="stats screen">
+  <header>
+    <h1>Gameplay Stats</h1> <button class="menu">Back</button>
+  </header>
+  <table>
+    <tr>
+      <th>Difficulty</th>
+      <th>Plays</th>
+      <th>Completed</th>
+      <th>Best Time</th>
+    </tr>
+    <tr>
+      <td>Easy</td>
+      <td>20</td>
+      <td>2</td>
+      <td>00:02:03</td>
+    </tr>
+    <tr>
+      <td>Medium</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hard</td>
+      <td>2</td>
+      <td>1</td>
+      <td>34:12:02</td>
+    </tr>
+    <tr>
+      <td>Very Hard</td>
+      <td>1</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Insane</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Unthinkable</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <h2>Plays</h2>
+  <ul></ul>
 </div>
 `;

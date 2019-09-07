@@ -10,14 +10,24 @@
       <tr>
         <th>Difficulty</th>
         <th>Plays</th>
+        <th>Completed</th>
         <th>Best Time</th>
       </tr>
       <tr v-for="(details, difficulty) in stats">
         <td>{{ difficulty }}</td>
         <td>{{ details === null ? '' : details.plays }}</td>
+        <td>{{ details === null ? '' : details.completed }}</td>
         <td>{{ bestTime(difficulty) }}</td>
       </tr>
     </table>
+
+    <h2>Plays</h2>
+
+    <ul>
+      <li v-for="play in plays">
+        {{ dateFormat(play.date) }} - {{ play.difficulty }}, {{ play.completed ? 'completed' : 'incompleted' }} in {{ play.timer.toTimerDisplay() }}, with {{ play.mistakes }} mistakes.
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -45,6 +55,9 @@ export default {
       }
       return null
     },
+    dateFormat: function(epoch) {
+      return (new Date(epoch)).toLocaleDateString()
+    },
     loadPlays: function() {
       this.plays = []
 
@@ -66,7 +79,7 @@ export default {
           const difficulty = play.difficulty
 
           if (this.stats[difficulty] === null) {
-            this.stats[difficulty] = {plays: 0, besttime: null}
+            this.stats[difficulty] = {plays: 0, besttime: null, completed: 0}
           }
 
           this.stats[difficulty].plays++
@@ -77,6 +90,8 @@ export default {
             } else if (this.stats[difficulty].besttime > play.timer) {
               this.stats[difficulty].besttime = play.timer
             }
+
+            this.stats[difficulty].completed++
           }
         })
       })
@@ -101,10 +116,22 @@ export default {
 }
 
 .stats table {
+  border-spacing: 0px 12px;
+  font-size: 1.2em;
   margin: 12px;
   width: 100%;
 }
 .stats th {
   text-align: left;
+}
+
+.stats ul {
+  padding-inline-start: 0px;
+}
+
+.stats li {
+  list-style: none;
+  margin: 12px;
+  font-size: 1.2em;
 }
 </style>

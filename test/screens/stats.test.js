@@ -35,15 +35,28 @@ describe('Stats.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('matches snapshot with game plays', () => {
-    wrapper.setData({stats: {
-      'Easy': {plays: 20, besttime: 123},
-      'Medium': null,
-      'Hard': {plays: 2, besttime: 123122},
-      'Very Hard': {plays: 1, besttime: null},
-      'Insane': null,
-      'Unthinkable': null,
-    }})
+  test('matches snapshot with game plays stats', () => {
+    wrapper.setData({
+      stats: {
+        Easy: { plays: 20, besttime: 123, completed: 2 },
+        Medium: null,
+        Hard: { plays: 2, besttime: 123122, completed: 1 },
+        'Very Hard': { plays: 1, besttime: null, completed: 0 },
+        Insane: null,
+        Unthinkable: null
+      }
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  test('matches snapshot with game play history', () => {
+    wrapper.setData({
+      plays: [
+        { date: 1567742786306, difficulty: 'Hard', completed: true, timer: 123098098, mistakes: 0 },
+        { date: 12345, difficulty: 'Easy', completed: false, timer: 20, mistakes: 2 }
+      ]
+    })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -86,12 +99,12 @@ describe('Stats.vue', () => {
       await wrapper.vm.loadStats()
 
       expect(wrapper.vm.stats).toEqual({
-        'Easy': null,
-        'Medium': null,
-        'Hard': null,
+        Easy: null,
+        Medium: null,
+        Hard: null,
         'Very Hard': null,
-        'Insane': null,
-        'Unthinkable': null,
+        Insane: null,
+        Unthinkable: null
       })
     })
 
@@ -102,12 +115,12 @@ describe('Stats.vue', () => {
 
       expect(wrapper.vm.plays.length).toEqual(4)
       expect(wrapper.vm.stats).toEqual({
-        'Easy': {plays: 2, besttime: 0},
-        'Medium': {plays: 1, besttime: null},
-        'Hard': {plays: 1, besttime: 123},
+        Easy: { plays: 2, besttime: 0, completed: 1 },
+        Medium: { plays: 1, besttime: null, completed: 0 },
+        Hard: { plays: 1, besttime: 123, completed: 1 },
         'Very Hard': null,
-        'Insane': null,
-        'Unthinkable': null,
+        Insane: null,
+        Unthinkable: null
       })
     })
   })
