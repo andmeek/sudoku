@@ -51,6 +51,8 @@ describe('Stats.vue', () => {
   })
 
   test('matches snapshot with game play history', () => {
+    wrapper.vm.dateFormat = jest.fn((epoch) => epoch.toString())
+
     wrapper.setData({
       plays: [
         { id: 2, date: 1567742786306, difficulty: 'Hard', completed: true, timer: 123098098, mistakes: 0 },
