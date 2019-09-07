@@ -54,7 +54,9 @@ export default {
 
         this.tileClick(this.selectedTile)
 
-        this.selectedTile = selected
+        if (!selected.completed) {
+          this.selectedTile = selected
+        }
       }
     },
     tileClick: function(tile) {

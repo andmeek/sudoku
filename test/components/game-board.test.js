@@ -63,14 +63,26 @@ describe('GameBoard.vue', () => {
       expect(tileClick).not.toHaveBeenCalled()
     })
 
-    test('keeps the same tile selected', () => {
+    test('keeps the same tile selected if not completed', () => {
       wrapper.vm.tileClick = nonMockedTileClick
       wrapper.setData({ selectedTile: game.board.tiles[4] })
       game.currentInput = 2
 
       wrapper.vm.inputChanged()
 
+      expect(game.board.tiles[4].completed).toBeFalsy()
       expect(wrapper.vm.selectedTile).toEqual(game.board.tiles[4])
+    })
+
+    test('unselects the file if it was just completed', () => {
+      wrapper.vm.tileClick = nonMockedTileClick
+      wrapper.setData({ selectedTile: game.board.tiles[4] })
+      game.currentInput = 6
+
+      wrapper.vm.inputChanged()
+
+      expect(game.board.tiles[4].completed).toBeTruthy()
+      expect(wrapper.vm.selectedTile).toBeNull()
     })
   })
 
