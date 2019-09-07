@@ -50,7 +50,7 @@ exports[`Stats.vue matches snapshot 1`] = `
     </tr>
   </table>
   <h2>Plays</h2>
-  <ul></ul>
+  <ul></ul> <button class="menu">Wipe Stats</button>
 </div>
 `;
 
@@ -111,7 +111,7 @@ exports[`Stats.vue matches snapshot with game play history 1`] = `
     <li>
       1969-12-31 - Easy, incompleted in 00:00:20, with 2 mistakes.
     </li>
-  </ul>
+  </ul> <button class="menu">Wipe Stats</button>
 </div>
 `;
 
@@ -165,6 +165,6 @@ exports[`Stats.vue matches snapshot with game plays stats 1`] = `
     </tr>
   </table>
   <h2>Plays</h2>
-  <ul></ul>
+  <ul></ul> <button class="menu">Wipe Stats</button>
 </div>
 `;

@@ -36,6 +36,16 @@ describe('Database', () => {
       await clearDatabase()
     })
 
+    test('.drop clears the database', async () => {
+      await Database.recordGame(genTestGame())
+      db.close()
+      await Database.drop()
+
+      const results = await Database.games()
+
+      expect(results.length).toEqual(0)
+    })
+
     test('.recordGame adds a game to the object store', async (done) => {
       await Database.recordGame(genTestGame())
 

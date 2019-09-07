@@ -124,4 +124,30 @@ describe('Stats.vue', () => {
       })
     })
   })
+
+  describe('.wipeStats', () => {
+    test('asks the user to confirm and does nothing when they hit no', () => {
+      window.confirm = jest.fn((message) => false)
+
+      const drop = Database.drop
+      Database.drop = jest.fn()
+
+      wrapper.find({ ref: 'wipe' }).trigger('click')
+
+      expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to permanently wipe your game plays?')
+      expect(Database.drop).not.toHaveBeenCalled()
+
+      Database.drop = drop
+    })
+
+    test('calls database drop if the user confirmed', (done) => {
+      window.confirm = jest.fn((message) => true)
+      wrapper.vm.loadStats = jest.fn()
+
+      wrapper.vm.wipeStats().then(() => {
+        expect(wrapper.vm.loadStats).toHaveBeenCalled()
+        done()
+      })
+    })
+  })
 })

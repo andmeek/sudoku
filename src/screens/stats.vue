@@ -28,6 +28,8 @@
         {{ dateFormat(play.date) }} - {{ play.difficulty }}, {{ play.completed ? 'completed' : 'incompleted' }} in {{ play.timer.toTimerDisplay() }}, with {{ play.mistakes }} mistakes.
       </li>
     </ul>
+
+    <button ref="wipe" class="menu" v-on:click="wipeStats">Wipe Stats</button>
   </div>
 </template>
 
@@ -95,6 +97,13 @@ export default {
           }
         })
       })
+    },
+    wipeStats: function() {
+      if (window.confirm('Are you sure you want to permanently wipe your game plays?')) {
+        return Database.drop().then(() => {
+          this.loadStats()
+        })
+      }
     },
   },
   mounted() {

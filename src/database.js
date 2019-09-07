@@ -20,6 +20,16 @@ export default class Database {
     })
   }
 
+  static async drop () {
+    return new Promise((resolve) => {
+      const deleteReq = indexedDB.deleteDatabase('sudoku')
+
+      deleteReq.onsuccess = function () {
+        resolve()
+      }
+    })
+  }
+
   static async games () {
     return Database.setup()
       .then((db) => {
