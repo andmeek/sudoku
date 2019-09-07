@@ -44,6 +44,14 @@ describe('App.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
+  test('.newgame creates the game, grid, and board with a random seed', () => {
+    wrapper.vm.newgame(10, 'Easy')
+
+    expect(wrapper.vm.game).toBeDefined()
+    expect(wrapper.vm.game.seed).toBeGreaterThan(-1)
+    expect(wrapper.vm.game.board).not.toBeNull()
+  })
+
   test('when the game is completed it goes back to home', () => {
     wrapper.vm.gameover()
 

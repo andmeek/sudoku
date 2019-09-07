@@ -16,9 +16,12 @@
 </template>
 
 <script>
+import Board from './models/board.js'
 import DifficultyScreen from './screens/difficulty-select.vue'
 import Game from './models/game.js'
 import GameScreen from './screens/game.vue'
+import Generate from './models/generate.js'
+import Grid from './models/grid.js'
 import HomeScreen from './screens/home.vue'
 import StatsScreen from './screens/stats.vue'
 
@@ -39,8 +42,13 @@ export default {
     },
     newgame: function(difficulty, difficultyDisplay) {
       this.game = new Game()
+      this.game.seed = Math.floor(Math.random() * 25000)
       this.game.difficulty = difficultyDisplay
-      this.game.board = newboard(difficulty, Math.floor(Math.random() * 25000))
+
+      const grid = Generate.board(this.game.seed)
+      Generate.boardState(grid, difficulty)
+
+      this.game.board = new Board(grid)
       this.screen = 'game'
     },
     gameover: function() {
