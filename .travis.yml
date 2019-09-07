@@ -1,5 +1,3 @@
-before_install:
-  - export TZ=DST
 language: node_js
 node_js:
   - 8
