@@ -1,33 +1,73 @@
 <template>
-	<div class="user-input">
-	  <div class="numbers">
-	    <div>
-        <button v-for="n in [1, 2, 3, 4, 5]"
-                v-bind:class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
-                v-bind:disabled="game.board.numberCompleted(n)"
-                v-bind:value="n"
-                v-on:click="buttonClick(n)">{{ n }}</button>
+  <div class="user-input">
+    <div class="numbers">
+      <div>
+        <button
+          v-for="n in [1, 2, 3, 4, 5]"
+          :key="n"
+          :class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
+          :disabled="game.board.numberCompleted(n)"
+          :value="n"
+          @click="buttonClick(n)"
+        >
+          {{ n }}
+        </button>
       </div>
       <div>
-        <button v-for="n in [6, 7, 8, 9]"
-                v-bind:class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
-                v-bind:disabled="game.board.numberCompleted(n)"
-                v-bind:value="n"
-                v-on:click="buttonClick(n)">{{ n }}</button>
-        <button v-bind:class="{selected: eraserMode}" v-bind:value="0" v-on:click="buttonClick(0)">
-          <font-awesome-icon icon="eraser" size="sm" />
+        <button
+          v-for="n in [6, 7, 8, 9]"
+          :key="n"
+          :class="{selected: current == n && !game.board.numberCompleted(n), disabled: game.board.numberCompleted(n)}"
+          :disabled="game.board.numberCompleted(n)"
+          :value="n"
+          @click="buttonClick(n)"
+        >
+          {{ n }}
+        </button>
+        <button
+          :class="{selected: eraserMode}"
+          :value="0"
+          @click="buttonClick(0)"
+        >
+          <font-awesome-icon
+            icon="eraser"
+            size="sm"
+          />
         </button>
       </div>
     </div>
     <div class="actions">
-      <button v-bind:class="{selected: draftMode}" v-on:click="draftClick" value="pencil" title="Add notes">
-        <font-awesome-icon icon="pencil-alt" size="sm" />
+      <button
+        :class="{selected: draftMode}"
+        value="pencil"
+        title="Add notes"
+        @click="draftClick"
+      >
+        <font-awesome-icon
+          icon="pencil-alt"
+          size="sm"
+        />
       </button>
-      <button v-bind:class="{selected: showAllNotes}" v-on:click="toggleAllNotes" value="all-notes" title="Show all notes">
-        <font-awesome-icon icon="sticky-note" size="sm" />
+      <button
+        :class="{selected: showAllNotes}"
+        value="all-notes"
+        title="Show all notes"
+        @click="toggleAllNotes"
+      >
+        <font-awesome-icon
+          icon="sticky-note"
+          size="sm"
+        />
       </button>
-      <button v-on:click="showHint" value="hint" title="Show hint">
-        <font-awesome-icon icon="lightbulb" size="sm" />
+      <button
+        value="hint"
+        title="Show hint"
+        @click="showHint"
+      >
+        <font-awesome-icon
+          icon="lightbulb"
+          size="sm"
+        />
       </button>
     </div>
   </div>
@@ -35,50 +75,49 @@
 
 <script>
 export default {
-  props: ['game'],
-  data() {
+  props: { game: { type: Object, required: true } },
+  data () {
     return {
       current: null,
       eraserMode: false,
       draftMode: false,
-      showAllNotes: false,
+      showAllNotes: false
     }
   },
+  created: function () {
+    window.addEventListener('keyup', this.keyUp)
+  },
+  destroyed: function () {
+    window.removeEventListener('keyup', this.keyUp)
+  },
   methods: {
-    buttonClick: function(val) {
+    buttonClick: function (val) {
       this.changeInput(val)
     },
-    draftClick: function(event) {
+    draftClick: function (event) {
       this.game.draftMode = !this.game.draftMode
       this.draftMode = this.game.draftMode
     },
-    keyUp: function(event) {
-      if(event.keyCode > 47 && event.keyCode < 58) {
+    keyUp: function (event) {
+      if (event.keyCode > 47 && event.keyCode < 58) {
         this.changeInput(event.key)
-      } else if(event.key == "e") {
+      } else if (event.key === 'e') {
         this.draftClick()
       }
     },
-    changeInput: function(to) {
-      var val = parseInt(to)
+    changeInput: function (to) {
       this.game.currentInput = parseInt(to)
       this.current = this.game.currentInput
       this.eraserMode = this.game.eraserMode
     },
-    showHint: function() {
+    showHint: function () {
       this.game.showHint()
     },
-    toggleAllNotes: function() {
+    toggleAllNotes: function () {
       this.game.showAllNotes = !this.game.showAllNotes
       this.showAllNotes = this.game.showAllNotes
-    },
-  },
-  created: function() {
-    window.addEventListener('keyup', this.keyUp)
-  },
-  destroyed: function() {
-    window.removeEventListener('keyup', this.keyUp)
-  },
+    }
+  }
 }
 </script>
 

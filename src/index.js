@@ -17,8 +17,8 @@ Vue.config.productionTip = false
 
 var app = new Vue({
   el: '#game',
-  template: '<App />',
-  components: { App }
+  components: { App },
+  template: '<App />'
 })
 
 window.c = new Console(app)

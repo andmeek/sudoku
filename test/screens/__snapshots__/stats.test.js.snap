@@ -3,7 +3,9 @@
 exports[`Stats.vue matches snapshot 1`] = `
 <div class="stats screen">
   <header>
-    <h1>Gameplay Stats</h1> <button class="menu">Back</button>
+    <h1>Gameplay Stats</h1> <button class="menu">
+      Back
+    </button>
   </header>
   <table>
     <tr>
@@ -50,14 +52,18 @@ exports[`Stats.vue matches snapshot 1`] = `
     </tr>
   </table>
   <h2>Plays</h2>
-  <ul></ul> <button class="menu">Wipe Stats</button>
+  <ul></ul> <button class="menu">
+    Wipe Stats
+  </button>
 </div>
 `;
 
 exports[`Stats.vue matches snapshot with game play history 1`] = `
 <div class="stats screen">
   <header>
-    <h1>Gameplay Stats</h1> <button class="menu">Back</button>
+    <h1>Gameplay Stats</h1> <button class="menu">
+      Back
+    </button>
   </header>
   <table>
     <tr>
@@ -111,14 +117,18 @@ exports[`Stats.vue matches snapshot with game play history 1`] = `
     <li>
       1969-12-31 - Easy, incompleted in 00:00:20, with 2 mistakes.
     </li>
-  </ul> <button class="menu">Wipe Stats</button>
+  </ul> <button class="menu">
+    Wipe Stats
+  </button>
 </div>
 `;
 
 exports[`Stats.vue matches snapshot with game plays stats 1`] = `
 <div class="stats screen">
   <header>
-    <h1>Gameplay Stats</h1> <button class="menu">Back</button>
+    <h1>Gameplay Stats</h1> <button class="menu">
+      Back
+    </button>
   </header>
   <table>
     <tr>
@@ -165,6 +175,8 @@ exports[`Stats.vue matches snapshot with game plays stats 1`] = `
     </tr>
   </table>
   <h2>Plays</h2>
-  <ul></ul> <button class="menu">Wipe Stats</button>
+  <ul></ul> <button class="menu">
+    Wipe Stats
+  </button>
 </div>
 `;

@@ -53,8 +53,8 @@ describe('Stats.vue', () => {
   test('matches snapshot with game play history', () => {
     wrapper.setData({
       plays: [
-        { date: 1567742786306, difficulty: 'Hard', completed: true, timer: 123098098, mistakes: 0 },
-        { date: 12345, difficulty: 'Easy', completed: false, timer: 20, mistakes: 2 }
+        { id: 2, date: 1567742786306, difficulty: 'Hard', completed: true, timer: 123098098, mistakes: 0 },
+        { id: 1, date: 12345, difficulty: 'Easy', completed: false, timer: 20, mistakes: 2 }
       ]
     })
 

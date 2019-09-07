@@ -2,13 +2,16 @@
   <div class="game-header">
     <span class="timer">{{ game.timer.toTimerDisplay() }}</span>
     <span class="difficulty">{{ game.difficulty }}</span>
-    <span><button class="menu inline" v-on:click="$emit('exit')">Exit Game</button></span>
+    <span><button
+      class="menu inline"
+      @click="$emit('exit')"
+    >Exit Game</button></span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['game'],
+  props: { game: { type: Object, required: true } }
 }
 </script>
 

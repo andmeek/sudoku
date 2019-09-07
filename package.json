@@ -10,7 +10,7 @@
     "build": "webpack",
     "build-dist": "webpack --mode production",
     "dev-server": "webpack-dev-server",
-    "lint": "eslint src/ test/ *.config.js",
+    "lint": "eslint src/**/*.{js,vue} test/ *.config.js",
     "test-dist-server": "webpack-dev-server --no-live-reload --lazy",
     "test": "jest && yarn lint",
     "test-watch": "jest --watch"

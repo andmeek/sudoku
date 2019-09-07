@@ -3,7 +3,13 @@
     <header>
       <h1>Gameplay Stats</h1>
 
-      <button ref="exit" class="menu" v-on:click="$emit('exit')">Back</button>
+      <button
+        ref="exit"
+        class="menu"
+        @click="$emit('exit')"
+      >
+        Back
+      </button>
     </header>
 
     <table>
@@ -13,7 +19,10 @@
         <th>Completed</th>
         <th>Best Time</th>
       </tr>
-      <tr v-for="(details, difficulty) in stats">
+      <tr
+        v-for="(details, difficulty) in stats"
+        :key="difficulty"
+      >
         <td>{{ difficulty }}</td>
         <td>{{ details === null ? '' : details.plays }}</td>
         <td>{{ details === null ? '' : details.completed }}</td>
@@ -24,12 +33,21 @@
     <h2>Plays</h2>
 
     <ul>
-      <li v-for="play in plays">
+      <li
+        v-for="play in plays"
+        :key="play.id"
+      >
         {{ dateFormat(play.date) }} - {{ play.difficulty }}, {{ play.completed ? 'completed' : 'incompleted' }} in {{ play.timer.toTimerDisplay() }}, with {{ play.mistakes }} mistakes.
       </li>
     </ul>
 
-    <button ref="wipe" class="menu" v-on:click="wipeStats">Wipe Stats</button>
+    <button
+      ref="wipe"
+      class="menu"
+      @click="wipeStats"
+    >
+      Wipe Stats
+    </button>
   </div>
 </template>
 
@@ -37,33 +55,36 @@
 import Database from '../database.js'
 
 export default {
-  data: function() {
+  data: function () {
     return {
       plays: null,
       stats: {
-        'Easy': null,
-        'Medium': null,
-        'Hard': null,
+        Easy: null,
+        Medium: null,
+        Hard: null,
         'Very Hard': null,
-        'Insane': null,
-        'Unthinkable': null,
-      },
+        Insane: null,
+        Unthinkable: null
+      }
     }
   },
+  mounted () {
+    this.loadStats()
+  },
   methods: {
-    bestTime: function(difficulty) {
+    bestTime: function (difficulty) {
       if (this.stats[difficulty] !== null && this.stats[difficulty].besttime !== null) {
         return this.stats[difficulty].besttime.toTimerDisplay()
       }
       return null
     },
-    dateFormat: function(epoch) {
+    dateFormat: function (epoch) {
       return (new Date(epoch)).toLocaleDateString()
     },
-    loadPlays: function() {
+    loadPlays: function () {
       this.plays = []
 
-      return new Promise( (resolve) => {
+      return new Promise((resolve) => {
         Database.games().then((games) => {
           this.plays = games.reverse()
 
@@ -71,7 +92,7 @@ export default {
         })
       })
     },
-    loadStats: function() {
+    loadStats: function () {
       return this.loadPlays().then(() => {
         Object.keys(this.stats).forEach((key) => {
           this.stats[key] = null
@@ -81,7 +102,7 @@ export default {
           const difficulty = play.difficulty
 
           if (this.stats[difficulty] === null) {
-            this.stats[difficulty] = {plays: 0, besttime: null, completed: 0}
+            this.stats[difficulty] = { plays: 0, besttime: null, completed: 0 }
           }
 
           this.stats[difficulty].plays++
@@ -98,16 +119,13 @@ export default {
         })
       })
     },
-    wipeStats: function() {
+    wipeStats: function () {
       if (window.confirm('Are you sure you want to permanently wipe your game plays?')) {
         return Database.drop().then(() => {
           this.loadStats()
         })
       }
-    },
-  },
-  mounted() {
-    this.loadStats()
+    }
   }
 }
 </script>

@@ -3,13 +3,21 @@
 exports[`Home.vue enables the stats button when showStats is enabled 1`] = `
 <div class="home screen">
   <h1>Play Sudoku</h1>
-  <div class="actions"><button class="menu">New Game</button> <button class="menu">Stats</button> <a href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank" class="menu">How To Play</a> <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a></div>
+  <div class="actions"><button class="menu">
+      New Game
+    </button> <button class="menu">
+      Stats
+    </button> <a href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank" class="menu">How To Play</a> <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a></div>
 </div>
 `;
 
 exports[`Home.vue matches snapshot 1`] = `
 <div class="home screen">
   <h1>Play Sudoku</h1>
-  <div class="actions"><button class="menu">New Game</button> <button disabled="disabled" class="menu">Stats</button> <a href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank" class="menu">How To Play</a> <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a></div>
+  <div class="actions"><button class="menu">
+      New Game
+    </button> <button disabled="disabled" class="menu">
+      Stats
+    </button> <a href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/" target="_blank" class="menu">How To Play</a> <a href="https://github.com/andmeek/sudoku" target="_blank">Source Code on Github</a></div>
 </div>
 `;

@@ -1,28 +1,43 @@
 <template>
   <div class="game screen">
-     <game-header
-       v-if="!game.completed"
-       v-bind:game="game"
-       v-on:exit="exit"
-     />
-     <game-board v-bind:game="game" v-if="!game.completed" />
-     <user-input v-bind:game="game" v-if="!game.completed" />
-     <div class="completed" v-if="game.completed">
-       <h1>
-          You won!
-       </h1>
+    <game-header
+      v-if="!game.completed"
+      :game="game"
+      @exit="exit"
+    />
+    <game-board
+      v-if="!game.completed"
+      :game="game"
+    />
+    <user-input
+      v-if="!game.completed"
+      :game="game"
+    />
+    <div
+      v-if="game.completed"
+      class="completed"
+    >
+      <h1>
+        You won!
+      </h1>
 
-       <dl>
+      <dl>
         <dt>Difficulty</dt>
         <dd>{{ game.difficulty }}</dd>
         <dt>Time</dt>
         <dd>{{ game.timer.toTimerDisplay() }}</dd>
         <dt>Mistakes</dt>
         <dd>{{ game.mistakes }}</dd>
-       </dl>
+      </dl>
 
-        <button ref="gamecompleted" class="menu" v-on:click="confirmCompleted">Okay</button>
-     </div>
+      <button
+        ref="gamecompleted"
+        class="menu"
+        @click="confirmCompleted"
+      >
+        Okay
+      </button>
+    </div>
   </div>
 </template>
 
@@ -33,47 +48,47 @@ import GameHeader from '../components/game-header.vue'
 import UserInput from '../components/user-input.vue'
 
 export default {
-  props: ['game'],
-  data() {
+  components: {
+    GameBoard, GameHeader, UserInput
+  },
+  props: { game: { type: Object, required: true } },
+  data () {
     return {
       paused: false,
-      tick: null,
+      tick: null
     }
   },
+  created () {
+    this.tick = setInterval(this.gameTick.bind(this), 1000)
+    window.addEventListener('visibilitychange', this.onVisibilityChange)
+  },
+  destroyed () {
+    clearInterval(this.tick)
+    window.removeEventListener('visibilitychange', this.onVisibilityChange)
+  },
   methods: {
-    confirmCompleted: function() {
+    confirmCompleted: function () {
       this.$emit('gamecompleted')
 
       return Database.recordGame(this.game)
     },
-    exit: function() {
+    exit: function () {
       this.$emit('exit')
 
       return Database.recordGame(this.game)
     },
-    gameTick: function() {
-      if(!this.game.completed && !this.paused) {
+    gameTick: function () {
+      if (!this.game.completed && !this.paused) {
         this.game.incrementTimer()
       }
     },
-    onVisibilityChange: function() {
-      if(document.visibilityState == 'hidden') {
+    onVisibilityChange: function () {
+      if (document.visibilityState === 'hidden') {
         this.paused = true
       } else {
         this.paused = false
       }
-    },
-  },
-  created() {
-    this.tick = setInterval(this.gameTick.bind(this), 1000)
-    window.addEventListener('visibilitychange', this.onVisibilityChange)
-  },
-  destroyed() {
-    clearInterval(this.tick)
-    window.removeEventListener('visibilitychange', this.onVisibilityChange)
-  },
-  components: {
-    GameBoard, GameHeader, UserInput
+    }
   }
 }
 </script>
